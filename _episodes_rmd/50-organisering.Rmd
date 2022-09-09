@@ -1,0 +1,48 @@
+---
+title: "Organisering"
+teaching: 10
+exercises: 5
+questions:
+- "FIX ME"
+objectives:
+- "FIX ME"
+keypoints:
+- "FIX ME"
+
+source: Rmd
+---
+
+```{r, include = FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("50-")
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Et par forslag til hvordan I organiserer R-scripts, filer og data. 
+
+Opret et projekt.
+
+Opret en mappe til data.
+
+Så har I alle scripts, al data og alt andet samlet et sted.
+
+Husk at scripts eksekveres linie for linie.
+
+Skriv derfor koden i den rækkefølge I mener den skal køres. Hvis vi skal 
+bruge værdien af en variabel i en beregning - så skal variablen tildeles den
+værdi før vi bruger den.
+
+kald til libraries placeres med fordel som det allerførste i scriptet.
+
+Kommentarer er jeres ven.
+
+install.packages() kan være rart at have med i scriptet. Men det er ikke noget
+I har brug for at køre hver eneste gang scriptet skal køres. Så udkommenter
+de linier kode.
+
+
+
+{% include links.md %}
