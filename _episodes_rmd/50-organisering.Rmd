@@ -21,7 +21,11 @@ knitr_fig_path("50-")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Et par forslag til hvordan I organiserer R-scripts, filer og data. 
+Man må helt selv om hvordan man organiserer sine scripts, filer og data.
+
+Men vi har erfaring for at nedenstående tricks gør livet lidt lettere.
+
+
 
 Opret et projekt.
 
@@ -43,6 +47,51 @@ install.packages() kan være rart at have med i scriptet. Men det er ikke noget
 I har brug for at køre hver eneste gang scriptet skal køres. Så udkommenter
 de linier kode.
 
+En god praksis kan være:
+```{r eval = F}
+# i dette script analyserer jeg hvilke sensoriske parametre der har betydning 
+# for vurderingen af smagen af oste.
+
+library(tidyverse)
+library(ggbiplot)
+
+df <- read.csv("data/mine_data.csv")
+
+summary(df)
+
+# Ovenstående kode fungerer
+# herunder eksperimenterer jeg
+
+eksempelkode
+
+```
+
+
+Under kommentaren "herunder eksperimenterer jeg" skriver du kode, ser om den virker
+kigger på resultatet og overvejer om det giver mening. Og når du er tilfreds med 
+resultatet, flytter du det op over kommentaren "Ovenstående kode fungerer".
+
+Målet er at have script der, når det er færdigt, kan køres linie for linie fra 
+start til slut, og give dig de resultater, grafer osv du har brug for.
+
+
+# sektioner
+Det kan være nyttigt også at organisere sin kode i sektioner:
+```{r}
+# indlæs biblioteker ----
+
+# indlæs data ----
+
+# rens data ----
+
+
+# analyser data ----
+
+# plot data ----
+
+```
+
+Disse kode sektioner kan "foldes sammen" så de ikke forstyrrer blikket i scriptet.
 
 
 {% include links.md %}
