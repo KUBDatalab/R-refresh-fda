@@ -46,9 +46,10 @@ Først downloader og installerer vi pakken fra nettet.
 
 Pakken, med alle funktionerne ligger derefter på vores computer.
 
-Når vi vil bruge funktionerne, skal vi indlæse dem i R.
+Når vi så vil bruge funktionerne, skal vi indlæse dem i R. Det gør vi med
+funktionen `library`.
 
-Når vi skal bruge pakker der ligger på CRAN gør vi følgende.
+Derfor: To trin:
 ```{r eval = F}
 install.packages("tidyverse")
 library(tidyverse)
@@ -62,28 +63,46 @@ er en tekststreng.
 Når først pakken er installeret, ligger den som et objekt i R. Og vi skal ikke 
 have anførselstegn.
 
-Når der skal installeres pakker fra github, er processen lidt mere bøvlet.
+## ggbiplot
 
-Vi skal bruge en særlig pakke, der kan hente pakken fra Github. Men derfra er 
-processen den samme.
+Utroligt nyttigt til at lave biplots af jeres principal component analyser.
+
+Den skal installeres fra github. 
+
+Der er processen lidt mere bøvlet.
+
+Vi skal bruge en særlig pakke, der kan hente pakken fra Github. 
+
+Den installerer vi som før:
+
+Men derfra er processen den samme.
 
 ```{r eval=F}
 install.packages("devtools")
 library(devtools)
-install_github("vqv/ggbiplot")
-library(ggbiplot)
 ```
 
-ggbiplot er en pakke derbruges ret meget i dette kursus. Og det kan give udfordringer.
+Nu har vi en funktion der kan installere pakker fra github:
+```{r eval=F}
+install_github("vqv/ggbiplot")
+```
+
+Og så kan vi indlæse den med library.
+```{r eval=F}
+library(ggbiplot)
+```
 
 Github er, i mange sammenhænge gratis. Men de skal også tjene penge. Når 
 forfatterne af ggbiplot-pakken har valgt ikke at ville betale for at have deres
 pakke liggende på github, er der derfor begrænsninger på hvor mange downloads af
 pakken github tillader i timen. Den plejer I at nå på dette kursus.
 
-Det er der to løsninger på.
+Det er der tre løsninger på.
 
 Man kan væbne sig med tålmodighed, og prøve igen senere.
+
+Man kan have installeret en VPN-løsning, der gør det muligt at lade som om man
+kommer fra et andet sted.
 
 Eller, man kan kopiere denne koden herunder, og køre den på sin egen computer.
 
