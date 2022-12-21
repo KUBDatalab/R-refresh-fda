@@ -21,6 +21,9 @@ knitr_fig_path("02-")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+GIFs lavet med:
+https://gifcap.dev/
+
 # Struktur hjælper
 
 Man må helt selv om hvordan man organiserer sine scripts, filer og data.
