@@ -18,6 +18,9 @@ source: Rmd
 
 
 
+GIFs lavet med:
+https://gifcap.dev/
+
 # Struktur hjælper
 
 Man må helt selv om hvordan man organiserer sine scripts, filer og data.
@@ -32,29 +35,44 @@ opretter man en mappe på sin computer.
 Åbner man efterfølgende projektet, er det her R forventer at finde ting.
 Dine data og dine scripts.
 
+Arbejd med mere end et projekt. I det øjeblik to opgaver intet har med 
+hinanden at gøre, når de kan løses uafhængigt af hinanden, bør man overveje at 
+etablere to projekter.
+
+KAN VI LAVE EN GIF DER VISER HVORDAN?
 
 
-
-Indlæs data med kode.
+# Brug kode til at indlæse data
 
 Det er fristende at bruge importfunktionen til at indlæse data. Den er også fin.
+
+![Import kræver klik, hver gang](../fig/import_recording.gif)
 
 Men læg mærke til at du hver gang du bruger den, skal klikke. Du skal vælge filen,
 du skal træffe valg.
 
-Indlæs i stedet filen med kommandoer i et script.
+Indlæs i stedet filen med kommandoer i et script:
 
 
+~~~
+library(readxl)
+Results_Consumer_Test <- read_excel("R_projekter/R-refresh-fda/data/Results Consumer Test.xlsx")
+~~~
+{: .language-r}
 
-Opret et projekt.
+## Sørg for struktur på mapper i projektet
+Opret en mappe til data
+Opret en mappe til scripts
 
-Opret en mappe til data.
 
-Så har I alle scripts, al data og alt andet samlet et sted.
+## Husk at scripts eksekveres linie for linie.
 
-Husk at scripts eksekveres linie for linie.
+Og idealet er at I får skrevet et script, som når det 
+køres fra start til slut, giver jer de resultater 
+i gerne vil have.
 
-Skriv derfor koden i den rækkefølge I mener den skal køres. Hvis vi skal 
+Skriv derfor koden i den rækkefølge I mener den skal køres. 
+Hvis vi skal 
 bruge værdien af en variabel i en beregning - så skal variablen tildeles den
 værdi før vi bruger den.
 
@@ -114,7 +132,7 @@ Det kan være nyttigt også at organisere sin kode i sektioner:
 
 Disse kode sektioner kan "foldes sammen" så de ikke forstyrrer blikket i scriptet.
 
-
+![Sektioner kan foldes sammen, og bidrage til overblikket](../fig/sections_foldning.gif)
 
 https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/index.html
 
