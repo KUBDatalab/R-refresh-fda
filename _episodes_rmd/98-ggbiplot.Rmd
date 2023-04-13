@@ -109,6 +109,10 @@ Eller, man kan kopiere denne koden herunder, og køre den på sin egen computer.
 Så har man funktionen ggbiplot(). Men få alligevel pakken installeret på et senere
 tidspunkt, så du får hjælpefilerne med.
 
+Gem den i filen ggbiplot.R i mappen scripts, og kør source("scripts/ggbiplot.R")
+i starten af dit script
+
+
 ```{r eval = F}
 ggbiplot <- function (pcobj, choices = 1:2, scale = 1, pc.biplot = TRUE, 
     obs.scale = 1 - scale, var.scale = scale, groups = NULL, 
