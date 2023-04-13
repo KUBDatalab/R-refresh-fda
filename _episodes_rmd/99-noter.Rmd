@@ -21,6 +21,73 @@ knitr_fig_path("99-")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+organisering hensigtsmæssigt af projekter.
+Hvorfor projekter
+Mere end et! Nok ikke et pr forelæsning. Men et for kaffe, og 
+et for ost.
+Lad være med at sætte working directory. Brug projekter i stedet (men
+man kan godt. gør man det, kommer vi forbi og sætter ild til din computer.)
+
+*under hvert punkt - hyppige/typiske fejl og hvordan de fixes*
+
+Eksekvering
+Kommentarer
+Sektioner
+
+pakker (devtools, mhp opdatering)
+installation først - indlæsning bagefter.
+og udkommenter installationerne. Eller fjern dem helt. Måske. Tidyverse kan
+nok fjernes.
+library(readxl), tidyverse, biplot
+Evt denne notation/kodestil
+library(ggbiplot) # devtools::install_github("/")
+
+opdatering
+ og ggbiplot
+
+
+Datastrukturer - ultrakort.
+NA!
+
+Import af data
+
+Arbejde med dataframe.
+aggregate funktionen
+Subsetting af data. NB - Morten, du er meget base R. Skal vi
+også være det?
+[] og $ notation. og subset()
+
+Mutate og summarise - men bare uden tidy.
+summary statistics - uden tidy
+
+invalide kolonne navne.
+library(janitor)
+ newdataobject <- read.csv("yourcsvfilewithpath.csv", header=T) %>% clean_names() er løsningen... Der er også names repair i read_excel
+
+Wine <- read_excel('Wine.xlsx')
+View(Wine)
+p1 <- qplot(data=Wine, Furfural, Ethanol)
+p2 <- qplot(data=Wine, Ethyl acetate, ethanol)
+
+Og backticks
+rename variable names
+
+Andre udvalgte funktioner
+gridarrange (eller patchwork)
+qplot  - densitogrammer, farvelægning, alpha
+boxplot, violin, jitter, box+jitter
+ggtitle
+
+Faktorer - også til farvelægning. Assessor er nummereret. men den er ikke
+kontinuært, derfor konverter til faktor.
+
+Ryd op! men nok først til allersidst.
+
+
+
+
+
+
 library(ggpubr)
 library(ggplot2)
 
