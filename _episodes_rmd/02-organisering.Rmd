@@ -1,5 +1,5 @@
 ---
-title: "organiser dit arbejde"
+ title: "organiser dit arbejde"
 teaching: 10
 exercises: 5
 questions:
@@ -20,6 +20,24 @@ knitr_fig_path("02-")
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+Helt overordnet indgangsbøn - lær af vores fejl.
+
+Arbejdstitel kode.
+
+Kode er sekventiel
+ Brug kode til at indlæse data
+ Og sådan får du koden til at indlæse data.
+Kode skal organiseres.
+
+I projekter
+  Med en hensigtsmæssig mappestruktur - den fuldt udfoldede!
+Med sektioner og kommentarer
+Gerne i mere end script
+Og med installation og indlæsning af pakker i starten.
+Ryd op i jeres kode til sidst
+Hvordan deler man sit projekt? projektfilen er ikke nok!
+
 
 GIFs lavet med:
 https://gifcap.dev/

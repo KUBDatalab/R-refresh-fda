@@ -18,6 +18,8 @@ source: Rmd
 
 
 
+
+
 I kender R. I har allerede lært alt hvad vi gennemgår her. Men I kan formentlig 
 ikke huske det. Og det er helt forventeligt. Hvis ikke man løbende holder det 
 ved lige, glemmer man utroligt hurtigt R.
