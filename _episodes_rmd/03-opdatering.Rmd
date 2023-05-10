@@ -21,6 +21,22 @@ knitr_fig_path("40-")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+Arbejdstitel pakker.
+
+Pakker hører til i starten.
+Rækkefølgen er installer pakker, og dernæst indlæs pakker.
+masking og conflicts af funktioner. Så tænk også over rækkefølgen af
+library! og dermed pakkenavn::funktion
+installer devtools!
+Brug devtools til at opdatere (praktisk øvelse)
+github vs. cran vs. lokale funktioner/source
+installer ggbiplot
+  det er en funktion 
+    og kan derfor "indlæses" med source funktionen. (og den ligger fint i en scripts mappe!)
+
+
+
+
 Det er et stykke tid siden I brugte R sidst. Så nu er der sikkert kommet 
 opdateringer.
 

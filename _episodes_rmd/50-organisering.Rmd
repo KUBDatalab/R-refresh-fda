@@ -94,4 +94,21 @@ Det kan være nyttigt også at organisere sin kode i sektioner:
 Disse kode sektioner kan "foldes sammen" så de ikke forstyrrer blikket i scriptet.
 
 
+Hvorfor er det en ringe ide at lave rm(list=ls())? Eller setwd()?
+
+Den første - den fjerner kun de objekter du selv har oprettet, som er i dit
+environment. Alle biblioteker der er blevet attached med library() er der 
+stadig. Alle ændringer af options (antal printede decimaler for bare at tage
+en), bevares. 
+Lad være, genstart i stedet R-sessionen.
+
+Se også https://rstats.wtf/source-and-blank-slates.html#rm-list-ls.
+Som nok også kan være nyttigt.
+
+setwd - du sætter den til noget der er på din computer. Det betyder at dit script
+ikke kan flyttes, uden at ændre i working directory (rm(list=ls()), ændrer 
+heller ikke på working directory. Derfor optræder de ofte sammen. Dårlig ide!)
+
+
+
 {% include links.md %}
