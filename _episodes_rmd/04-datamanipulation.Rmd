@@ -1,0 +1,49 @@
+---
+title: "Opdatering"
+teaching: 10
+exercises: 5
+questions:
+- "FIX ME"
+objectives:
+- "FIX ME"
+keypoints:
+- "FIX ME"
+
+source: Rmd
+---
+
+```{r, include = FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("04-")
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+arbejdstitel - datamanipulation
+
+Indlæs data
+Subsetting
+  dollar-notation
+  []-notation
+  subset-funktionen
+renaming kolonner
+  backticks
+  
+Tidy
+I skal vide hvordan ovenstående fungerer. For det 
+er måden det gøres i undervisningsmaterialet. 
+Men der er andre måder, som I måske bedre kan lide.
+  pipen
+  filter og select
+  mutate? Ene nærlæser undervisningsmaterialet.
+  der gemmes ikke!
+  
+gemme data!
+  IKKE i data-mappen.
+
+
+
+
+{% include links.md %}

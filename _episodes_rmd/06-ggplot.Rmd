@@ -1,0 +1,98 @@
+---
+title: "lidt ggplot"
+teaching: 10
+exercises: 5
+questions:
+- "FIX ME"
+objectives:
+- "FIX ME"
+keypoints:
+- "FIX ME"
+
+source: Rmd
+---
+
+```{r, include = FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("06-")
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+vineksemplet herunder er indgangsbønnen.
+
+
+```{r}
+library(ggbiplot)
+ggbiplot
+```
+denne kommer senere.
+```{r}
+data(wine)
+
+wine.pca <- prcomp(wine, scale. = TRUE)
+biplot <- ggbiplot(wine.pca, obs.scale = 1, var.scale = 1, groups = wine.class, ellipse = TRUE, circle = TRUE)
+biplot + 
+  
+```
+
+```{r}
+wine %>% 
+  mutate(type = wine.class) %>% 
+  group_by(type) %>% 
+  summarise(alc = mean(Alcohol),
+            color = mean(Color))
+  
+```
+
+Kan vi lave et plot?
+Og hvad er så elementerne i et ggplot?
+
+```{r}
+wine %>% 
+   mutate(type = wine.class) %>% 
+  ggplot(aes(Alcohol, Color, color = type)) +
+  geom_point()
+```
+
+Vi kan nu forestille os at vi har flere parametre
+med end alkohol og farve. Og laver kombinationer 
+af disse dimensionter, så vi får to nye dimensioner
+hvor den første er 0.8*alkohol + .3*farve + 0.7*proline. Og den anden er noget andet. Det kunne 
+give endnu bedre adskillelse.
+
+Så kommer det til at så således ud:
+*plottet ovenfor* 
+
+Og det fortæller Morten meget mere om!
+
+Men lad os lige se lidt nærmere på ggplot2.
+akseetiketter. Placering af legend.
+Farver. 
+
+
+linreg
+phenols og flav
+"Flavanoids" er navnet!
+```{r}
+
+wine %>% 
+  ggplot(aes(Phenols, Flav)) +
+  geom_point()
+```
+Det ser lineært ud!
+
+Hvordan laver vi en lineær regression?
+
+Og hvad er det nu sådan en er?
+```{r}
+lin.mod <- lm(Phenols ~ Flav, data = wine)
+summary(lin.mod)
+```
+
+
+
+{% include links.md %}
