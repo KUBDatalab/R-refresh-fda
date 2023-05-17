@@ -21,8 +21,16 @@ source: Rmd
 
 
 
+## Hvad er dette kursus?
 
+Dette kursus, denne kursusside, er en genopfriskning
+af R med henblik på at være helt klar til kurset
+"Fødevaredataanalyse" på Institut for Fødevarevidenskab
+på Københavns Universitet. 
 
+Andre er velkomne.
+
+## Forudsætninger og mål
 I kender R. I har allerede lært alt hvad vi gennemgår her. Men I kan formentlig 
 ikke huske det. Og det er helt forventeligt. Hvis ikke man løbende holder det 
 ved lige, glemmer man utroligt hurtigt R.
@@ -31,13 +39,15 @@ Så no worries.
 
 Vi gennemgår de ting I skal have styr på inden I bliver kastet ud på dybt vand.
 
-For fødevaredataanalyse har en ret stejl indlæringskurve.
+Målet er at I går fra dette kursus med tips og tricks
+til effektive scripts, har fået genopfrisket 
+hvordan man indlæser og manipulerer data, samt laver simpel statistik og plots. 
 
+Vi forudsætter at det elementære omkring R er noget I 
+er stødt på før, men at det ligger lidt fjernt i 
+hukommelsen.
 
-subsetting af variable
-aggregate
-
-
-
+Vi kommer nok ikke her omkring *alt* I får brug for. 
+Derfor: Spørg, eller skriv til os på kubdatalab@kb.dk hvis der er det mindste. 
 
 {% include links.md %}
