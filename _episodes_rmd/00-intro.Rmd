@@ -3,11 +3,14 @@ title: "Før vi starter"
 teaching: 10
 exercises: 5
 questions:
-- "FIX ME"
+- "Hvad kan jeg forvente mig af dette kursus"
 objectives:
-- "FIX ME"
+- "Forventningsafstemning"
 keypoints:
-- "FIX ME"
+- "Tips og tricks"
+- "Genopfriskning"
+- "Simpel statistik"
+- "Simple plots"
 
 source: Rmd
 ---
