@@ -19,7 +19,70 @@ knitr_fig_path("05-")
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readxl)
 ```
+
+## Summary statistics
+
+I vil ofte skulle finde gennemsnit, medianer, standardafvigelser og
+andet for jeres data. Og ofte for forskellige grupper. Et af de
+første eksempler I kommer til at arbejde med er smagsdommeres 
+vurderinger af smagen af kaffe. Og en ting man kunne have lyst til at 
+finde ud af om tre forskellige smagsdommere vurderer bitterheden af 
+kaffen forskelligt.
+
+Lad os indlæse data:
+```{r}
+kaffe <- read_excel("../data/Results Panel.xlsx")
+kaffe
+```
+
+Man kan få et hurtigt overblik ved hjælp af funktionen `summary`:
+```{r}
+summary(kaffe)
+```
+En lidt irriterende ting ved dette datasæt er at kolonnen `Sample`
+indeholder temperaturen. Men angivet ikke som `31` og så underforstået
+i grader Celsius, men i stedet som `31C`. Det er selvfølgelig en 
+fiks måde at få angivet at vi arbejder med forskellige samples, der
+er karakteriseret ved at være ved forskellige temperaturer.
+Men det betyder at vi ikke kan lave matematik på temperaturerne, og det har vi undertiden lyst til.
+
+Nu kunne vi så godt tænke os at finde ud af om de otte smagsdommere
+vurderer eksempelvis bitterhed forskelligt. Er der nogen af dem
+der er mere "følsomme" overfor bitterhed end andre. Det kan vi få en
+ide om ved at beregne gennemsnittet af deres vurdering af bitterheden
+i kaffen for hver af dommerne.
+Måske er vi også interesserede i medianen. Eller standardafvigelsen.
+
+Det kan gøres på flere måder. Vi præsenterer her to.
+
+## Aggregate muligheden
+
+Dette er den måde at beregne hvordan hver dommer i gennemsnit 
+vurderer bitterheden, som I præsenteres for i undervisningsmaterialet.
+Den er lidt bøvlet, og kan være vanskelig at vride hjernen omkring.
+
+Den er på den anden side hurtig og nyttig. Og så er det som nævnt den
+der er i undervisningsmaterialet, så det er godt at forstå hvad 
+der sker.
+
+Funktion vi bruger hedder `aggregate`. Den er indbygget direkte i R.
+
+```{r}
+aggregate(kaffe, by=list(kaffe$Assessor, kaffe$Sample), FUN = "mean")
+```
+Hvad sker der her? Aggregatefunktionen tager input, data, i dette 
+tilfælde dataframen `kaffe`, og splitter den op i et antal grupper.
+Gruppe 1, i outputtet kaldet `Group.1`, og gruppe 2, `Group.2`.
+
+I gruppe 1 har vi dommerne. De har et nummer fra 1 til 8. I gruppe 2 har vi
+de forskellige samples de har samgt på. Og så har vi resten af kolonnerne.
+Hvordan skal vi læse dem? Vi skal læse dem som at den gennemsnitlige intensitet
+som dommer 1 har givet de samples der er kodet som 31C, er 9.8625.
+
+## Den anden måde.
 
 Arbejdstitel: Summary statistics
 
@@ -34,5 +97,65 @@ og der er gode argumenter for at bruge den)
 
 Alternativt!
 group_by i kombi med summarise.
+
+## En lineær regression
+
+To variable varierer sammen. Plotter vi det kunne det se således
+ud:
+```{r}
+kaffe %>% 
+  ggplot(aes(Bitter, Sour)) +
+  geom_point()
+```
+
+Indrømmet måske ikke den mest overbevisende lineære
+sammenhæng mellem vurderingen af "Bitter" og "Sour".
+Men der er noget.
+
+I en lineær regression, forsøger vi, i dette tilfælde,
+at forklare variationen i vurderingen af "Sour", ved
+hjælp af variationen i "Bitter". Hvis "Bitter" stiger
+med "1", hvor meget stiger "Sour" så med.
+
+Med andre ord, vi vil finde den bedste rette linie at
+lægge ind i plottet. Sådan en ret linie beskriver vi
+som regel med udtrykket $$y = ax + b$$. Eller:
+$$Sour = a*Bitter + b$$
+Vil vi have R til at lave beregningerne for os, fortæller vi R hvilken lineære model vi vil fitte data
+til. Og hvilke data vi arbejder med:
+
+```{r}
+model <- lm(Sour ~ Bitter, data = kaffe)
+```
+
+Den første del af funktionen, `Sour ~ Bitter` specificerer
+at vi vil beskrive værdierne af `Sour` som funktion af
+`Bitter`, i datasættet `kaffe`.
+
+Ser vi på outputtet af det - vi gemte resultatet i
+objektet `model` får vi følgende:
+```{r}
+model
+```
+Hvilket vi kan læse som:
+$$Sour = 0.4329*Bitter + 3.8600$$. Og altså som at
+hvis en smagsdommer vurderer bitterheden af kaffen til 
+at være 6.47, så forudsiger vores model at smagsdommeren
+vil vurdere surheden til at være: $$Sour = 0.4329*6.47 + 3.8600 = 6.660863$$.
+
+Vi kan se flere detaljer:
+```{r}
+summary(model)
+```
+Her ser vi koefficienterne fra den rette linies ligning, og får også
+p-værdierne for dem.
+
+Bemærk at de meget fine p-værdier ikke i sig selv fortæller at der er en sammenhæng.
+
+Bemærk også at R^2 kun er 0.176, hvilket kan tolkes som at denne lineære model
+forklarer 17.6% af variationen i `Sour`. 
+
+Det allerførste vi ser ovenfor, er statistik på `residualerne`. Det kan vi forstå
+som den del af variationen af `Sour`, der ikke forklares af den lineære model.
 
 {% include links.md %}
