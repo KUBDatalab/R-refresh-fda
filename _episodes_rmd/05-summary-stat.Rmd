@@ -19,7 +19,70 @@ knitr_fig_path("05-")
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readxl)
 ```
+
+## Summary statistics
+
+I vil ofte skulle finde gennemsnit, medianer, standardafvigelser og
+andet for jeres data. Og ofte for forskellige grupper. Et af de
+første eksempler I kommer til at arbejde med er smagsdommeres 
+vurderinger af smagen af kaffe. Og en ting man kunne have lyst til at 
+finde ud af om tre forskellige smagsdommere vurderer bitterheden af 
+kaffen forskelligt.
+
+Lad os indlæse data:
+```{r}
+kaffe <- read_excel("../data/Results Panel.xlsx")
+kaffe
+```
+
+Man kan få et hurtigt overblik ved hjælp af funktionen `summary`:
+```{r}
+summary(kaffe)
+```
+En lidt irriterende ting ved dette datasæt er at kolonnen `Sample`
+indeholder temperaturen. Men angivet ikke som `31` og så underforstået
+i grader Celsius, men i stedet som `31C`. Det er selvfølgelig en 
+fiks måde at få angivet at vi arbejder med forskellige samples, der
+er karakteriseret ved at være ved forskellige temperaturer.
+Men det betyder at vi ikke kan lave matematik på temperaturerne, og det har vi undertiden lyst til.
+
+Nu kunne vi så godt tænke os at finde ud af om de otte smagsdommere
+vurderer eksempelvis bitterhed forskelligt. Er der nogen af dem
+der er mere "følsomme" overfor bitterhed end andre. Det kan vi få en
+ide om ved at beregne gennemsnittet af deres vurdering af bitterheden
+i kaffen for hver af dommerne.
+Måske er vi også interesserede i medianen. Eller standardafvigelsen.
+
+Det kan gøres på flere måder. Vi præsenterer her to.
+
+## Aggregate muligheden
+
+Dette er den måde at beregne hvordan hver dommer i gennemsnit 
+vurderer bitterheden, som I præsenteres for i undervisningsmaterialet.
+Den er lidt bøvlet, og kan være vanskelig at vride hjernen omkring.
+
+Den er på den anden side hurtig og nyttig. Og så er det som nævnt den
+der er i undervisningsmaterialet, så det er godt at forstå hvad 
+der sker.
+
+Funktion vi bruger hedder `aggregate`. Den er indbygget direkte i R.
+
+```{r}
+aggregate(kaffe, by=list(kaffe$Assessor, kaffe$Sample), FUN = "mean")
+```
+Hvad sker der her? Aggregatefunktionen tager input, data, i dette 
+tilfælde dataframen `kaffe`, og splitter den op i et antal grupper.
+Gruppe 1, i outputtet kaldet `Group.1`, og gruppe 2, `Group.2`.
+
+I gruppe 1 har vi dommerne. De har et nummer fra 1 til 8. I gruppe 2 har vi
+de forskellige samples de har samgt på. Og så har vi resten af kolonnerne.
+Hvordan skal vi læse dem? Vi skal læse dem som at den gennemsnitlige intensitet
+som dommer 1 har givet de samples der er kodet som 31C, er 9.8625.
+
+
 
 Arbejdstitel: Summary statistics
 
@@ -34,5 +97,70 @@ og der er gode argumenter for at bruge den)
 
 Alternativt!
 group_by i kombi med summarise.
+
+
+### noter fra undervisningsmaterialet
+Exercise 1.7 Analysis of Coffee Serving Temperature - PCA
+In the dataset Results Panel.xlsx the sensorical results from a panel of eight judges, evaluating coffee
+served at six different temperatures each four times are listed. In this exercise, we are going to first average
+over judge and temperature followed by PCA to evaluate sensorical descriptor similarity as well as the effect
+of serving temperature on the perception of coffee.
+Raw Data
+Sample Assessor Bitter
+31C 1 6.75
+31C 2 11.40
+31C 3 11.25
+37C 1 8.70
+37C 2 10.80
+37C 3 7.35
+Group.1 Sample Assessor Bitter
+31C NA 2 9.80
+37C NA 2 8.95
+Group.1 Sample Assessor Bitter
+1 NA 1 7.72
+2 NA 2 11.10
+3 NA 3 9.30aggregate by Assessor
+aggregate by Sample
+Cartoon showing what aggregate() does on a simple dataset with one response variable, two factors and
+n = 6 observations
+1. After import of data, and initial sanity check, calculate the average response across the four replicates.
+Use the aggreggate() function with FUN="mean" to make a dataset with the average response for
+1.10. PCA 37
+the six different temperatures for each judge. HINT: The number of samples should be reduced by a
+factor of 4. For illustration the above drawing shows the aggregate() functionality.
+2. Use this data as input for construction of a PCA model. Which variables do you think should be
+included?
+3. Make a biplot of this PCA model and interpret it.
+(a) Which descriptors go together and which are oppositely correlated?
+(b) Are there, from this analysis, a clear difference between the different serving temperatures?
+(c) What do you think blurs the picture?
+The code below can be used for inspiration. Be aware, that we need to set a series of dependencies in
+order for this to work.
+CoffeeAG <- a g g r e g a t e ( Coffee , by = list ( Coffee $ Assessor ,
+Coffee $ Sample ) , FUN = " mean " )
+# rename some v a r i a b l e s
+CoffeeAG <- rename . vars ( CoffeeAG , c ( ’ Group .1 ’ , ’ Group .2 ’) ,c (
+’ Judge ’ , ’ Temp ’) )
+CoffeePCA <- prcomp ( CoffeeAG [ , y o u r l i s t o f v a r i a b l e s ] , center
+= TRUE , scale . = TRUE )
+# Make a m e a n i n g f u l l color palette
+colPalette <- c ( ’ #0033 FF ’ , ’ #0099 FF ’ , ’ #00 EEFF ’ , ’# FFCCCC ’ , ’#
+FF9999 ’ , ’# FF0000 ’)
+# Plot the model
+g <- ggbiplot ( CoffeePCA , obs . scale = 1 , var . scale = 1 ,
+groups = CoffeeAG $ Temp , ellipse = TRUE , circle = TRUE )
+g <- g + theme ( legend . direction = ’ horizontal ’ , legend .
+position = ’ top ’)
+g <- g + scale _ color _ manual ( values = colPalette , name = ’
+Temperature ’)
+print ( g )
+Check out the ggbiplot syntax (by >?ggbiplot). by adding stuff to the plot, it is modified to look exactly
+like you want it. Here we change legend appearance (for inferring temperature) and color scheme for the
+scores matching temperature.
+In order to also remove variation due to differences between judges, the dataset is compressed such that
+the rows reflect the average for each temperature (across judges and replicates). Then this dataset is used
+for constructing a PCA model and visualized.
+4. use the aggreggate() function to average across judges and replicates. HINT: modify the by=list()
+statement. Check the drawing above for what to expect.
 
 {% include links.md %}
