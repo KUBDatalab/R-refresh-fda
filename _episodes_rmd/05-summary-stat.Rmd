@@ -82,7 +82,7 @@ de forskellige samples de har samgt på. Og så har vi resten af kolonnerne.
 Hvordan skal vi læse dem? Vi skal læse dem som at den gennemsnitlige intensitet
 som dommer 1 har givet de samples der er kodet som 31C, er 9.8625.
 
-
+## Den anden måde.
 
 Arbejdstitel: Summary statistics
 
@@ -98,69 +98,64 @@ og der er gode argumenter for at bruge den)
 Alternativt!
 group_by i kombi med summarise.
 
+## En lineær regression
 
-### noter fra undervisningsmaterialet
-Exercise 1.7 Analysis of Coffee Serving Temperature - PCA
-In the dataset Results Panel.xlsx the sensorical results from a panel of eight judges, evaluating coffee
-served at six different temperatures each four times are listed. In this exercise, we are going to first average
-over judge and temperature followed by PCA to evaluate sensorical descriptor similarity as well as the effect
-of serving temperature on the perception of coffee.
-Raw Data
-Sample Assessor Bitter
-31C 1 6.75
-31C 2 11.40
-31C 3 11.25
-37C 1 8.70
-37C 2 10.80
-37C 3 7.35
-Group.1 Sample Assessor Bitter
-31C NA 2 9.80
-37C NA 2 8.95
-Group.1 Sample Assessor Bitter
-1 NA 1 7.72
-2 NA 2 11.10
-3 NA 3 9.30aggregate by Assessor
-aggregate by Sample
-Cartoon showing what aggregate() does on a simple dataset with one response variable, two factors and
-n = 6 observations
-1. After import of data, and initial sanity check, calculate the average response across the four replicates.
-Use the aggreggate() function with FUN="mean" to make a dataset with the average response for
-1.10. PCA 37
-the six different temperatures for each judge. HINT: The number of samples should be reduced by a
-factor of 4. For illustration the above drawing shows the aggregate() functionality.
-2. Use this data as input for construction of a PCA model. Which variables do you think should be
-included?
-3. Make a biplot of this PCA model and interpret it.
-(a) Which descriptors go together and which are oppositely correlated?
-(b) Are there, from this analysis, a clear difference between the different serving temperatures?
-(c) What do you think blurs the picture?
-The code below can be used for inspiration. Be aware, that we need to set a series of dependencies in
-order for this to work.
-CoffeeAG <- a g g r e g a t e ( Coffee , by = list ( Coffee $ Assessor ,
-Coffee $ Sample ) , FUN = " mean " )
-# rename some v a r i a b l e s
-CoffeeAG <- rename . vars ( CoffeeAG , c ( ’ Group .1 ’ , ’ Group .2 ’) ,c (
-’ Judge ’ , ’ Temp ’) )
-CoffeePCA <- prcomp ( CoffeeAG [ , y o u r l i s t o f v a r i a b l e s ] , center
-= TRUE , scale . = TRUE )
-# Make a m e a n i n g f u l l color palette
-colPalette <- c ( ’ #0033 FF ’ , ’ #0099 FF ’ , ’ #00 EEFF ’ , ’# FFCCCC ’ , ’#
-FF9999 ’ , ’# FF0000 ’)
-# Plot the model
-g <- ggbiplot ( CoffeePCA , obs . scale = 1 , var . scale = 1 ,
-groups = CoffeeAG $ Temp , ellipse = TRUE , circle = TRUE )
-g <- g + theme ( legend . direction = ’ horizontal ’ , legend .
-position = ’ top ’)
-g <- g + scale _ color _ manual ( values = colPalette , name = ’
-Temperature ’)
-print ( g )
-Check out the ggbiplot syntax (by >?ggbiplot). by adding stuff to the plot, it is modified to look exactly
-like you want it. Here we change legend appearance (for inferring temperature) and color scheme for the
-scores matching temperature.
-In order to also remove variation due to differences between judges, the dataset is compressed such that
-the rows reflect the average for each temperature (across judges and replicates). Then this dataset is used
-for constructing a PCA model and visualized.
-4. use the aggreggate() function to average across judges and replicates. HINT: modify the by=list()
-statement. Check the drawing above for what to expect.
+To variable varierer sammen. Plotter vi det kunne det se således
+ud:
+```{r}
+kaffe %>% 
+  ggplot(aes(Bitter, Sour)) +
+  geom_point()
+```
+
+Indrømmet måske ikke den mest overbevisende lineære
+sammenhæng mellem vurderingen af "Bitter" og "Sour".
+Men der er noget.
+
+I en lineær regression, forsøger vi, i dette tilfælde,
+at forklare variationen i vurderingen af "Sour", ved
+hjælp af variationen i "Bitter". Hvis "Bitter" stiger
+med "1", hvor meget stiger "Sour" så med.
+
+Med andre ord, vi vil finde den bedste rette linie at
+lægge ind i plottet. Sådan en ret linie beskriver vi
+som regel med udtrykket $$y = ax + b$$. Eller:
+$$Sour = a*Bitter + b$$
+Vil vi have R til at lave beregningerne for os, fortæller vi R hvilken lineære model vi vil fitte data
+til. Og hvilke data vi arbejder med:
+
+```{r}
+model <- lm(Sour ~ Bitter, data = kaffe)
+```
+
+Den første del af funktionen, `Sour ~ Bitter` specificerer
+at vi vil beskrive værdierne af `Sour` som funktion af
+`Bitter`, i datasættet `kaffe`.
+
+Ser vi på outputtet af det - vi gemte resultatet i
+objektet `model` får vi følgende:
+```{r}
+model
+```
+Hvilket vi kan læse som:
+$$Sour = 0.4329*Bitter + 3.8600$$. Og altså som at
+hvis en smagsdommer vurderer bitterheden af kaffen til 
+at være 6.47, så forudsiger vores model at smagsdommeren
+vil vurdere surheden til at være: $$Sour = 0.4329*6.47 + 3.8600 = 6.660863$$.
+
+Vi kan se flere detaljer:
+```{r}
+summary(model)
+```
+Her ser vi koefficienterne fra den rette linies ligning, og får også
+p-værdierne for dem.
+
+Bemærk at de meget fine p-værdier ikke i sig selv fortæller at der er en sammenhæng.
+
+Bemærk også at R^2 kun er 0.176, hvilket kan tolkes som at denne lineære model
+forklarer 17.6% af variationen i `Sour`. 
+
+Det allerførste vi ser ovenfor, er statistik på `residualerne`. Det kan vi forstå
+som den del af variationen af `Sour`, der ikke forklares af den lineære model.
 
 {% include links.md %}
