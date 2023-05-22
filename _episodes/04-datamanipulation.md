@@ -20,26 +20,387 @@ source: Rmd
 
 arbejdstitel - datamanipulation
 
+## datamanipulation
+
+Der skal arbejdes med data. Og data kan manipuleres på
+mange forskellige måder. Det ser vi på her.
+
+### Indlæs data
+
 Indlæs data
-Subsetting
-  dollar-notation
-  []-notation
-  subset-funktionen
-renaming kolonner
-  backticks
+
+### Subsetting
+
+Når vi har fået indlæst data, har vi ofte brug for at 
+manipulere det. Det vil sige, trække en enkelt 
+kolonne ud, kun kigge på et udvalg af rækkerne.
+Det tekniske begreb er "subsetting", og det er et
+nyttigt ord at kende når der skal googles efter 
+løsninger.
+
+#### $-notationen
+
+Ønsker vi at trække en enkelt kolonne ud af en dataframe,
+kan vi bruge $-notationen:
+
+
+
+Har vi behov for at række specifikke rækker eller 
+kolonner ud af en dataframe, kan vi bruge de kantede
+paranteser:
+
+
+logiske vektorer i denne kontekst.
+
+Endelig er der en specifik funktion `subset()` der
+kan benyttes
+
+
+~~~
+subset(airquality, Temp > 80, select = c(Ozone, Temp))
+~~~
+{: .language-r}
+
+
+
+~~~
+    Ozone Temp
+29     45   81
+35     NA   84
+36     NA   85
+38     29   82
+39     NA   87
+40     71   90
+41     39   87
+42     NA   93
+43     NA   92
+44     23   82
+61     NA   83
+62    135   84
+63     49   85
+64     32   81
+65     NA   84
+66     64   83
+67     40   83
+68     77   88
+69     97   92
+70     97   92
+71     85   89
+72     NA   82
+74     27   81
+75     NA   91
+77     48   81
+78     35   82
+79     61   84
+80     79   87
+81     63   85
+83     NA   81
+84     NA   82
+85     80   86
+86    108   85
+87     20   82
+88     52   86
+89     82   88
+90     50   86
+91     64   83
+92     59   81
+93     39   81
+94      9   81
+95     16   82
+96     78   86
+97     35   85
+98     66   87
+99    122   89
+100    89   90
+101   110   90
+102    NA   92
+103    NA   86
+104    44   86
+105    28   82
+117   168   81
+118    73   86
+119    NA   88
+120    76   97
+121   118   94
+122    84   96
+123    85   94
+124    96   91
+125    78   92
+126    73   93
+127    91   93
+128    47   87
+129    32   84
+134    44   81
+143    16   82
+146    36   81
+~~~
+{: .output}
+
+
+
+~~~
+subset(airquality, Day == 1, select = -Temp)
+~~~
+{: .language-r}
+
+
+
+~~~
+    Ozone Solar.R Wind Month Day
+1      41     190  7.4     5   1
+32     NA     286  8.6     6   1
+62    135     269  4.1     7   1
+93     39      83  6.9     8   1
+124    96     167  6.9     9   1
+~~~
+{: .output}
+
+
+
+~~~
+subset(airquality, select = Ozone:Wind)
+~~~
+{: .language-r}
+
+
+
+~~~
+    Ozone Solar.R Wind
+1      41     190  7.4
+2      36     118  8.0
+3      12     149 12.6
+4      18     313 11.5
+5      NA      NA 14.3
+6      28      NA 14.9
+7      23     299  8.6
+8      19      99 13.8
+9       8      19 20.1
+10     NA     194  8.6
+11      7      NA  6.9
+12     16     256  9.7
+13     11     290  9.2
+14     14     274 10.9
+15     18      65 13.2
+16     14     334 11.5
+17     34     307 12.0
+18      6      78 18.4
+19     30     322 11.5
+20     11      44  9.7
+21      1       8  9.7
+22     11     320 16.6
+23      4      25  9.7
+24     32      92 12.0
+25     NA      66 16.6
+26     NA     266 14.9
+27     NA      NA  8.0
+28     23      13 12.0
+29     45     252 14.9
+30    115     223  5.7
+31     37     279  7.4
+32     NA     286  8.6
+33     NA     287  9.7
+34     NA     242 16.1
+35     NA     186  9.2
+36     NA     220  8.6
+37     NA     264 14.3
+38     29     127  9.7
+39     NA     273  6.9
+40     71     291 13.8
+41     39     323 11.5
+42     NA     259 10.9
+43     NA     250  9.2
+44     23     148  8.0
+45     NA     332 13.8
+46     NA     322 11.5
+47     21     191 14.9
+48     37     284 20.7
+49     20      37  9.2
+50     12     120 11.5
+51     13     137 10.3
+52     NA     150  6.3
+53     NA      59  1.7
+54     NA      91  4.6
+55     NA     250  6.3
+56     NA     135  8.0
+57     NA     127  8.0
+58     NA      47 10.3
+59     NA      98 11.5
+60     NA      31 14.9
+61     NA     138  8.0
+62    135     269  4.1
+63     49     248  9.2
+64     32     236  9.2
+65     NA     101 10.9
+66     64     175  4.6
+67     40     314 10.9
+68     77     276  5.1
+69     97     267  6.3
+70     97     272  5.7
+71     85     175  7.4
+72     NA     139  8.6
+73     10     264 14.3
+74     27     175 14.9
+75     NA     291 14.9
+76      7      48 14.3
+77     48     260  6.9
+78     35     274 10.3
+79     61     285  6.3
+80     79     187  5.1
+81     63     220 11.5
+82     16       7  6.9
+83     NA     258  9.7
+84     NA     295 11.5
+85     80     294  8.6
+86    108     223  8.0
+87     20      81  8.6
+88     52      82 12.0
+89     82     213  7.4
+90     50     275  7.4
+91     64     253  7.4
+92     59     254  9.2
+93     39      83  6.9
+94      9      24 13.8
+95     16      77  7.4
+96     78      NA  6.9
+97     35      NA  7.4
+98     66      NA  4.6
+99    122     255  4.0
+100    89     229 10.3
+101   110     207  8.0
+102    NA     222  8.6
+103    NA     137 11.5
+104    44     192 11.5
+105    28     273 11.5
+106    65     157  9.7
+107    NA      64 11.5
+108    22      71 10.3
+109    59      51  6.3
+110    23     115  7.4
+111    31     244 10.9
+112    44     190 10.3
+113    21     259 15.5
+114     9      36 14.3
+115    NA     255 12.6
+116    45     212  9.7
+117   168     238  3.4
+118    73     215  8.0
+119    NA     153  5.7
+120    76     203  9.7
+121   118     225  2.3
+122    84     237  6.3
+123    85     188  6.3
+124    96     167  6.9
+125    78     197  5.1
+126    73     183  2.8
+127    91     189  4.6
+128    47      95  7.4
+129    32      92 15.5
+130    20     252 10.9
+131    23     220 10.3
+132    21     230 10.9
+133    24     259  9.7
+134    44     236 14.9
+135    21     259 15.5
+136    28     238  6.3
+137     9      24 10.9
+138    13     112 11.5
+139    46     237  6.9
+140    18     224 13.8
+141    13      27 10.3
+142    24     238 10.3
+143    16     201  8.0
+144    13     238 12.6
+145    23      14  9.2
+146    36     139 10.3
+147     7      49 10.3
+148    14      20 16.6
+149    30     193  6.9
+150    NA     145 13.2
+151    14     191 14.3
+152    18     131  8.0
+153    20     223 11.5
+~~~
+{: .output}
+
+### renaming kolonner
+
+Undertiden har vi behov for at omdøbe kolonner.
+
+Navnene på kolonner i en dataframe, kan vi trække ud
+ved brug af funktionen `names`
+
+Og så assigne nye navne.
+
+"Best practice" omkring kolonnenavne er at undgå 
+mellemrum, kolonnenavne der starter med tal og i det 
+hele taget at undgå specialtegn.
+
+Når man indlæser data oplever man ofte at kolonnenavnene
+ikke overholder disse regler. 
+
+backticks er løsningen.
   
-Tidy
+### Tidy
 I skal vide hvordan ovenstående fungerer. For det 
 er måden det gøres i undervisningsmaterialet. 
 Men der er andre måder, som I måske bedre kan lide.
-  pipen
-  filter og select
-  mutate? Ene nærlæser undervisningsmaterialet.
-  der gemmes ikke!
-  
-gemme data!
-  IKKE i data-mappen.
 
+Ved at indlæse biblioteket `tidyverse` får vi adgang 
+til en række funktioner, der alle har det til fælles,
+at de som deres første argument skal bruge en dataframe.
+Og som returnerer en dataframe. 
+
+Det betyder at vi kan bruge en særlig operator, %>%,
+der tager hvad der står på venstre side af den, og sender
+videre til det der står på højre side.
+
+Har vi derfor en dataframe, eller en funktion der 
+returnerer en dataframe, på venstre side af %>% pipen,
+vil den dataframe blive sendt videre til en funktion 
+på højre side, og indsat som det første argument.
+
+Det, i kombination med funktioner fra tidyverse, kan
+hjælpe til at gøre manipulation af dataframes mere 
+overskuelig.
+
+EKSEMPEL PÅ FILTER, SELECT OG RENAME.
+
+
+MUTATE? ENE NÆRLÆSER UNDERVISNINGSMATERIALET.
+
+Bemærk at funktionerne ikke egentlig ændrer data.
+Vi ser et output, men det data vi starter med at 
+sende ind i pipen bliver ikke ændret. Derfor, gem 
+resultatet i et nyt objekt hvis du har brug for det.
+
+
+### gemme data!
+
+Når du er færdig med at manipulere data, kan det 
+være du har brug for at gemme data. 
+
+
+IKKE i data-mappen. csv. og RDA
+
+
+Nogle datatyper, eksempelvis det der kommer ud af at 
+lave en statistisk model, kan ikke gemmes som 
+csv-filer. Men frygt ej, R har måder at gemme den 
+slags på.
+
+
+~~~
+saveRDS(objekt, file = "")
+~~~
+{: .language-r}
+
+Disse gemte objekter kan så indlæses igen:
+
+
+~~~
+readRDS(file = "")
+~~~
+{: .language-r}
 
 
 
