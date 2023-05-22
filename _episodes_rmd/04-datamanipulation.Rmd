@@ -23,26 +23,127 @@ knitr::opts_chunk$set(echo = TRUE)
 
 arbejdstitel - datamanipulation
 
+## datamanipulation
+
+Der skal arbejdes med data. Og data kan manipuleres på
+mange forskellige måder. Det ser vi på her.
+
+### Indlæs data
+
 Indlæs data
-Subsetting
-  dollar-notation
-  []-notation
-  subset-funktionen
-renaming kolonner
-  backticks
+
+### Subsetting
+
+Når vi har fået indlæst data, har vi ofte brug for at 
+manipulere det. Det vil sige, trække en enkelt 
+kolonne ud, kun kigge på et udvalg af rækkerne.
+Det tekniske begreb er "subsetting", og det er et
+nyttigt ord at kende når der skal googles efter 
+løsninger.
+
+#### $-notationen
+
+Ønsker vi at trække en enkelt kolonne ud af en dataframe,
+kan vi bruge $-notationen:
+```{r}
+
+```
+
+
+Har vi behov for at række specifikke rækker eller 
+kolonner ud af en dataframe, kan vi bruge de kantede
+paranteser:
+```{r}
+
+```
+
+logiske vektorer i denne kontekst.
+
+Endelig er der en specifik funktion `subset()` der
+kan benyttes
+
+```{r}
+subset(airquality, Temp > 80, select = c(Ozone, Temp))
+subset(airquality, Day == 1, select = -Temp)
+subset(airquality, select = Ozone:Wind)
+```
+
+### renaming kolonner
+
+Undertiden har vi behov for at omdøbe kolonner.
+
+Navnene på kolonner i en dataframe, kan vi trække ud
+ved brug af funktionen `names`
+
+Og så assigne nye navne.
+
+"Best practice" omkring kolonnenavne er at undgå 
+mellemrum, kolonnenavne der starter med tal og i det 
+hele taget at undgå specialtegn.
+
+Når man indlæser data oplever man ofte at kolonnenavnene
+ikke overholder disse regler. 
+
+backticks er løsningen.
   
-Tidy
+### Tidy
 I skal vide hvordan ovenstående fungerer. For det 
 er måden det gøres i undervisningsmaterialet. 
 Men der er andre måder, som I måske bedre kan lide.
-  pipen
-  filter og select
-  mutate? Ene nærlæser undervisningsmaterialet.
-  der gemmes ikke!
-  
-gemme data!
-  IKKE i data-mappen.
 
+Ved at indlæse biblioteket `tidyverse` får vi adgang 
+til en række funktioner, der alle har det til fælles,
+at de som deres første argument skal bruge en dataframe.
+Og som returnerer en dataframe. 
+
+Det betyder at vi kan bruge en særlig operator, %>%,
+der tager hvad der står på venstre side af den, og sender
+videre til det der står på højre side.
+
+Har vi derfor en dataframe, eller en funktion der 
+returnerer en dataframe, på venstre side af %>% pipen,
+vil den dataframe blive sendt videre til en funktion 
+på højre side, og indsat som det første argument.
+
+Det, i kombination med funktioner fra tidyverse, kan
+hjælpe til at gøre manipulation af dataframes mere 
+overskuelig.
+
+EKSEMPEL PÅ FILTER, SELECT OG RENAME.
+```{r}
+```
+
+MUTATE? ENE NÆRLÆSER UNDERVISNINGSMATERIALET.
+
+Bemærk at funktionerne ikke egentlig ændrer data.
+Vi ser et output, men det data vi starter med at 
+sende ind i pipen bliver ikke ændret. Derfor, gem 
+resultatet i et nyt objekt hvis du har brug for det.
+
+
+### gemme data!
+
+Når du er færdig med at manipulere data, kan det 
+være du har brug for at gemme data. 
+
+
+IKKE i data-mappen. csv. og RDA
+
+
+Nogle datatyper, eksempelvis det der kommer ud af at 
+lave en statistisk model, kan ikke gemmes som 
+csv-filer. Men frygt ej, R har måder at gemme den 
+slags på.
+
+```{r eval = F}
+saveRDS(objekt, file = "")
+```
+
+Disse gemte objekter kan så indlæses igen:
+
+```{r eval = F}
+readRDS(file = "")
+```
 
 
 
