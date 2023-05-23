@@ -5,17 +5,67 @@
 teaching: 10
 exercises: 5
 questions:
-- "FIX ME"
+- "Hvordan kan man lave overskuelig kode"
+- "Hvordan kan man nemt dele sin kode"
 objectives:
-- "FIX ME"
+- "Lær at arbejde i projekter i RStudio"
+- "Sørg for at din kode er overskuelig"
+- "Husk at rydde op i din kode"
 keypoints:
-- "FIX ME"
-
+- "Lav projekter"
+- "Inddel din kode"
+- "Gennemgå din kode og ryd op"
 source: Rmd
 ---
 
 
 
+
+
+# Kode eksekveres sekventielt
+Scripts eksekveres linie for linie. Dette betyder at man gerne vil skrive 
+scripts som kan køres fra start til slut og give det resultat man ønsker 
+uden problemer og fejl.
+
+Når man sidder og programmere er man ikke altid så struktureret og man kan ende 
+op med en kode som indeholder unødvendige kodelinier, og en kode som ikke kan 
+køres fra start til slut.
+
+Det betyder at det er en god ide fra starten af lære sig selv gode programmerings 
+rutiner, selvom det i starten virker omstændeligt, da man jo bare skal skrive et 
+lille script, men jo tidligere man starter jo nemmere bliver det når man skal til 
+at lave store projekter.
+
+# Saml dit arbejde i projekter
+Det kan være en god ide altid at se på en programemrings opgave som et projekt.
+Rstudio har en funktionalitet kaldet projekter. Opretter man et projekt, 
+opretter man en mappe på sin computer. Denne mappe gør det senere nemt at dele 
+sit projekt med andre.
+
+Åbner man efterfølgende projekt filen som ligger i den oprettede mappe, er det 
+indenfor denne mappe at R forventer at finde ting.
+Dine data og dine scripts.
+
+Arbejd med mere end et projekt. I det øjeblik to opgaver intet har med 
+hinanden at gøre, når de kan løses uafhængigt af hinanden, bør man overveje at 
+etablere to projekter.
+
+KAN VI LAVE EN GIF DER VISER HVORDAN?
+
+RStudio understøtter at man kan arbejde i projekter. Nogle af fordele ved at 
+arbejde i et RStudio projekt er at man samler sit arbejde et sted, lave en 
+overskuelig mappestruktur, nemt kan dele hele sit projekt, RStudion holder styr 
+på paths
+
+Når man laver en mappestruktur skal man tænke på at holde sine forskellige 
+typer data, fx scripts, rå data, manipulerede data, plots, adskildt. Her under 
+er et eksempel på en fuldt udbygget mappestruktur. 
+
+BILLEDE AF MAPPE STRUKTUREN
+
+# Inddel din kode i sektioner
+
+## Husk at kommentere
 
 
 Helt overordnet indgangsbøn - lær af vores fejl.
