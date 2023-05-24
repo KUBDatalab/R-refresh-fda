@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 vineksemplet herunder er indgangsbønnen.
-SKAL SKRIVES OM TIL KAFFE EKSEMPLET
+SKAL SKRIVES OM TIL KAFFE-eksperimentet
 
 ```{r}
 library(ggbiplot)
