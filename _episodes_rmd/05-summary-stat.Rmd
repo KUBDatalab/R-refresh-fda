@@ -10,6 +10,7 @@ keypoints:
 - "FIX ME"
 
 source: Rmd
+math: yes
 ---
 
 ```{r, include = FALSE}
@@ -70,17 +71,30 @@ der sker.
 
 Funktion vi bruger hedder `aggregate`. Den er indbygget direkte i R.
 
-```{r}
+```{r aggregate-eksempel, eval =F }
 aggregate(kaffe, by=list(kaffe$Assessor, kaffe$Sample), FUN = "mean")
 ```
+```{r aggregate-eksempel-med-output, warning=F, eval =T, echo =F }
+aggregate(kaffe, by=list(kaffe$Assessor, kaffe$Sample), FUN = "mean") %>% head()
+```
+
 Hvad sker der her? Aggregatefunktionen tager input, data, i dette 
 tilfælde dataframen `kaffe`, og splitter den op i et antal grupper.
+Grupperne er defineret af hvad vi skriver i `by` argumentet, og vi 
+får her to grupper:
 Gruppe 1, i outputtet kaldet `Group.1`, og gruppe 2, `Group.2`.
 
+
+
 I gruppe 1 har vi dommerne. De har et nummer fra 1 til 8. I gruppe 2 har vi
-de forskellige samples de har samgt på. Og så har vi resten af kolonnerne.
+de forskellige samples de har smagt på. 
+Dernæst beregner `aggregate` gennemsnittet af værdierne i *alle* kolonnerne. Det giver os nogle "warnings", fordi vi ikke kan beregne
+et gennemsnit af "31C" og "32C", fordi det er tekst, og ikke tal.
+
 Hvordan skal vi læse dem? Vi skal læse dem som at den gennemsnitlige intensitet
 som dommer 1 har givet de samples der er kodet som 31C, er 9.8625.
+
+Vil vi beregne andet end gennemsnit, erstatter vi "mean" i `FUN` argumentet med en anden statistisk funktion, det kunne være "median" eller "sd" for medianen hhv. standardafvigelsen.
 
 ## Den anden måde.
 
@@ -140,22 +154,27 @@ model
 Hvilket vi kan læse som:
 $$Sour = 0.4329*Bitter + 3.8600$$. Og altså som at
 hvis en smagsdommer vurderer bitterheden af kaffen til 
-at være 6.47, så forudsiger vores model at smagsdommeren
-vil vurdere surheden til at være: $$Sour = 0.4329*6.47 + 3.8600 = 6.660863$$.
+at være 13.2, så forudsiger vores model at smagsdommeren
+vil vurdere surheden til at være: $$Sour = 0.4329*13.2 + 3.8600 = 9.57428$$.
+
+
+
 
 Vi kan se flere detaljer:
 ```{r}
 summary(model)
 ```
 Her ser vi koefficienterne fra den rette linies ligning, og får også
-p-værdierne for dem.
+p-værdierne for dem. Forskellige statistiske tests kalder p-værdien forskellige ting. Her bruges "Pr".
 
-Bemærk at de meget fine p-værdier ikke i sig selv fortæller at der er en sammenhæng.
+Bemærk at de meget fine p-værdier ikke i sig selv fortæller at der er en sammenhæng, blot at vi med stor sikkerhed kan afvise at koefficienterne skulle være 0.
 
-Bemærk også at R^2 kun er 0.176, hvilket kan tolkes som at denne lineære model
-forklarer 17.6% af variationen i `Sour`. 
+Bemærk også at $$R^2$$ kun er 0.176, hvilket kan tolkes som at denne lineære model
+forklarer 17.6% af variationen i `Sour`. Fantastiske p-værdier, elendig model!
 
 Det allerførste vi ser ovenfor, er statistik på `residualerne`. Det kan vi forstå
-som den del af variationen af `Sour`, der ikke forklares af den lineære model.
+som den del af variationen af `Sour`, der ikke forklares af den lineære model. I eksemplet ovenfor, hvor en smagsdommer vurderede
+"bitter" til 13.2 forudså modellen at samme smagsdommer skulle vurdere "Sour" til 9.57428. Kigger vi i data, kan vi finde en 
+smagsdommer der faktisk vurderer "Bitter" til 13.2. Men samme smagsdommers vurdering af "Sour" er faktisk 11.6. 11.6 - 9.57428 er forskellen på de faktiske data, og det vores lineære model forudsiger. Eller "residualen", den del af variationen i "Sour" som modellen *ikke* forklarer.
 
 {% include links.md %}
