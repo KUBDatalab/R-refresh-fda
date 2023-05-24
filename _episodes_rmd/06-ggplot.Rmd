@@ -1,15 +1,16 @@
 ---
-title: "lidt ggplot"
+title: "Lidt ggplot"
 teaching: 10
 exercises: 5
 questions:
-- "FIX ME"
+- "Hvad er ggplot?"
 objectives:
 - "FIX ME"
 keypoints:
 - "FIX ME"
 
 source: Rmd
+math: yes
 ---
 
 ```{r, include = FALSE}
@@ -23,7 +24,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 vineksemplet herunder er indgangsbønnen.
-
+SKAL SKRIVES OM TIL KAFFE-eksperimentet
 
 ```{r}
 library(ggbiplot)
@@ -85,13 +86,9 @@ wine %>%
 ```
 Det ser lineært ud!
 
-Hvordan laver vi en lineær regression?
+Hvordan laver vi en lineær regression? er det her vi skal tale om lm? Eller passer det mindre ringe ind i summary stat.
 
 Og hvad er det nu sådan en er?
-```{r}
-lin.mod <- lm(Phenols ~ Flav, data = wine)
-summary(lin.mod)
-```
 
 
 
