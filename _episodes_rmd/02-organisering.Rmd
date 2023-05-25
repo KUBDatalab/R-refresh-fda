@@ -1,5 +1,5 @@
 ---
- title: "organiser dit arbejde"
+ title: "Organiser dit arbejde"
 teaching: 10
 exercises: 5
 questions:
@@ -32,104 +32,53 @@ Programmeringsprocessen er ikke altid struktureret, men gode scripts kan opnås 
 
 Gode programmeringsrutiner kan i starten virke omstændeligt, men jo større programmeringsprojektet er jo vigtigere er det med gode rutiner. Man bestemmer helt selv hvordan man vil programmere, men her kommer nogle tips og tricks som vi med møje har lært gør processen lidt lettere.
 
-# Saml dit arbejde i projekter
-Opfat din programmeringsopgave som et projekt. I Rstudio er det muligt at oprette projekter. Når man opretter et projekt i RStudio, så oprettes der en mappe på computeren hvor man gemmer alle scripts, data, plot mv. Denne mappe opfattes nu som projektets "Working directory". Mappen gør det nemt at overskue et projekt og nemt at dele et projekt med andre. 
+# Gode programmeringsrutiner
+## Projekter
+Opfat din programmeringsopgave som et projekt. I Rstudio er det muligt at oprette projekter. Når man opretter et projekt i RStudio, så oprettes der en mappe på computeren hvor man gemmer alle scripts, data, plot mv. som har med projektet at gøre. Denne mappe opfattes nu som projektets "Working directory". Alle scripts i denne mappe kan nu bruge relative stier (paths) til filer, hvilket gør det nemt at dele sit projekt med andre eller flytte det til en ny computer. Så hvis man sender sin projekt mappe til en anden, så bør koden kunne eksekveres uden store problemer.
 
 Arbejd med mere end et projekt. I det øjeblik to opgaver ikke har noget med hinanden at gøre og derfor kan løses uafhængigt af hinanden, bør man overveje at etablere to projekter.
 
-# Mappestruktur
-Lav en overskuelig mappestuktur. Strukturen skal holde forskellige typer af data, fx scripts, rå data, manipulerede data, plots, adskildt. Her underer et eksempel på en fuldt udbygget mappestruktur. 
+## Mappestruktur
+I projekt Lav en overskuelig mappestuktur indefor dit projekt. Strukturen skal holde forskellige typer af data, fx scripts, rå data, manipulerede data, plots, adskildt. Her underer et eksempel på en fuldt udbygget mappestruktur. 
 
 ![Mappestruktur](../fig/rstudio_project_files.jpeg)
 
 Det er ikke altid nødvendigt med hele denne struktur, man kan nøjes med de mapper der giver mening for ens projekt.
 
+## Inddel din kode i sektioner
+For at gøre ens projekt mere overskueligt kan man med fordel lave flere scripts filer. Derudover kan de indenfor et script var nyttigt at organisere sin kode i sektioner:
+```{r}
+# indlæs biblioteker ----
 
+# indlæs data ----
 
-# Inddel din kode i sektioner
+# rens data ----
 
-## Husk at kommentere
+# analyser data ----
 
+# plot data ----
 
-Helt overordnet indgangsbøn - lær af vores fejl.
-
-Arbejdstitel kode.
-
-Kode er sekventiel
- Brug kode til at indlæse data
- Og sådan får du koden til at indlæse data.
-Kode skal organiseres.
-
-I projekter
-  Med en hensigtsmæssig mappestruktur - den fuldt udfoldede!
-Med sektioner og kommentarer
-Gerne i mere end script
-Og med installation og indlæsning af pakker i starten.
-Ryd op i jeres kode til sidst
-Hvordan deler man sit projekt? projektfilen er ikke nok!
-
-
-GIFs lavet med:
-https://gifcap.dev/
-
-# Struktur hjælper
-
-
-
-## Saml ting i projekter
-
-Rstudio har en funktionalitet kaldet projekter. Opretter man et projekt, 
-opretter man en mappe på sin computer. 
-
-Åbner man efterfølgende projektet, er det her R forventer at finde ting.
-Dine data og dine scripts.
-
-Arbejd med mere end et projekt. I det øjeblik to opgaver intet har med 
-hinanden at gøre, når de kan løses uafhængigt af hinanden, bør man overveje at 
-etablere to projekter.
-
-KAN VI LAVE EN GIF DER VISER HVORDAN?
-
-
-# Brug kode til at indlæse data
-
-Det er fristende at bruge importfunktionen til at indlæse data. Den er også fin.
-
-![Import kræver klik, hver gang](../fig/import_recording.gif)
-
-Men læg mærke til at du hver gang du bruger den, skal klikke. Du skal vælge filen,
-du skal træffe valg.
-
-Indlæs i stedet filen med kommandoer i et script:
-
-```{r eval = F}
-library(readxl)
-Results_Consumer_Test <- read_excel("R_projekter/R-refresh-fda/data/Results Consumer Test.xlsx")
 ```
 
-## Sørg for struktur på mapper i projektet
-Opret en mappe til data
-Opret en mappe til scripts
+Her er et forslag til nogle sektioner som kan være anvendelige. Det smarte er også at disse kodesektioner kan "foldes sammen" så de ikke forstyrrer blikket i scriptet.
+
+![Sektioner kan foldes sammen, og bidrage til overblikket](../fig/sections_foldning.gif)
+
+## Husk at kommentere
+Kommentarer er din ven når du skal kigge på din kode igen (måske omkring eksamens tid), eller 1 år efter du har lavet det fordi du skal lave noget lignende. De giver dig mulighed for hurtigt at gennemskue hvorfor du har gjort noget, 
+
+Kommentarer kan være svære at skrive både fordi de kan forstyrre kodningsprocessen, og fordi det virker åbenlyst hvad man sidder og laver, så hvorfor skal man kommentere det. Det kan ofte være en god ide at gennemgå ens kodning enten når man stopper for dagen eller er færdig med et problem og få skrevet kommentarer. Denne proces kan også hjælpe til at man lige får set på koden en ekstra gang.
 
 
-## Husk at scripts eksekveres linie for linie.
+## Oprydning
+Det kan være en god ide løbende at rydde op i ens kode, så man kan slette unødvendig kode. Det kan være kedelig proces, men man sørger for at koden bliver mere brugbar for en selv i fremtiden, og man får også lige lov til at tjekke igennem om koden nu også er skrevet sekventiel.
 
-Og idealet er at I får skrevet et script, som når det 
-køres fra start til slut, giver jer de resultater 
-i gerne vil have.
+# Kodeprocessen
+Husk at scripts eksekveres linie for linie. Skriv derfor koden i den rækkefølge I mener den skal køres. Hvis vi skal bruge værdien af en variabel i en beregning - så skal variablen tildeles en værdi før vi bruger den.
 
-Skriv derfor koden i den rækkefølge I mener den skal køres. 
-Hvis vi skal 
-bruge værdien af en variabel i en beregning - så skal variablen tildeles den
-værdi før vi bruger den.
+Kald til libraries placeres med fordel som det allerførste i scriptet. Dette giver et god overblik over hvilke pakker der bruges i scriptet, og hvis du får brug for at køre library igen, så ved du hvor koden står.
 
-kald til libraries placeres med fordel som det allerførste i scriptet.
-
-Kommentarer er jeres ven.
-
-install.packages() kan være rart at have med i scriptet. Men det er ikke noget
-I har brug for at køre hver eneste gang scriptet skal køres. Så udkommenter
-de linier kode.
+install.packages() kan være rart at have med i scriptet. Men det er ikke noget I har brug for at køre hver eneste gang scriptet skal køres. Så udkommenter de linier kode.
 
 En god praksis kan være:
 ```{r eval = F}
@@ -151,33 +100,41 @@ eksempelkode
 ```
 
 
-Under kommentaren "herunder eksperimenterer jeg" skriver du kode, ser om den virker
-kigger på resultatet og overvejer om det giver mening. Og når du er tilfreds med 
-resultatet, flytter du det op over kommentaren "Ovenstående kode fungerer".
+Under kommentaren "herunder eksperimenterer jeg" skriver du kode, ser om den virker. Kigger på resultatet og overvejer om det giver mening. Og når du er tilfreds med resultatet, flytter du det op over kommentaren "Ovenstående kode fungerer".
 
 Målet er at have script der, når det er færdigt, kan køres linie for linie fra 
 start til slut, og give dig de resultater, grafer osv du har brug for.
 
 
-# sektioner
-Det kan være nyttigt også at organisere sin kode i sektioner:
-```{r}
-# indlæs biblioteker ----
-
-# indlæs data ----
-
-# rens data ----
+Hvordan deler man sit projekt? projektfilen er ikke nok!
 
 
-# analyser data ----
+GIFs lavet med:
+https://gifcap.dev/
 
-# plot data ----
 
+
+## Brug kode til at indlæse data
+
+Det er fristende at bruge importfunktionen til at indlæse data. Den er også fin.
+
+![Import kræver klik, hver gang](../fig/import_recording.gif)
+
+Men læg mærke til at du hver gang du bruger den, skal klikke. Du skal vælge filen,
+du skal træffe valg.
+
+Indlæs i stedet filen med kommandoer i et script:
+
+```{r eval = F}
+library(readxl)
+Results_Consumer_Test <- read_excel("R_projekter/R-refresh-fda/data/Results Consumer Test.xlsx")
 ```
 
-Disse kode sektioner kan "foldes sammen" så de ikke forstyrrer blikket i scriptet.
 
-![Sektioner kan foldes sammen, og bidrage til overblikket](../fig/sections_foldning.gif)
+
+
+
+
 
 https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/index.html
 
