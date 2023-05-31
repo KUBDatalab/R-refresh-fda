@@ -73,35 +73,6 @@ Kommentarer kan være svære at skrive både fordi de kan forstyrre kodningsproc
 ## Oprydning
 Det kan være en god ide løbende at rydde op i ens kode, så man kan slette unødvendig kode. Det kan være kedelig proces, men man sørger for at koden bliver mere brugbar for en selv i fremtiden, og man får også lige lov til at tjekke igennem om koden nu også er skrevet sekventiel.
 
-
-
-
-
-
-
-
-
-
-
-## Inddel din kode i sektioner
-For at gøre ens projekt mere overskueligt kan man med fordel lave flere scripts filer. Derudover kan det indenfor et script var nyttigt at organisere sin kode i sektioner:
-```{r}
-# indlæs biblioteker ----
-
-# indlæs data ----
-
-# rens data ----
-
-# analyser data ----
-
-# plot data ----
-
-```
-
-Her er et forslag til nogle sektioner som kan være anvendelige. Det smarte er også at disse kodesektioner kan "foldes sammen" så de ikke forstyrrer blikket når man programmerer.
-
-![Sektioner kan foldes sammen, og bidrage til overblikket](../fig/sections_foldning.gif)
-
 # Kodeprocessen
 Husk at scripts eksekveres linie for linie. Skriv derfor koden i den rækkefølge I mener den skal køres. Hvis vi skal bruge værdien af en variabel i en beregning - så skal variablen tildeles en værdi før vi bruger den.
 
@@ -128,13 +99,29 @@ eksempelkode
 
 ```
 
-
 Under kommentaren "herunder eksperimenterer jeg" skriver du kode, ser om den virker. Kigger på resultatet og overvejer om det giver mening. Og når du er tilfreds med resultatet, flytter du det op over kommentaren "Ovenstående kode fungerer".
 
 Målet er at have script der, når det er færdigt, kan køres linie for linie fra 
 start til slut, og give dig de resultater, grafer osv du har brug for.
 
+## Inddel din kode i sektioner
+For at gøre ens projekt mere overskueligt kan man med fordel lave flere scripts filer. Derudover kan det indenfor et script var nyttigt at organisere sin kode i sektioner:
+```{r}
+# indlæs biblioteker ----
 
+# indlæs data ----
+
+# rens data ----
+
+# analyser data ----
+
+# plot data ----
+
+```
+
+Her er et forslag til nogle sektioner som kan være anvendelige. Det smarte er også at disse kodesektioner kan "foldes sammen" så de ikke forstyrrer blikket når man programmerer.
+
+![Sektioner kan foldes sammen, og bidrage til overblikket](../fig/sections_foldning.gif)
 
 
 

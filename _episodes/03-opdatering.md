@@ -18,25 +18,18 @@ source: Rmd
 
 
 
-## Pakker
+# Pakker
 
-Pakker i R er samlinger af funktioner der i forskellige
-sammenhænge er nyttige. 
+## Installation og indlæsning
+Pakker i R er samlinger af funktioner som kan være nyttige i forskellige sammenhænge. De fleste pakker vi får brug for, er samlet på `CRAN`, "The Comprehensive R Archive Network". Disse pakker, er blevet udsat for et minimum
+af kvalitetskontrol. Det er ingen garantier for at de fungerer som vi forventer, men sandsynligheden er ret høj.
 
-Når vi skal bruge en pakke, skal vi gøre to ting.
+Når vi skal bruge en pakke til vores programmering, skal vi gøre to ting.
 
-Vi skal installere den på computeren. 
+1. Installere pakken på computeren. 
+2. Indlæse pakken i R.
 
-Og vi skal indlæse den i R.
-
-De fleste pakker vi får brug for, er samlet på `CRAN`,
-"The Comprehensive R Archive Network". 
-
-De pakker der findes dér, er blevet udsat for et minimum
-af kvalitetskontrol. Der er ingen garantier for at de
-fungerer som vi forventer, men sandsynligheden er ret høj.
-
-Pakker fra `CRAN` installeres på denne måde:
+Pakker fra `CRAN` installeres på computeren på denne måde:
 
 
 ~~~
@@ -44,62 +37,50 @@ install.packages("devtools")
 ~~~
 {: .language-r}
 
-Vi angiver navnet på pakken som en tekststreng. install.packages() funktionen søger efter navnet, og 
-finder den noget, installeres pakken på vores computer.
+Vi angiver navnet på pakken som en tekststreng. install.packages() funktionen søger efter navnet, og finder den noget, installeres pakken på vores computer.
 
-I dette tilfælde er det pakken `devtools` en samling
-af værktøjer der er nyttige når man udvikler ny
-funktionalitet i R. Men pakken indeholder andet der
-kan være nyttigt i dette kursus.
+I dette tilfælde er det pakken `devtools` en samling af værktøjer der er nyttige når man udvikler ny funktionalitet i R. Men pakken indeholder andet der kan være nyttigt i dette kursus. Dette ser vi nærmere på senere.
 
-ØVELSE: installer devtools.
+ØVELSE: installer devtools. (skal vi ikke hellere vente til det med bi-plot)
 
-Når vi har installeret pakken, har vi adgang til de 
-funktioner der ligger i pakken. Vi kan bruge dem
-på to måder:
+Når pakken så er installeret på computeren kan vi endnu ikke bruge den i RStudio. Den skal først indlæses. Dette kan gøres med funktionen library().
 
-1. vi kan indlæse alle funktioner ved hjælp af 
-funktionen `library(devtools)`
-2. vi kan kalde specifikke funktioner fra en specifik
-pakke ved en særlig notation: `devtools::install_github()`
-
-Med den første metode sparer man en del tasteri.
-
-Eftersom der ikke er noget der forhindrer os, eller andre
-i at lave nye funktioner der hedder det samme som en
-eksisterende funktion, kan der opstå "konflikter". Når 
-vi indlæser en pakke med library funktionen ser vi 
-ofte en besked om en konflikt, Eksempelvis:
-"x dplyr::filter() masks stats::filter()"
-
-Det betyder blot at Rs indbyggede pakke `stats` har en
-funktion der hedder `filter()`. Det har pakken `dplyr` også. Og eftersom `dplyr` er indlæst efter R er startet
-op, så vil R bruge den sidst indlæste udgave af filter.
-
-Hvis vi har brug for en specifik udgave af en funktion, der kommer fra en bestemt pakke, kan vi kalde den,
-eksempelvis: `stats::filter()`
-
-Som tidligere omtalt, vil vi godt have et samlet script, som vi kan køre fra start til slut. Og derfor
-er det god praksis at placere alle `library()` funktionerne i starten af scriptet. Lige inden man gør det, kan man med fordel placere `install.packages()`
-funktionerne:
 
 ~~~
-# install.packages("devtools")
 library(devtools)
 ~~~
 {: .language-r}
 
-Overvej også hvilken rækkefølge pakkerne indlæses i.
-Nogen af dem kan maskere hinandens funktioner. 
+Bemærk at her skal der ikke anførelsestegn rundt om pakkenavnet. Dette er en almindelig kilde til fejl.
 
-LIDT MERE OM DET - PASSET BEDRE IND.  
+Man kan vælge ikke at indlæse hele pakken, men bare bruge en specifik funktion fra en specifik pakke. Dette gøres ved at brug af denne notation `devtools::install_github()`. Som består af pakkenavn og funktionsnavn.
 
-Enkelte pakker er ikke tilgængelige på `CRAN`. Det 
-hyppigste sted vi installerer pakker fra, der ikke findes 
-på CRAN, er Github.
+Med den første metode sparer man en del tasteri.
+
+## Funktioner med samme navn
+Eftersom der ikke er noget der forhindrer os, eller andre i at lave nye funktioner der hedder det samme som en eksisterende funktion, kan der opstå "konflikter". Når vi indlæser en pakke med library funktionen ser vi ofte en besked om en konflikt, Eksempelvis: `x dplyr::filter() masks stats::filter()`
+
+Det betyder blot at Rs indbyggede pakke `stats` har en funktion der hedder `filter()`. Det har pakken `dplyr` også. Og eftersom `dplyr` er indlæst efter R er startet op, så vil R bruge den sidst indlæste udgave af filter.
+
+SKAL vi have dette eksempel med???
+
+~~~
+library(dplyr)
+library(MASS)
+
+mtcars %>% select(cyl)
+~~~
+{: .language-r}
+
+Hvis vi har brug for en specifik udgave af en funktion, der kommer fra en bestemt pakke, kan vi kalde den,
+eksempelvis: `stats::filter()`
+
+Som tidligere omtalt, vil vi godt have et samlet script, som kan køre fra start til slut. Og derfor er det god praksis at placere alle `library()` funktionerne i starten af scriptet. Ovenover disse kan man med fordel placere `install.packages()`
+funktionerne (Husk dog at udkommentere disse, da vi ikke ønsker at køre dem hver gang scriptet bliver kørt)
+
+Enkelte pakker er ikke tilgængelige på `CRAN`. Det hyppigste sted vi installerer pakker fra, der ikke findes på CRAN, er Github.
 
 ## ggbiplot
-
 Vi kommer ikke her til at bruge tid på biplots. Det er en del af
 kurset fødevaredataanalyse, og Morten forklarer bedre end vi 
 nogensinde kommer til hvad PCA er og hvad det kan bruges til.
@@ -112,6 +93,7 @@ på en særlig måde:
 
 
 ~~~
+install.packages("devtools")
 library(devtools)
 install_github("vqv/ggbiplot")
 ~~~
@@ -144,6 +126,8 @@ funktion. Og den kan vi få adgang til på andre måder.
 I jeres projekt laver I mappen `scripts`. I den mappe opretter
 I en R-script fil med navnet `ggbiplot.R`. Den åbner I, og kopierer
 nedenstående R-kode ind i den:
+
+KAN dette gøres på en smartere måde, så det ikke fylder så meget på skærmen
 
 ~~~
 ggbiplot <- function(pcobj, choices = 1:2, scale = 1, pc.biplot = TRUE, 
@@ -341,20 +325,7 @@ Husk alligevel at få installeret ggbiplot-pakken ved lejlighed.
 Metoden herover fungerer fint, men får ikke hjælpe filer og
 andet nyttigt med, så det ér en nødløsning.
 
-
-## noter:
-
-Pakker hører til i starten.
-Rækkefølgen er installer pakker, og dernæst indlæs pakker.
-masking og conflicts af funktioner. Så tænk også over rækkefølgen af
-library! og dermed pakkenavn::funktion
-installer devtools!
-Brug devtools til at opdatere (praktisk øvelse)
-github vs. cran vs. lokale funktioner/source
-installer ggbiplot
-  det er en funktion 
-    og kan derfor "indlæses" med source funktionen. (og den ligger fint i en scripts mappe!)
-
+# Holde R, RStudio og pakker opdateret.
 Det er et stykke tid siden I brugte R sidst. Så nu er der sikkert kommet 
 opdateringer.
 
@@ -364,9 +335,7 @@ være stort. Men det vil være meget træls at opdatere R dagen før eksamen og 
 ud af at noget er holdt op med at virke.
 
 Så.
-Opdater RStudio.
-
-og opdater R.
+Opdater RStudio og opdater R.
 
 R opdaterer vi ganske enkelt ved at installere seneste version. Rstudio vælger
 automatisk den seneste version af R.
@@ -395,6 +364,21 @@ lm.D9 <- lm(weight ~ group)
 summary(lm.D9)
 ~~~
 {: .language-r}
+
+
+## noter:
+
+* Pakker hører til i starten.
+* Rækkefølgen er installer pakker, og dernæst indlæs pakker.
+* masking og conflicts af funktioner. Så tænk også over rækkefølgen af
+* library! og dermed pakkenavn::funktion
+* installer devtools!
+* Brug devtools til at opdatere (praktisk øvelse)
+* github vs. cran vs. lokale funktioner/source
+* installer ggbiplot
+  det er en funktion 
+    og kan derfor "indlæses" med source funktionen. (og den ligger fint i en scripts mappe!)
+
 
 
 
