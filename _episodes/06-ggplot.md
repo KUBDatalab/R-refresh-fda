@@ -19,12 +19,100 @@ math: yes
 
 
 
-
-vineksemplet herunder er indgangsbønnen.
-SKAL SKRIVES OM TIL KAFFE-eksperimentet
+I kommer til at arbejde med flere forskellige datasæt, men det et af de første
+I støder på handler om kaffe. Lad os indlæse datasættet og kigge på det. Allerførst
+skal vi have indlæst de biblioteker vi kommer til at arbejde med:
 
 
 ~~~
+Loading required package: usethis
+~~~
+{: .output}
+
+
+
+~~~
+Using github PAT from envvar GITHUB_PAT
+~~~
+{: .output}
+
+
+
+~~~
+Downloading GitHub repo vqv/ggbiplot@HEAD
+~~~
+{: .output}
+
+
+
+~~~
+plyr (NA -> 1.8.8) [CRAN]
+~~~
+{: .output}
+
+
+
+~~~
+Installing 1 packages: plyr
+~~~
+{: .output}
+
+
+
+~~~
+Installing package into '/home/runner/work/_temp/Library'
+(as 'lib' is unspecified)
+~~~
+{: .output}
+
+
+
+~~~
+── R CMD build ─────────────────────────────────────────────────────────────────
+* checking for file ‘/tmp/RtmpiC3a2v/remotes32974b830bdc/vqv-ggbiplot-7325e88/DESCRIPTION’ ... OK
+* preparing ‘ggbiplot’:
+* checking DESCRIPTION meta-information ... OK
+* checking for LF line-endings in source and make files and shell scripts
+* checking for empty or unneeded directories
+* looking to see if a ‘data/datalist’ file should be added
+* building ‘ggbiplot_0.55.tar.gz’
+~~~
+{: .output}
+
+
+
+~~~
+Installing package into '/home/runner/work/_temp/Library'
+(as 'lib' is unspecified)
+~~~
+{: .output}
+
+
+~~~
+library(tidyverse)
+~~~
+{: .language-r}
+
+
+
+~~~
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+~~~
+{: .output}
+
+
+
+~~~
+library(readxl)
 library(ggbiplot)
 ~~~
 {: .language-r}
@@ -32,120 +120,142 @@ library(ggbiplot)
 
 
 ~~~
-Error in library(ggbiplot): there is no package called 'ggbiplot'
+Loading required package: plyr
+------------------------------------------------------------------------------
+You have loaded plyr after dplyr - this is likely to cause problems.
+If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
+library(plyr); library(dplyr)
+------------------------------------------------------------------------------
+
+Attaching package: 'plyr'
+
+The following objects are masked from 'package:dplyr':
+
+    arrange, count, desc, failwith, id, mutate, rename, summarise,
+    summarize
+
+The following object is masked from 'package:purrr':
+
+    compact
+
+Loading required package: scales
+
+Attaching package: 'scales'
+
+The following object is masked from 'package:purrr':
+
+    discard
+
+The following object is masked from 'package:readr':
+
+    col_factor
+
+Loading required package: grid
 ~~~
-{: .error}
-
-
-
-~~~
-ggbiplot
-~~~
-{: .language-r}
-
-
-
-~~~
-Error in eval(expr, envir, enclos): object 'ggbiplot' not found
-~~~
-{: .error}
-denne kommer senere.
-
-~~~
-data(wine)
-
-wine.pca <- prcomp(wine, scale. = TRUE)
-biplot <- ggbiplot(wine.pca, obs.scale = 1, var.scale = 1, groups = wine.class, ellipse = TRUE, circle = TRUE)
-biplot + 
-  
-~~~
-{: .language-r}
-
-
-
-~~~
-Error: <text>:7:0: unexpected end of input
-5: biplot + 
-6:   
-  ^
-~~~
-{: .error}
+{: .output}
 
 
 ~~~
-wine %>% 
-  mutate(type = wine.class) %>% 
-  group_by(type) %>% 
-  summarise(alc = mean(Alcohol),
-            color = mean(Color))
+kaffe <- read_excel("../data/Results Panel.xlsx")
 ~~~
 {: .language-r}
 
-
-
-~~~
-Error in wine %>% mutate(type = wine.class) %>% group_by(type) %>% summarise(alc = mean(Alcohol), : could not find function "%>%"
-~~~
-{: .error}
-
-Kan vi lave et plot?
-Og hvad er så elementerne i et ggplot?
-
+Under "summary statistics" så vi ultrakort hvordan man kunne plotte to variable
+mod hinanden:
 
 ~~~
-wine %>% 
-   mutate(type = wine.class) %>% 
-  ggplot(aes(Alcohol, Color, color = type)) +
+kaffe %>% 
+  ggplot(aes(x = Bitter, y = Sour)) +
   geom_point()
 ~~~
 {: .language-r}
 
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-06-unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-5</p>
+</div>
+
+Men vi talte ikke meget om hvad den kode egentlig betød.
+
+R har indbyggede funktioner til at plotte data, og de er ret gode. Men det er 
+vanskeligt at bruge dem hvis man vil justere på farver, skalaer og andet. 
+Pakken `ggplot2` er inkluderet i pakken `tidyverse`. Den kan bruges til at lave 
+(næsten) enhver type to-dimensionelle plots. 
+
+Funktionen der gør det, hedder `ggplot`. Lad jer ikke forvirre, `ggplot2` er 
+pakken der indeholder funktionen `ggplot`.
+
+`ggplot` skal have noget data. Det får den fra pipen, der sender `kaffe` videre
+til `ggplot`. Det næste `ggplot` skal vide er hvordan vi vil "mappe" data til 
+ting i plottet. Der gør vi ved en lille hjælpefunktion, `aes`, der specificerer
+at vi vil have værdierne i "Bitter" kolonnen på x-aksen, og værdierne i "Sour"
+kolonnnen på y-aksen. Vi kan "mappe" data til andre ting i plottet, men starter
+med disse to. 
+
+ggplot bruger en abstraktion om lag. Vi lægger ekstra lag oven på vores plots 
+med `+`. Koden:
+
+~~~
+kaffe %>% 
+  ggplot(aes(x = Bitter, y = Sour))
+~~~
+{: .language-r}
+
+producerer et meget kedeligt plot, for vi har ikke tilføjet laget der fortæller 
+hvordan vi vil have plottet data. Det gør vi med funtionen `geom_point`, der
+specificerer at vi vil have et scatter-plot, hvor vi plotter punkter, eller "points".
+
+Forskellige typer af plots har hver deres `geom_` funktion, hvor det der står efter
+understregningen, fortæller hvilken slags plot vi vil have lavet. Det samlede 
+plot bliver derfor:
 
 
 ~~~
-Error in wine %>% mutate(type = wine.class) %>% ggplot(aes(Alcohol, Color, : could not find function "%>%"
-~~~
-{: .error}
-
-Vi kan nu forestille os at vi har flere parametre
-med end alkohol og farve. Og laver kombinationer 
-af disse dimensionter, så vi får to nye dimensioner
-hvor den første er 0.8*alkohol + .3*farve + 0.7*proline. Og den anden er noget andet. Det kunne 
-give endnu bedre adskillelse.
-
-Så kommer det til at så således ud:
-*plottet ovenfor* 
-
-Og det fortæller Morten meget mere om!
-
-Men lad os lige se lidt nærmere på ggplot2.
-akseetiketter. Placering af legend.
-Farver. 
-
-
-linreg
-phenols og flav
-"Flavanoids" er navnet!
-
-~~~
-wine %>% 
-  ggplot(aes(Phenols, Flav)) +
+kaffe %>% 
+  ggplot(aes(x = Bitter, y = Sour)) +
   geom_point()
 ~~~
 {: .language-r}
 
+som vi så tidligere.
+
+Andre `geom_` funktioner der kan være nyttige er:
+
+### boxplot
 
 
 ~~~
-Error in wine %>% ggplot(aes(Phenols, Flav)): could not find function "%>%"
+kaffe %>% 
+  ggplot(aes(x = Sample, y = Sour)) +
+  geom_boxplot()
 ~~~
-{: .error}
-Det ser lineært ud!
+{: .language-r}
 
-Hvordan laver vi en lineær regression? er det her vi skal tale om lm? Eller passer det mindre ringe ind i summary stat.
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-06-unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-8</p>
+</div>
+Boxplottet viser os fordelingen af vurdering af parameteren "Sour" ved forskellige 
+temperaturer. 
 
-Og hvad er det nu sådan en er?
+Et særligt plot I kommer til at bruge meget er et `biplot`. Det kan R også lave
+direkte, men det er lettere med funktionen `ggbiplot` som vi introducerede under
+HVILKET AFSNIT VAR DET NU DET VAR?!
 
+Udgangspunktet er en 
+
+
+~~~
+kaffe.pca <- prcomp(kaffe[,4:11], scale. = TRUE)
+biplot <- ggbiplot(kaffe.pca, obs.scale = 1, var.scale = 1, groups = kaffe$Sample, ellipse = TRUE, circle = TRUE)
+ biplot
+~~~
+{: .language-r}
+
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-06-unnamed-chunk-9-1.png" alt="plot of chunk unnamed-chunk-9" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-9</p>
+</div>
 
 
 {% include links.md %}
