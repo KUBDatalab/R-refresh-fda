@@ -1,5 +1,5 @@
 ---
-title: "summary statistics"
+title: "Summary statistics"
 teaching: 10
 exercises: 5
 questions:
@@ -27,10 +27,16 @@ library(readxl)
 ## Summary statistics
 
 I vil ofte skulle finde gennemsnit, medianer, standardafvigelser og
-andet for jeres data. Og ofte for forskellige grupper. Et af de
+andet for jeres data. Det kalder vi for "Summary statistics" fordi 
+vi opsummerer en masse til til en enkelt værdi der (forhåbentlig) karakteriserer
+den samlede mængde data. 
+
+Vi har også ofte brug for at beregne eksempelvis gennemsnit af en bestemt variabel
+for forskellige grupper. 
+Et af de
 første eksempler I kommer til at arbejde med er smagsdommeres 
 vurderinger af smagen af kaffe. Og en ting man kunne have lyst til at 
-finde ud af om tre forskellige smagsdommere vurderer bitterheden af 
+finde ud af om de forskellige smagsdommere vurderer bitterheden af 
 kaffen forskelligt.
 
 Lad os indlæse data:
@@ -43,12 +49,36 @@ Man kan få et hurtigt overblik ved hjælp af funktionen `summary`:
 ```{r}
 summary(kaffe)
 ```
+Her får vi minimum og maximum af værdierne i de enkelte kolonner, medianen, 
+middelværdien og første samt tredie kvartil.
+
 En lidt irriterende ting ved dette datasæt er at kolonnen `Sample`
 indeholder temperaturen. Men angivet ikke som `31` og så underforstået
 i grader Celsius, men i stedet som `31C`. Det er selvfølgelig en 
 fiks måde at få angivet at vi arbejder med forskellige samples, der
 er karakteriseret ved at være ved forskellige temperaturer.
-Men det betyder at vi ikke kan lave matematik på temperaturerne, og det har vi undertiden lyst til.
+Men det betyder at vi ikke kan lave matematik på temperaturerne, og det har vi 
+undertiden lyst til.
+
+INSERT hvordan gør vi så det?
+Under DATAMANIPULATION så vi hvordan vi kunne lave en ny kolonne, baseret på 
+eksisterende kolonner. Det kan vi udnytte her. Vi vil godt have "beregnet" en 
+ny kolonne der skal hedde "Temperatur", baseret på værdierne i "Sample" kolonnen.
+Sample kolonnen indeholder eksempelvis "31C", og vi vil godt have pillet C'et af,
+så vi har 31 tilbage. Og derefter have konverteret 31 til et tal. Det kan vi gøre
+på denne måde:
+```{r}
+kaffe %>% 
+  mutate(Temperatur = str_remove(Sample, "C")) %>% 
+  mutate(Temperatur = as.numeric(Temperatur))
+```
+Her laver vi en ny kolonne "Temperatur" der indeholder resultatet af at køre 
+`str_remove` funktionen på "Sample". Det vi "remover" er "C". Nu står der "31" i 
+Temperatur kolonnen i stedet for "31C". Men "31" er stadig tekst. Og vi kører derfor
+funktionen "as.numeric" på indholdet af Temperatur kolonnen. Den funktion forvander
+teksten "31" til tallet 31.
+
+
 
 Nu kunne vi så godt tænke os at finde ud af om de otte smagsdommere
 vurderer eksempelvis bitterhed forskelligt. Er der nogen af dem
@@ -57,12 +87,15 @@ ide om ved at beregne gennemsnittet af deres vurdering af bitterheden
 i kaffen for hver af dommerne.
 Måske er vi også interesserede i medianen. Eller standardafvigelsen.
 
-Det kan gøres på flere måder. Vi præsenterer her to.
+Det kan gøres på flere måder. Vi præsenterer her to. Og vi tager udgangspunkt
+i spørgsmålet "Hvad er hver enkelt smagsdommers gennemsnitlige vurdering af 
+bitterheden i kaffeprøverne?"
 
 ## Aggregate muligheden
 
-Dette er den måde at beregne hvordan hver dommer i gennemsnit 
-vurderer bitterheden, som I præsenteres for i undervisningsmaterialet.
+
+Dette er måden at besvare spørgsmålet på, som I præsenteres for i 
+undervisningsmaterialet.
 Den er lidt bøvlet, og kan være vanskelig at vride hjernen omkring.
 
 Den er på den anden side hurtig og nyttig. Og så er det som nævnt den
@@ -72,45 +105,89 @@ der sker.
 Funktion vi bruger hedder `aggregate`. Den er indbygget direkte i R.
 
 ```{r aggregate-eksempel, eval =F }
-aggregate(kaffe, by=list(kaffe$Assessor, kaffe$Sample), FUN = "mean")
+aggregate(kaffe, by=list(kaffe$Assessor), FUN = "mean")
 ```
 ```{r aggregate-eksempel-med-output, warning=F, eval =T, echo =F }
-aggregate(kaffe, by=list(kaffe$Assessor, kaffe$Sample), FUN = "mean") %>% head()
+aggregate(kaffe, by=list(kaffe$Assessor), FUN = "mean")
 ```
 
 Hvad sker der her? Aggregatefunktionen tager input, data, i dette 
 tilfælde dataframen `kaffe`, og splitter den op i et antal grupper.
 Grupperne er defineret af hvad vi skriver i `by` argumentet, og vi 
-får her to grupper:
-Gruppe 1, i outputtet kaldet `Group.1`, og gruppe 2, `Group.2`.
+får her en gruppe. "Group.1" er Assessor.
 
-
-
-I gruppe 1 har vi dommerne. De har et nummer fra 1 til 8. I gruppe 2 har vi
-de forskellige samples de har smagt på. 
+I gruppe 1 har vi altså dommerne. De har et nummer fra 1 til 8.
 Dernæst beregner `aggregate` gennemsnittet af værdierne i *alle* kolonnerne. Det giver os nogle "warnings", fordi vi ikke kan beregne
-et gennemsnit af "31C" og "32C", fordi det er tekst, og ikke tal.
+et gennemsnit af "31C" og "32C". "31C" er tekst og ikke tal. Og vi kan ikke 
+beregne gennemsnit af tekst.
 
-Hvordan skal vi læse dem? Vi skal læse dem som at den gennemsnitlige intensitet
-som dommer 1 har givet de samples der er kodet som 31C, er 9.8625.
+Hvordan skal vi læse dem? Vi skal læse dem som at den gennemsnitlige Bitterhed
+som dommer 1 har givet, er 9.63125.
 
-Vil vi beregne andet end gennemsnit, erstatter vi "mean" i `FUN` argumentet med en anden statistisk funktion, det kunne være "median" eller "sd" for medianen hhv. standardafvigelsen.
+Vil vi beregne andet end gennemsnit, erstatter vi "mean" i `FUN` argumentet med 
+en anden statistisk funktion, det kunne være "median" eller "sd" for medianen 
+hhv. standardafvigelsen.
+
+Hvis vi godt vil dele datasættet op i flere grupper, eksempelvis både efter
+smagsdommer og "Sample", kan vi tilføje det i "by=list" delen af funktionen:
+
+```{r}
+aggregate(kaffe, by=list(kaffe$Assessor, kaffe$Sample), FUN = "mean") 
+```
+Vi får nu både en "Group.1" der er dommernes nummer, og "Group.2" der er "Sample", 
+altså temperaturen. Vi får 48 rækker i alt, fordi vi har 8 dommer og seks
+forskellige "Sample" værdier. Og dermed gennemsnitlige værdier for hver af de
+kombinationer.
 
 ## Den anden måde.
 
-Arbejdstitel: Summary statistics
+Vi er glade for at præsentere forskellige måder at nå samme resultat. De der 
+finder aggregate metoden vanskelig, finder forhåbentlig denne let.
 
-mean, median, sd, var - og na.rm
+I tidyverse universet kan vi opnå de samme aggregerede statiske resultate, blot
+på en anden måde:
 
-aggregate... Det tager lidt tid for den er 
-konceptuelt svær.
+```{r}
+kaffe %>% 
+  group_by(Assessor) %>% 
+  summarise_all(mean)
+```
 
-Den skal I kende, for det er den der bruges i 
-undervisningsmaterialet (og den er i øvrigt fin,
-og der er gode argumenter for at bruge den)
+Hvad sker der? Vi tager vores data, `kaffe` og bruger pipen til at sende 
+data til funktionen `group_by`. Den "grupperer" datasættet efter værdierne i "Assessor".
+Dette grupperede datasæt sendes videre til `summarise_all` funktionen, der beregner
+middelværdien - den specificerer vi med "mean", for *alle* kolonnerne.
 
-Alternativt!
-group_by i kombi med summarise.
+Der er flere varianter af den. Hvis vi vil fokusere på vurderingen af "Intensity",
+kan vi beregne flere statistiske værdier for den på en gang:
+
+```{r}
+kaffe %>% 
+  group_by(Assessor) %>% 
+  summarise(middelværdi = mean(Intensity),
+            medianen  = median(Intensity),
+            std_afv = sd(Intensity)
+            )
+  
+```
+Her bruger vi `summarise` i stedet for `summarise_all`, fordi det ikke er alle
+kolonner vi vil lave beregninger på, men kun dem vi specificerer.
+
+Og hvis vi vil opdele vores data efter mere end en parameter, Assessor og Sample
+for eksempel, kan vi tilføje de ekstra grupperings variable i `group_by`:
+
+```{r}
+kaffe %>% 
+  group_by(Assessor, Sample) %>% 
+  summarise(middelværdi = mean(Intensity),
+            medianen  = median(Intensity),
+            std_afv = sd(Intensity)
+            )
+  
+```
+
+
+
 
 ## En lineær regression
 

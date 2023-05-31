@@ -22,74 +22,97 @@ knitr_fig_path("06-")
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+I kommer til at arbejde med flere forskellige datasæt, men det et af de første
+I støder på handler om kaffe. Lad os indlæse datasættet og kigge på det. Allerførst
+skal vi have indlæst de biblioteker vi kommer til at arbejde med:
 
-vineksemplet herunder er indgangsbønnen.
-SKAL SKRIVES OM TIL KAFFE-eksperimentet
+```{r echo = F}
+library(devtools)
+devtools::install_github("vqv/ggbiplot")
+```
 
 ```{r}
+library(tidyverse)
+library(readxl)
 library(ggbiplot)
-ggbiplot
-```
-denne kommer senere.
-```{r}
-data(wine)
-
-wine.pca <- prcomp(wine, scale. = TRUE)
-biplot <- ggbiplot(wine.pca, obs.scale = 1, var.scale = 1, groups = wine.class, ellipse = TRUE, circle = TRUE)
-biplot + 
-  
 ```
 
 ```{r}
-wine %>% 
-  mutate(type = wine.class) %>% 
-  group_by(type) %>% 
-  summarise(alc = mean(Alcohol),
-            color = mean(Color))
-  
+kaffe <- read_excel("../data/Results Panel.xlsx")
 ```
 
-Kan vi lave et plot?
-Og hvad er så elementerne i et ggplot?
-
+Under "summary statistics" så vi ultrakort hvordan man kunne plotte to variable
+mod hinanden:
 ```{r}
-wine %>% 
-   mutate(type = wine.class) %>% 
-  ggplot(aes(Alcohol, Color, color = type)) +
+kaffe %>% 
+  ggplot(aes(x = Bitter, y = Sour)) +
   geom_point()
 ```
 
-Vi kan nu forestille os at vi har flere parametre
-med end alkohol og farve. Og laver kombinationer 
-af disse dimensionter, så vi får to nye dimensioner
-hvor den første er 0.8*alkohol + .3*farve + 0.7*proline. Og den anden er noget andet. Det kunne 
-give endnu bedre adskillelse.
+Men vi talte ikke meget om hvad den kode egentlig betød.
 
-Så kommer det til at så således ud:
-*plottet ovenfor* 
+R har indbyggede funktioner til at plotte data, og de er ret gode. Men det er 
+vanskeligt at bruge dem hvis man vil justere på farver, skalaer og andet. 
+Pakken `ggplot2` er inkluderet i pakken `tidyverse`. Den kan bruges til at lave 
+(næsten) enhver type to-dimensionelle plots. 
 
-Og det fortæller Morten meget mere om!
+Funktionen der gør det, hedder `ggplot`. Lad jer ikke forvirre, `ggplot2` er 
+pakken der indeholder funktionen `ggplot`.
 
-Men lad os lige se lidt nærmere på ggplot2.
-akseetiketter. Placering af legend.
-Farver. 
+`ggplot` skal have noget data. Det får den fra pipen, der sender `kaffe` videre
+til `ggplot`. Det næste `ggplot` skal vide er hvordan vi vil "mappe" data til 
+ting i plottet. Der gør vi ved en lille hjælpefunktion, `aes`, der specificerer
+at vi vil have værdierne i "Bitter" kolonnen på x-aksen, og værdierne i "Sour"
+kolonnnen på y-aksen. Vi kan "mappe" data til andre ting i plottet, men starter
+med disse to. 
 
+ggplot bruger en abstraktion om lag. Vi lægger ekstra lag oven på vores plots 
+med `+`. Koden:
+```{r eval = F}
+kaffe %>% 
+  ggplot(aes(x = Bitter, y = Sour))
+```
 
-linreg
-phenols og flav
-"Flavanoids" er navnet!
-```{r}
+producerer et meget kedeligt plot, for vi har ikke tilføjet laget der fortæller 
+hvordan vi vil have plottet data. Det gør vi med funtionen `geom_point`, der
+specificerer at vi vil have et scatter-plot, hvor vi plotter punkter, eller "points".
 
-wine %>% 
-  ggplot(aes(Phenols, Flav)) +
+Forskellige typer af plots har hver deres `geom_` funktion, hvor det der står efter
+understregningen, fortæller hvilken slags plot vi vil have lavet. Det samlede 
+plot bliver derfor:
+
+```{r eval = F}
+kaffe %>% 
+  ggplot(aes(x = Bitter, y = Sour)) +
   geom_point()
 ```
-Det ser lineært ud!
 
-Hvordan laver vi en lineær regression? er det her vi skal tale om lm? Eller passer det mindre ringe ind i summary stat.
+som vi så tidligere.
 
-Og hvad er det nu sådan en er?
+Andre `geom_` funktioner der kan være nyttige er:
 
+### boxplot
+
+```{r}
+kaffe %>% 
+  ggplot(aes(x = Sample, y = Sour)) +
+  geom_boxplot()
+```
+Boxplottet viser os fordelingen af vurdering af parameteren "Sour" ved forskellige 
+temperaturer. 
+
+Et særligt plot I kommer til at bruge meget er et `biplot`. Det kan R også lave
+direkte, men det er lettere med funktionen `ggbiplot` som vi introducerede under
+HVILKET AFSNIT VAR DET NU DET VAR?!
+
+Udgangspunktet er en 
+
+```{r}
+kaffe.pca <- prcomp(kaffe[,4:11], scale. = TRUE)
+biplot <- ggbiplot(kaffe.pca, obs.scale = 1, var.scale = 1, groups = kaffe$Sample, ellipse = TRUE, circle = TRUE)
+ biplot
+  
+```
 
 
 {% include links.md %}
