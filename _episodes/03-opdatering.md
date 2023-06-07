@@ -41,8 +41,6 @@ Vi angiver navnet på pakken som en tekststreng. install.packages() funktionen s
 
 I dette tilfælde er det pakken `devtools` en samling af værktøjer der er nyttige når man udvikler ny funktionalitet i R. Men pakken indeholder andet der kan være nyttigt i dette kursus. Dette ser vi nærmere på senere.
 
-ØVELSE: installer devtools. (skal vi ikke hellere vente til det med bi-plot)
-
 Når pakken så er installeret på computeren kan vi endnu ikke bruge den i RStudio. Den skal først indlæses. Dette kan gøres med funktionen library().
 
 
@@ -51,26 +49,19 @@ library(devtools)
 ~~~
 {: .language-r}
 
-Bemærk at her skal der ikke anførelsestegn rundt om pakkenavnet. Dette er en almindelig kilde til fejl.
+Bemærk at her skal der ikke anførselstegn rundt om pakkenavnet. Dette er en almindelig kilde til fejl.
 
 Man kan vælge ikke at indlæse hele pakken, men bare bruge en specifik funktion fra en specifik pakke. Dette gøres ved at brug af denne notation `devtools::install_github()`. Som består af pakkenavn og funktionsnavn.
 
 Med den første metode sparer man en del tasteri.
+
+ØVELSE: installer devtools. (skal vi ikke hellere vente til det med bi-plot)
 
 ## Funktioner med samme navn
 Eftersom der ikke er noget der forhindrer os, eller andre i at lave nye funktioner der hedder det samme som en eksisterende funktion, kan der opstå "konflikter". Når vi indlæser en pakke med library funktionen ser vi ofte en besked om en konflikt, Eksempelvis: `x dplyr::filter() masks stats::filter()`
 
 Det betyder blot at Rs indbyggede pakke `stats` har en funktion der hedder `filter()`. Det har pakken `dplyr` også. Og eftersom `dplyr` er indlæst efter R er startet op, så vil R bruge den sidst indlæste udgave af filter.
 
-SKAL vi have dette eksempel med???
-
-~~~
-library(dplyr)
-library(MASS)
-
-mtcars %>% select(cyl)
-~~~
-{: .language-r}
 
 Hvis vi har brug for en specifik udgave af en funktion, der kommer fra en bestemt pakke, kan vi kalde den,
 eksempelvis: `stats::filter()`
@@ -93,8 +84,8 @@ på en særlig måde:
 
 
 ~~~
-install.packages("devtools")
-library(devtools)
+#install.packages("devtools")
+#library(devtools)
 install_github("vqv/ggbiplot")
 ~~~
 {: .language-r}
@@ -311,7 +302,7 @@ jeres projekt. Den kan indlæses på en snedig måde, der giver
 jer adgang til funktionen også selvom I ikke har kunne installere den.
 
 I starten af jeres script, lige efter I ellers har indlæst
-bibliotekek, sætter I en enkelt linie ind:
+biblioteker, sætter I en enkelt linie ind:
 
 ~~~
 source("scripts/ggbiplot.R")
@@ -337,8 +328,7 @@ ud af at noget er holdt op med at virke.
 Så.
 Opdater RStudio og opdater R.
 
-R opdaterer vi ganske enkelt ved at installere seneste version. Rstudio vælger
-automatisk den seneste version af R.
+R opdaterer vi ganske enkelt ved at installere seneste version.
 
 R studio er også blot at downloade og installere den. Så fungerer tingene.
 
@@ -353,15 +343,6 @@ hvilke der skal opdateres.
 
 ~~~
 devtools::update_packages()
-y <- rchisq(500, df = 3)
-plot(qchisq(ppoints(500), df = 3))
-
-ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
-trt <- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
-group <- gl(2, 10, 20, labels = c("Ctl","Trt"))
-weight <- c(ctl, trt)
-lm.D9 <- lm(weight ~ group)
-summary(lm.D9)
 ~~~
 {: .language-r}
 

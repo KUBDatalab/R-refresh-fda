@@ -120,12 +120,14 @@ Hvorfor står der ikke noget foran kommaet i de kantede paranteser?
 De kantede paranteser kan bruges til at specificere ikke kun kolonner, men også 
 rækker. Det vi skriver foran kommaet fortæller hvilke rækker vi vil have. Det vi 
 skriver efter kommaet hvilke kolonner vi vil have. Skriver vi slet ikke noget,
-får vi alt, her alle rækkerne (bortset fra at vi begræsnser det til de 6 første 
+får vi alt, her alle rækkerne (bortset fra at vi begrænser det til de 6 første 
 rækker, fordi det fylder for meget at skrive det hele ud).
 
 
 
 logiske vektorer i denne kontekst.
+
+## Subsetting
 
 Endelig er der en specifik funktion `subset()` der
 kan benyttes
@@ -179,6 +181,7 @@ overskuelig.
 
 Udvælgelse af bestemte kolonner:
 ```{r}
+library(tidyverse)
 kaffe %>% 
   select(Assessor, Bitter, Sour)
 ```
@@ -252,7 +255,7 @@ Her gemmer vi en semikolon-separeret csv-fil i KORREKTMAPPE.
 Nogle datatyper, eksempelvis det der kommer ud af at 
 lave en statistisk model, kan ikke gemmes som 
 csv-filer. Men frygt ej, R har måder at gemme den 
-slags på_
+slags på:
 
 ```{r eval = F}
 saveRDS(sær_data, file = "KORREKTMAPPE/sær_data.rda")

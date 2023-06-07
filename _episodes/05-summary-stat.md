@@ -443,7 +443,7 @@ kombinationer.
 Vi er glade for at præsentere forskellige måder at nå samme resultat. De der 
 finder aggregate metoden vanskelig, finder forhåbentlig denne let.
 
-I tidyverse universet kan vi opnå de samme aggregerede statiske resultate, blot
+I tidyverse universet kan vi opnå de samme aggregerede statiske resultater, blot
 på en anden måde:
 
 
@@ -598,7 +598,9 @@ med "1", hvor meget stiger "Sour" så med.
 Med andre ord, vi vil finde den bedste rette linie at
 lægge ind i plottet. Sådan en ret linie beskriver vi
 som regel med udtrykket $$y = ax + b$$. Eller:
+
 $$Sour = a*Bitter + b$$
+
 Vil vi have R til at lave beregningerne for os, fortæller vi R hvilken lineære model vi vil fitte data
 til. Og hvilke data vi arbejder med:
 

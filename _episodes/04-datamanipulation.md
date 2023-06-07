@@ -135,12 +135,14 @@ Hvorfor står der ikke noget foran kommaet i de kantede paranteser?
 De kantede paranteser kan bruges til at specificere ikke kun kolonner, men også 
 rækker. Det vi skriver foran kommaet fortæller hvilke rækker vi vil have. Det vi 
 skriver efter kommaet hvilke kolonner vi vil have. Skriver vi slet ikke noget,
-får vi alt, her alle rækkerne (bortset fra at vi begræsnser det til de 6 første 
+får vi alt, her alle rækkerne (bortset fra at vi begrænser det til de 6 første 
 rækker, fordi det fylder for meget at skrive det hele ud).
 
 
 
 logiske vektorer i denne kontekst.
+
+## Subsetting
 
 Endelig er der en specifik funktion `subset()` der
 kan benyttes
@@ -456,6 +458,29 @@ overskuelig.
 Udvælgelse af bestemte kolonner:
 
 ~~~
+library(tidyverse)
+~~~
+{: .language-r}
+
+
+
+~~~
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+~~~
+{: .output}
+
+
+
+~~~
 kaffe %>% 
   select(Assessor, Bitter, Sour)
 ~~~
@@ -464,9 +489,22 @@ kaffe %>%
 
 
 ~~~
-Error in kaffe %>% select(Assessor, Bitter, Sour): could not find function "%>%"
+# A tibble: 192 × 3
+   Assessor Bitter  Sour
+      <dbl>  <dbl> <dbl>
+ 1        1   6.75  6.9 
+ 2        1   7.95  8.1 
+ 3        1  10.2   8.7 
+ 4        1  11.4  11.0 
+ 5        2  11.4   5.7 
+ 6        2  10.4   9.3 
+ 7        2  11.2   9   
+ 8        2  12.8  10.0 
+ 9        3  11.2   8.85
+10        3  13.4   8.25
+# ℹ 182 more rows
 ~~~
-{: .error}
+{: .output}
 
 Her sender vi datasættet kaffe til funktionen `select`, og angiver at vi godt
 vil vælge kolonnerne "Assessor", "Bitter" og "Sour"
@@ -483,9 +521,22 @@ kaffe %>%
 
 
 ~~~
-Error in kaffe %>% select(Assessor, Bitter, Sour) %>% filter(Assessor == : could not find function "%>%"
+# A tibble: 24 × 3
+   Assessor Bitter  Sour
+      <dbl>  <dbl> <dbl>
+ 1        1   6.75  6.9 
+ 2        1   7.95  8.1 
+ 3        1  10.2   8.7 
+ 4        1  11.4  11.0 
+ 5        1   8.7  10.0 
+ 6        1   8.1  10.5 
+ 7        1  10.8   9.45
+ 8        1  11.1  10.6 
+ 9        1   8.7   7.2 
+10        1   9.45  9.45
+# ℹ 14 more rows
 ~~~
-{: .error}
+{: .output}
 
 Efter vi har sendt datasættet "kaffe" til select funktionen, og udvalgt
 de tre kolonner vi er interesserede i, sender vi dem videre til filter funktionen,
@@ -510,9 +561,22 @@ kaffe %>%
 
 
 ~~~
-Error in kaffe %>% select(Assessor, Bitter, Sour) %>% filter(Assessor == : could not find function "%>%"
+# A tibble: 24 × 4
+   Assessor Bitter  Sour ny_kolonne
+      <dbl>  <dbl> <dbl>      <dbl>
+ 1        1   6.75  6.9        46.6
+ 2        1   7.95  8.1        64.4
+ 3        1  10.2   8.7        88.7
+ 4        1  11.4  11.0       125. 
+ 5        1   8.7  10.0        87.4
+ 6        1   8.1  10.5        85.0
+ 7        1  10.8   9.45      102. 
+ 8        1  11.1  10.6       118. 
+ 9        1   8.7   7.2        62.6
+10        1   9.45  9.45       89.3
+# ℹ 14 more rows
 ~~~
-{: .error}
+{: .output}
 Hvorfor vi nogensinde skulle have lyst til at gange de to sæt tal sammen ved vi
 ikke. Det vigtige er at vi kan lave en ny kolonne, baseret på en eller flere af
 de eksisterende kolonner.
@@ -559,7 +623,7 @@ Her gemmer vi en semikolon-separeret csv-fil i KORREKTMAPPE.
 Nogle datatyper, eksempelvis det der kommer ud af at 
 lave en statistisk model, kan ikke gemmes som 
 csv-filer. Men frygt ej, R har måder at gemme den 
-slags på_
+slags på:
 
 
 ~~~

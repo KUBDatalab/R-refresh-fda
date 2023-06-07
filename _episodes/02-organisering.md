@@ -23,7 +23,7 @@ source: Rmd
 
 
 # Hvad er et script
-Et script er en sekvens af instrutioner som oversætter et problem og kommer med et resultat. Gode scripts kan køres fra start til slut og give et resultat uden problemer og fejl.
+Et script er en sekvens af instruktioner som oversætter et problem og kommer med et resultat. Gode scripts kan køres fra start til slut og give et resultat uden problemer og fejl.
 
 Programmeringsprocessen er ikke altid struktureret, men gode scripts kan opnås med gode programmeringsrutiner.
 
@@ -38,7 +38,7 @@ I Rstudio er det muligt at oprette projekter. Når man opretter et projekt i RSt
 Arbejd med mere end et projekt. I det øjeblik to opgaver ikke har noget med hinanden at gøre og derfor kan løses uafhængigt af hinanden, bør man overveje at etablere to projekter.
 
 ## Mappestruktur
-Lav en overskuelig mappestuktur indefor din projektmappe. Strukturen skal håndtere forskellige typer af data, fx scripts, rå data, manipulerede data, plots, adskildt. Her underer et eksempel på en fuldt udbygget mappestruktur. 
+Lav en overskuelig mappestuktur indefor din projektmappe. Strukturen skal håndtere forskellige typer af data, fx scripts, rå data, manipulerede data, plots, adskildt. Her under er et eksempel på en fuldt udbygget mappestruktur. 
 
 ![Mappestruktur](../fig/rstudio_project_files.jpeg)
 
@@ -49,8 +49,7 @@ Det er fristende at bruge importfunktionen til at indlæse data. Den er også fi
 
 ![Import kræver klik, hver gang](../fig/import_recording.gif)
 
-Men læg mærke til at du hver gang du bruger den, skal klikke. Du skal vælge filen,
-du skal træffe valg.
+Men læg mærke til at du hver gang du bruger den skal interagere med RStudio og derfor ikke opnår et script der kan køres fra start til slut.
 
 Indlæs i stedet filen med kommandoer i et script:
 
@@ -61,21 +60,21 @@ Results_Consumer_Test <- read_excel("R_projekter/R-refresh-fda/data/Results Cons
 ~~~
 {: .language-r}
 
-Hvis du sørger for at gemme data i en data mappe i din RStudio projektmappe, og indlæser herfra, så sikre du også at data altid følger med projektet.
+Hvis du sørger for at gemme data i en data-mappe i din RStudio projektmappe, og indlæser herfra, sikrer du at data altid følger med projektet.
 
 ## Husk at kommentere
 Kommentarer er din ven. De hjælper dig med at gennemskue hvad du har lavet når du kigger på din kode igen (måske omkring eksamens tid), eller 1 år senere fordi du skal lave noget lignende. De giver dig mulighed for hurtigt at gennemskue hvorfor du har gjort hvad.
 
-Kommentarer kan være svære at skrive både fordi de kan forstyrre kodningsprocessen, og fordi det virker åbenlyst hvad man sidder og laver. Det kan ofte være en god ide at gennemgå ens kodning enten når man stopper for dagen eller er færdig med et problem og få skrevet kommentarer. Denne proces kan også hjælpe til at man lige får set på koden en ekstra gang.
+Kommentarer kan være svære at skrive både fordi de kan forstyrre programmeringsprocessen, og fordi det virker åbenlyst hvad man sidder og laver. Det kan ofte være en god ide at gennemgå ens kodning enten når man stopper for dagen eller er færdig med et problem og få skrevet kommentarer. Denne proces kan også hjælpe til at man lige får set på koden en ekstra gang.
 
 
 ## Oprydning
-Det kan være en god ide løbende at rydde op i ens kode, så man kan slette unødvendig kode. Det kan være kedelig proces, men man sørger for at koden bliver mere brugbar for en selv i fremtiden, og man får også lige lov til at tjekke igennem om koden nu også er skrevet sekventiel.
+Det kan være en god ide løbende at rydde op i ens kode, så man kan slette unødvendig kode. Det kan være en kedelig proces, men man sørger for at koden bliver mere brugbar for en selv i fremtiden, og man får også lige lov til at tjekke igennem om koden nu også er skrevet sekventiel.
 
 # Kodeprocessen
 Husk at scripts eksekveres linie for linie. Skriv derfor koden i den rækkefølge I mener den skal køres. Hvis vi skal bruge værdien af en variabel i en beregning - så skal variablen tildeles en værdi før vi bruger den.
 
-Kald til libraries placeres med fordel som det allerførste i scriptet. Dette giver et god overblik over hvilke pakker der bruges i scriptet, og hvis du får brug for at køre library igen, så ved du hvor koden står.
+Kald til libraries placeres med fordel som det allerførste i scriptet. Dette giver et godt overblik over hvilke pakker der bruges i scriptet, og hvis du får brug for at køre library igen, så ved du hvor koden står.
 
 install.packages() kan være rart at have med i scriptet. Men det er ikke noget I har brug for at køre hver eneste gang scriptet skal køres. Så udkommenter de linier kode.
 
@@ -101,11 +100,11 @@ eksempelkode
 
 Under kommentaren "herunder eksperimenterer jeg" skriver du kode, ser om den virker. Kigger på resultatet og overvejer om det giver mening. Og når du er tilfreds med resultatet, flytter du det op over kommentaren "Ovenstående kode fungerer".
 
-Målet er at have script der, når det er færdigt, kan køres linie for linie fra 
+Målet er at have et script der, når det er færdigt, kan køres linie for linie fra 
 start til slut, og give dig de resultater, grafer osv du har brug for.
 
 ## Inddel din kode i sektioner
-For at gøre ens projekt mere overskueligt kan man med fordel lave flere scripts filer. Derudover kan det indenfor et script var nyttigt at organisere sin kode i sektioner:
+For at gøre ens projekt mere overskueligt kan man med fordel lave flere scripts filer. Derudover kan det indenfor et script være nyttigt at organisere sin kode i sektioner:
 
 ~~~
 # indlæs biblioteker ----
@@ -125,16 +124,6 @@ Her er et forslag til nogle sektioner som kan være anvendelige. Det smarte er o
 ![Sektioner kan foldes sammen, og bidrage til overblikket](../fig/sections_foldning.gif)
 
 
-
-
-
-
-
-
-
-
-
-https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/index.html
 
 https://ntguardian.wordpress.com/2018/08/02/how-should-i-organize-my-r-research-projects/
 
