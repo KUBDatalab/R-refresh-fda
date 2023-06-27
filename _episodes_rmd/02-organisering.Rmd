@@ -32,6 +32,15 @@ Programmeringsprocessen er ikke altid struktureret, men gode scripts kan opnås 
 
 Gode programmeringsrutiner kan i starten virke omstændeligt, men jo større programmeringsprojektet er jo vigtigere er det med gode rutiner. Man bestemmer helt selv hvordan man vil programmere, men her kommer nogle tips og tricks som vi med møje og besvær har lært gør processen lidt lettere.
 
+> ## Ja, det er faktisk programmering
+>
+> Ordet programmering kan godt lyde lidt fjernt fra hvad vi egentlig laver
+> når vi analyserer data ved hjælp af R.
+> Men det er faktisk programmering. Derfor prøver vi at lære af "rigtige"
+> programmører. De har gjort sig nogen nyttige erfaringer!
+{: .callout}
+
+
 # Gode programmeringsrutiner
 ## Projekter
 Opfat din programmeringsopgave som et projekt.
