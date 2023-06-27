@@ -90,15 +90,21 @@ install_github("vqv/ggbiplot")
 Pakken devtools indeholder en funktion; `install_github()`. Den skal
 have navnet på det "repository" på GitHub der indeholder pakken.
 
-MARKERING: I undervisningsmaterialet angives en anden måde at 
-installere pakken på:
-install_github("ggbiplot", "vqv")
-Det udløser en kedelig fejlbesked:
-Error in parse_repo_spec(repo) : 
-Invalid git repo specification: 'ggbiplot'
-
-Hvorfor? Fordi install_github funktionen er blevet opdateret, og 
-nu skal have adressen specificeret på en anden måde.
+> ## Undervisningsmaterialet giver en fejl!
+> I undervisningsmaterialet angives en anden måde at 
+> installere pakken på:
+>
+>install_github("ggbiplot", "vqv")
+>
+> Det udløser en kedelig fejlbesked:
+>
+> Error in parse_repo_spec(repo) : 
+> 
+> Invalid git repo specification: 'ggbiplot'
+> 
+> Hvorfor? Fordi install_github funktionen er blevet opdateret, og 
+> nu skal have adressen specificeret på en anden måde.
+{: .callout}
 
 For de fleste brugere af github er det en gratis tjeneste. Det 
 fører til begrænsninger. En af dem er hvor mange der kan 
