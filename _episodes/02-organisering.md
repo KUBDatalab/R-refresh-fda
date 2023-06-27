@@ -29,6 +29,15 @@ Programmeringsprocessen er ikke altid struktureret, men gode scripts kan opnås 
 
 Gode programmeringsrutiner kan i starten virke omstændeligt, men jo større programmeringsprojektet er jo vigtigere er det med gode rutiner. Man bestemmer helt selv hvordan man vil programmere, men her kommer nogle tips og tricks som vi med møje og besvær har lært gør processen lidt lettere.
 
+> ## Ja, det er faktisk programmering
+>
+> Ordet programmering kan godt lyde lidt fjernt fra hvad vi egentlig laver
+> når vi analyserer data ved hjælp af R.
+> Men det er faktisk programmering. Derfor prøver vi at lære af "rigtige"
+> programmører. De har gjort sig nogen nyttige erfaringer!
+{: .callout}
+
+
 # Gode programmeringsrutiner
 ## Projekter
 Opfat din programmeringsopgave som et projekt.
@@ -63,9 +72,41 @@ Results_Consumer_Test <- read_excel("R_projekter/R-refresh-fda/data/Results Cons
 Hvis du sørger for at gemme data i en data-mappe i din RStudio projektmappe, og indlæser herfra, sikrer du at data altid følger med projektet.
 
 ## Husk at kommentere
-Kommentarer er din ven. De hjælper dig med at gennemskue hvad du har lavet når du kigger på din kode igen (måske omkring eksamens tid), eller 1 år senere fordi du skal lave noget lignende. De giver dig mulighed for hurtigt at gennemskue hvorfor du har gjort hvad.
+Kommentarer er din ven. De hjælper dig med at gennemskue hvad du har lavet når du kigger på din kode igen (måske omkring eksamenstid), eller 1 år senere fordi du skal lave noget lignende. De giver dig mulighed for hurtigt at gennemskue hvorfor du har gjort hvad.
 
-Kommentarer kan være svære at skrive både fordi de kan forstyrre programmeringsprocessen, og fordi det virker åbenlyst hvad man sidder og laver. Det kan ofte være en god ide at gennemgå ens kodning enten når man stopper for dagen eller er færdig med et problem og få skrevet kommentarer. Denne proces kan også hjælpe til at man lige får set på koden en ekstra gang.
+Kommentarer kan være svære at skrive både fordi de kan forstyrre programmeringsprocessen, og fordi det virker åbenlyst hvad man sidder og laver. Det kan ofte være en god ide at gennemgå ens kode enten når man stopper for dagen eller er færdig med et problem og så få skrevet kommentarer. Denne proces kan også hjælpe til at man lige får set på koden en ekstra gang.
+
+Kommentarer i R skal markeres på en særlig måde. Ellers vil R forsøge at
+fortolke kommentarerne som kode. Og det går sjældent godt. Vi markerer
+at noget er en kommentar ved at sætte # foran teksten:
+
+
+~~~
+# Her viser vi hvordan man laver en kommentar
+# Det er en kommentar til en beregning af gennemsnittet af 100 tilfældige
+# normalfordelte tal med middelværdi lig 0, og standardafvigelse lig 1: 
+mean(rnorm(100))
+~~~
+{: .language-r}
+
+
+
+~~~
+[1] -0.03310542
+~~~
+{: .output}
+
+
+
+~~~
+# Bemærk at det er tilfældige tal, så dit resultat er med stor sandsynlighed
+# forskelligt fra dette. Man kan bruge funktionen set.seed() til at kontrollere
+# sandsynlighedsgeneratoren. Læs mere i dokumentationen til den
+~~~
+{: .language-r}
+Har man allerede skrevet en kommentar på flere linier, men ikke sat # foran 
+linierne, kan man markere teksten, og trykke ctrl+shift+c - så forvandles 
+hele markeringen til en kommentar.
 
 
 ## Oprydning
@@ -125,11 +166,7 @@ Her er et forslag til nogle sektioner som kan være anvendelige. Det smarte er o
 
 
 
-https://ntguardian.wordpress.com/2018/08/02/how-should-i-organize-my-r-research-projects/
 
-https://kkulma.github.io/2018-03-18-Prime-Hints-for-Running-a-data-project-in-R/
-
-https://www.chrisvoncsefalvay.com/2018/08/09/structuring-r-projects/
 
 
 {% include links.md %}

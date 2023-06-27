@@ -146,270 +146,26 @@ kan benyttes
 
 
 ~~~
-subset(airquality, Temp > 80, select = c(Ozone, Temp))
-~~~
-{: .language-r}
-
-
-
-~~~
-    Ozone Temp
-29     45   81
-35     NA   84
-36     NA   85
-38     29   82
-39     NA   87
-40     71   90
-41     39   87
-42     NA   93
-43     NA   92
-44     23   82
-61     NA   83
-62    135   84
-63     49   85
-64     32   81
-65     NA   84
-66     64   83
-67     40   83
-68     77   88
-69     97   92
-70     97   92
-71     85   89
-72     NA   82
-74     27   81
-75     NA   91
-77     48   81
-78     35   82
-79     61   84
-80     79   87
-81     63   85
-83     NA   81
-84     NA   82
-85     80   86
-86    108   85
-87     20   82
-88     52   86
-89     82   88
-90     50   86
-91     64   83
-92     59   81
-93     39   81
-94      9   81
-95     16   82
-96     78   86
-97     35   85
-98     66   87
-99    122   89
-100    89   90
-101   110   90
-102    NA   92
-103    NA   86
-104    44   86
-105    28   82
-117   168   81
-118    73   86
-119    NA   88
-120    76   97
-121   118   94
-122    84   96
-123    85   94
-124    96   91
-125    78   92
-126    73   93
-127    91   93
-128    47   87
-129    32   84
-134    44   81
-143    16   82
-146    36   81
+# A tibble: 6 × 3
+  Sample Bitter Intensity
+  <chr>   <dbl>     <dbl>
+1 31C      11.4      8.7 
+2 31C      10.4      8.7 
+3 31C      11.2      7.95
+4 31C      12.8     10.6 
+5 37C      10.8      7.5 
+6 37C      11.4     11.8 
 ~~~
 {: .output}
 
-
-
 ~~~
-subset(airquality, Day == 1, select = -Temp)
+subset(kaffe, Assessor == 2, select = c(Sample, Bitter, Intensity))
 ~~~
 {: .language-r}
-
-
-
-~~~
-    Ozone Solar.R Wind Month Day
-1      41     190  7.4     5   1
-32     NA     286  8.6     6   1
-62    135     269  4.1     7   1
-93     39      83  6.9     8   1
-124    96     167  6.9     9   1
-~~~
-{: .output}
-
-
-
-~~~
-subset(airquality, select = Ozone:Wind)
-~~~
-{: .language-r}
-
-
-
-~~~
-    Ozone Solar.R Wind
-1      41     190  7.4
-2      36     118  8.0
-3      12     149 12.6
-4      18     313 11.5
-5      NA      NA 14.3
-6      28      NA 14.9
-7      23     299  8.6
-8      19      99 13.8
-9       8      19 20.1
-10     NA     194  8.6
-11      7      NA  6.9
-12     16     256  9.7
-13     11     290  9.2
-14     14     274 10.9
-15     18      65 13.2
-16     14     334 11.5
-17     34     307 12.0
-18      6      78 18.4
-19     30     322 11.5
-20     11      44  9.7
-21      1       8  9.7
-22     11     320 16.6
-23      4      25  9.7
-24     32      92 12.0
-25     NA      66 16.6
-26     NA     266 14.9
-27     NA      NA  8.0
-28     23      13 12.0
-29     45     252 14.9
-30    115     223  5.7
-31     37     279  7.4
-32     NA     286  8.6
-33     NA     287  9.7
-34     NA     242 16.1
-35     NA     186  9.2
-36     NA     220  8.6
-37     NA     264 14.3
-38     29     127  9.7
-39     NA     273  6.9
-40     71     291 13.8
-41     39     323 11.5
-42     NA     259 10.9
-43     NA     250  9.2
-44     23     148  8.0
-45     NA     332 13.8
-46     NA     322 11.5
-47     21     191 14.9
-48     37     284 20.7
-49     20      37  9.2
-50     12     120 11.5
-51     13     137 10.3
-52     NA     150  6.3
-53     NA      59  1.7
-54     NA      91  4.6
-55     NA     250  6.3
-56     NA     135  8.0
-57     NA     127  8.0
-58     NA      47 10.3
-59     NA      98 11.5
-60     NA      31 14.9
-61     NA     138  8.0
-62    135     269  4.1
-63     49     248  9.2
-64     32     236  9.2
-65     NA     101 10.9
-66     64     175  4.6
-67     40     314 10.9
-68     77     276  5.1
-69     97     267  6.3
-70     97     272  5.7
-71     85     175  7.4
-72     NA     139  8.6
-73     10     264 14.3
-74     27     175 14.9
-75     NA     291 14.9
-76      7      48 14.3
-77     48     260  6.9
-78     35     274 10.3
-79     61     285  6.3
-80     79     187  5.1
-81     63     220 11.5
-82     16       7  6.9
-83     NA     258  9.7
-84     NA     295 11.5
-85     80     294  8.6
-86    108     223  8.0
-87     20      81  8.6
-88     52      82 12.0
-89     82     213  7.4
-90     50     275  7.4
-91     64     253  7.4
-92     59     254  9.2
-93     39      83  6.9
-94      9      24 13.8
-95     16      77  7.4
-96     78      NA  6.9
-97     35      NA  7.4
-98     66      NA  4.6
-99    122     255  4.0
-100    89     229 10.3
-101   110     207  8.0
-102    NA     222  8.6
-103    NA     137 11.5
-104    44     192 11.5
-105    28     273 11.5
-106    65     157  9.7
-107    NA      64 11.5
-108    22      71 10.3
-109    59      51  6.3
-110    23     115  7.4
-111    31     244 10.9
-112    44     190 10.3
-113    21     259 15.5
-114     9      36 14.3
-115    NA     255 12.6
-116    45     212  9.7
-117   168     238  3.4
-118    73     215  8.0
-119    NA     153  5.7
-120    76     203  9.7
-121   118     225  2.3
-122    84     237  6.3
-123    85     188  6.3
-124    96     167  6.9
-125    78     197  5.1
-126    73     183  2.8
-127    91     189  4.6
-128    47      95  7.4
-129    32      92 15.5
-130    20     252 10.9
-131    23     220 10.3
-132    21     230 10.9
-133    24     259  9.7
-134    44     236 14.9
-135    21     259 15.5
-136    28     238  6.3
-137     9      24 10.9
-138    13     112 11.5
-139    46     237  6.9
-140    18     224 13.8
-141    13      27 10.3
-142    24     238 10.3
-143    16     201  8.0
-144    13     238 12.6
-145    23      14  9.2
-146    36     139 10.3
-147     7      49 10.3
-148    14      20 16.6
-149    30     193  6.9
-150    NA     145 13.2
-151    14     191 14.3
-152    18     131  8.0
-153    20     223 11.5
-~~~
-{: .output}
+Subset funktionen giver os mulighed for at angive specifikke kriterier for
+hvilke rækker vi vil have med, og udvælge bestemte kolonner. Første argument til funktionen er den tabel vi vil have subsettet, andet er de kriterier der udvælger
+bestemte rækker. Og i `select` argumentet kan vi angive hvilke rækker. Bemærk 
+at rækkenavnene skal angives som en vektor, ved hjælp af `c()` funktionen.
 
 ### Renaming kolonner
 
@@ -452,59 +208,33 @@ Det, i kombination med funktioner fra tidyverse, kan
 hjælpe til at gøre manipulation af dataframes mere 
 overskuelig.
 
+Bemærk at hvis du selv kører nedenstående eksempler på kode, vil få en
+del flere rækker end vi viser her.
+
 Udvælgelse af bestemte kolonner:
 
 ~~~
 library(tidyverse)
-~~~
-{: .language-r}
-
-
-
-~~~
-── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.2     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.2     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.1     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-~~~
-{: .output}
-
-
-
-~~~
 kaffe %>% 
   select(Assessor, Bitter, Sour)
 ~~~
 {: .language-r}
 
-
-
 ~~~
-# A tibble: 192 × 3
-   Assessor Bitter  Sour
-      <dbl>  <dbl> <dbl>
- 1        1   6.75  6.9 
- 2        1   7.95  8.1 
- 3        1  10.2   8.7 
- 4        1  11.4  11.0 
- 5        2  11.4   5.7 
- 6        2  10.4   9.3 
- 7        2  11.2   9   
- 8        2  12.8  10.0 
- 9        3  11.2   8.85
-10        3  13.4   8.25
-# ℹ 182 more rows
+# A tibble: 6 × 3
+  Assessor Bitter  Sour
+     <dbl>  <dbl> <dbl>
+1        1   6.75   6.9
+2        1   7.95   8.1
+3        1  10.2    8.7
+4        1  11.4   11.0
+5        2  11.4    5.7
+6        2  10.4    9.3
 ~~~
 {: .output}
 
 Her sender vi datasættet kaffe til funktionen `select`, og angiver at vi godt
-vil vælge kolonnerne "Assessor", "Bitter" og "Sour"
+vil vælge kolonnerne "Assessor", "Bitter" og "Sour".
 
 Udvælgelse af bestemte rækker:
 
@@ -515,23 +245,16 @@ kaffe %>%
 ~~~
 {: .language-r}
 
-
-
 ~~~
-# A tibble: 24 × 3
-   Assessor Bitter  Sour
-      <dbl>  <dbl> <dbl>
- 1        1   6.75  6.9 
- 2        1   7.95  8.1 
- 3        1  10.2   8.7 
- 4        1  11.4  11.0 
- 5        1   8.7  10.0 
- 6        1   8.1  10.5 
- 7        1  10.8   9.45
- 8        1  11.1  10.6 
- 9        1   8.7   7.2 
-10        1   9.45  9.45
-# ℹ 14 more rows
+# A tibble: 6 × 3
+  Assessor Bitter  Sour
+     <dbl>  <dbl> <dbl>
+1        1   6.75   6.9
+2        1   7.95   8.1
+3        1  10.2    8.7
+4        1  11.4   11.0
+5        1   8.7   10.0
+6        1   8.1   10.5
 ~~~
 {: .output}
 
@@ -555,23 +278,16 @@ kaffe %>%
 ~~~
 {: .language-r}
 
-
-
 ~~~
-# A tibble: 24 × 4
-   Assessor Bitter  Sour ny_kolonne
-      <dbl>  <dbl> <dbl>      <dbl>
- 1        1   6.75  6.9        46.6
- 2        1   7.95  8.1        64.4
- 3        1  10.2   8.7        88.7
- 4        1  11.4  11.0       125. 
- 5        1   8.7  10.0        87.4
- 6        1   8.1  10.5        85.0
- 7        1  10.8   9.45      102. 
- 8        1  11.1  10.6       118. 
- 9        1   8.7   7.2        62.6
-10        1   9.45  9.45       89.3
-# ℹ 14 more rows
+# A tibble: 6 × 4
+  Assessor Bitter  Sour ny_kolonne
+     <dbl>  <dbl> <dbl>      <dbl>
+1        1   6.75   6.9       46.6
+2        1   7.95   8.1       64.4
+3        1  10.2    8.7       88.7
+4        1  11.4   11.0      125. 
+5        1   8.7   10.0       87.4
+6        1   8.1   10.5       85.0
 ~~~
 {: .output}
 Hvorfor vi nogensinde skulle have lyst til at gange de to sæt tal sammen ved vi

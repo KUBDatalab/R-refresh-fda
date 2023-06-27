@@ -3,11 +3,16 @@ title: "Pakker og opdatering"
 teaching: 10
 exercises: 5
 questions:
-- "FIX ME"
+- "Hvad nu hvis min R ikke er opdateret?"
+- "Hvordan udvider jeg hvad R kan?"
+- "Hvordan får jeg fat på ggbiplot når github siger nej?"
 objectives:
-- "FIX ME"
+- "Lær at opdatere R og pakker"
+- "Få installeret ggbiplot"
 keypoints:
-- "FIX ME"
+- "Pakker udvider hvad R kan"
+- "Pakker kan hentes mere end et sted fra"
+- "Hold R og pakkerne opdateret! Men opdater i starten af kurset - ikke lige før eksamen!"
 
 source: Rmd
 ---
@@ -56,6 +61,7 @@ Med den første metode sparer man en del tasteri.
 
 ØVELSE: installer devtools. (skal vi ikke hellere vente til det med bi-plot)
 
+
 ## Funktioner med samme navn
 Eftersom der ikke er noget der forhindrer os, eller andre i at lave nye funktioner der hedder det samme som en eksisterende funktion, kan der opstå "konflikter". Når vi indlæser en pakke med library funktionen ser vi ofte en besked om en konflikt, Eksempelvis: `x dplyr::filter() masks stats::filter()`
 
@@ -90,15 +96,21 @@ install_github("vqv/ggbiplot")
 Pakken devtools indeholder en funktion; `install_github()`. Den skal
 have navnet på det "repository" på GitHub der indeholder pakken.
 
-MARKERING: I undervisningsmaterialet angives en anden måde at 
-installere pakken på:
-install_github("ggbiplot", "vqv")
-Det udløser en kedelig fejlbesked:
-Error in parse_repo_spec(repo) : 
-Invalid git repo specification: 'ggbiplot'
-
-Hvorfor? Fordi install_github funktionen er blevet opdateret, og 
-nu skal have adressen specificeret på en anden måde.
+> ## Undervisningsmaterialet giver en fejl!
+> I undervisningsmaterialet angives en anden måde at 
+> installere pakken på:
+>
+>install_github("ggbiplot", "vqv")
+>
+> Det udløser en kedelig fejlbesked:
+>
+> Error in parse_repo_spec(repo) : 
+> 
+> Invalid git repo specification: 'ggbiplot'
+> 
+> Hvorfor? Fordi install_github funktionen er blevet opdateret, og 
+> nu skal have adressen specificeret på en anden måde.
+{: .callout}
 
 For de fleste brugere af github er det en gratis tjeneste. Det 
 fører til begrænsninger. En af dem er hvor mange der kan 

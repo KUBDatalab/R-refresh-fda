@@ -44,4 +44,14 @@ værdi er medianen. Det er den værdi for hvilken det gælder, at halvdelen af
 vores observationer er større. Og den anden halvdel er mindre. Det er ofte 
 et bedre bud på den typiske værdi af variablen end gennemsnittet, der kan
 skævvrides en del af enkelte meget store eller meget små værdier.
+
+## Yderligere tips og tricks til organisering
+Disse links kan være nyttige til inspiration:
+
+https://ntguardian.wordpress.com/2018/08/02/how-should-i-organize-my-r-research-projects/
+
+https://kkulma.github.io/2018-03-18-Prime-Hints-for-Running-a-data-project-in-R/
+
+https://www.chrisvoncsefalvay.com/2018/08/09/structuring-r-projects/
+
 {% include links.md %}
