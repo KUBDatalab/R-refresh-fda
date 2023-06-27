@@ -3,11 +3,16 @@ title: "Pakker og opdatering"
 teaching: 10
 exercises: 5
 questions:
-- "FIX ME"
+- "Hvad nu hvis min R ikke er opdateret?"
+- "Hvordan udvider jeg hvad R kan?"
+- "Hvordan får jeg fat på ggbiplot når github siger nej?"
 objectives:
-- "FIX ME"
+- "Lær at opdatere R og pakker"
+- "Få installeret ggbiplot"
 keypoints:
-- "FIX ME"
+- "Pakker udvider hvad R kan"
+- "Pakker kan hentes mere end et sted fra"
+- "Hold R og pakkerne opdateret! Men opdater i starten af kurset - ikke lige før eksamen!"
 
 source: Rmd
 ---
@@ -55,6 +60,7 @@ Man kan vælge ikke at indlæse hele pakken, men bare bruge en specifik funktion
 Med den første metode sparer man en del tasteri.
 
 ØVELSE: installer devtools. (skal vi ikke hellere vente til det med bi-plot)
+
 
 ## Funktioner med samme navn
 Eftersom der ikke er noget der forhindrer os, eller andre i at lave nye funktioner der hedder det samme som en eksisterende funktion, kan der opstå "konflikter". Når vi indlæser en pakke med library funktionen ser vi ofte en besked om en konflikt, Eksempelvis: `x dplyr::filter() masks stats::filter()`
