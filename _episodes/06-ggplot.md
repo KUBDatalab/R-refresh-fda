@@ -39,51 +39,8 @@ Using github PAT from envvar GITHUB_PAT
 
 
 ~~~
-Downloading GitHub repo vqv/ggbiplot@HEAD
-~~~
-{: .output}
-
-
-
-~~~
-plyr (NA -> 1.8.8) [CRAN]
-~~~
-{: .output}
-
-
-
-~~~
-Installing 1 packages: plyr
-~~~
-{: .output}
-
-
-
-~~~
-Installing package into '/home/runner/work/_temp/Library'
-(as 'lib' is unspecified)
-~~~
-{: .output}
-
-
-
-~~~
-── R CMD build ─────────────────────────────────────────────────────────────────
-* checking for file ‘/tmp/RtmpwcZlvi/remotes3fce38c43064/vqv-ggbiplot-7325e88/DESCRIPTION’ ... OK
-* preparing ‘ggbiplot’:
-* checking DESCRIPTION meta-information ... OK
-* checking for LF line-endings in source and make files and shell scripts
-* checking for empty or unneeded directories
-* looking to see if a ‘data/datalist’ file should be added
-* building ‘ggbiplot_0.55.tar.gz’
-~~~
-{: .output}
-
-
-
-~~~
-Installing package into '/home/runner/work/_temp/Library'
-(as 'lib' is unspecified)
+Skipping install of 'ggbiplot' from a github remote, the SHA1 (7325e880) has not changed since last install.
+  Use `force = TRUE` to force installation
 ~~~
 {: .output}
 

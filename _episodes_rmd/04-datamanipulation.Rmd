@@ -60,26 +60,23 @@ kaffe <- read_excel("../data/Results Panel.xlsx")
 Hvis det var en csv fil vi arbejdede med vil vi som regel bruge en af 
 funktionerne `read.csv`, `read.csv2`, `read_csv` eller `read_csv2`
 
-INSERT Hvad er forskellene?
-
-I Excel har vi data organiseret i rækker og kolonner. Ikke alle har Excel, så
-vi udveksler ofte data i CSV-filer. CSV-filer er tekstfiler. Der er en linie
-for hver række i Excel-filen. Og de enkelte kolonner er adskilt med kommaer.
-
-Det er et problem for alle de sprog der bruger kommaer i tal. Vi kan ikke skelne
-mellem kommaet i 3,14 og kommaet der adskiller 3,14 fra 2,72. Derfor bruges der 
-ofte et semikolon ";" til at adskille kolonnerne.
-
-read.csv indlæser kommaseparerede filer der faktisk er bruger kommaer til at adskille
-kolonnerne. read.csv2 indlæser kommaseparerede filer der bruger semikolon i stedet.
-
-read_csv og read_csv2 er funktioner der kommer fra `readr` pakken, der er en
-del af `tidyverse`. De er hurtigere og mere moderne, i den forstand at alt det 
-der har irriteret brugere af R ved read.csv funktionerne gennem årene er blevet
-forbedret i read_csv.
-
-INSERT SLUT
-
+> ## Hvad er forskellene?
+> 
+> I Excel har vi data organiseret i rækker og kolonner. Ikke alle har Excel, så
+> vi udveksler ofte data i CSV-filer. CSV-filer er tekstfiler. Der er en linie
+> for hver række i Excel-filen. Og de enkelte kolonner er adskilt med kommaer.
+> 
+> Det er et problem for alle de sprog der bruger kommaer i tal. Vi kan ikke skelne
+> mellem kommaet i 3,14 og kommaet der adskiller 3,14 fra 2,72. Derfor bruges der 
+> ofte et semikolon ";" til at adskille kolonnerne.
+> 
+> read.csv indlæser kommaseparerede filer der faktisk er bruger kommaer til at adskille
+> kolonnerne. read.csv2 indlæser kommaseparerede filer der bruger semikolon i stedet.
+>
+> read_csv og read_csv2 er funktioner der kommer fra `readr` pakken, der er en
+> del af `tidyverse`. De er hurtigere og mere moderne, i den forstand at alt det >der har irriteret brugere af R ved read.csv funktionerne gennem årene er blevet
+> forbedret i read_csv.
+{: .callout}
 
 ### Subsetting
 
@@ -217,6 +214,15 @@ Hvorfor vi nogensinde skulle have lyst til at gange de to sæt tal sammen ved vi
 ikke. Det vigtige er at vi kan lave en ny kolonne, baseret på en eller flere af
 de eksisterende kolonner.
 
+> ## Forskellen på "=" og "=="
+> 
+> Her ser vi to forskellige anvendelser af lighedstegn. I filter bruger
+> vi "==" fordi vi laver en logisk test: Er Assessor lig med 1?
+> 
+> I mutate bruger vi "=" fordi vi tildeler en ny værdi. ny_kolonne skal 
+> sættes til at være lig med resultatet af at gange Bitter med Sour
+>
+{: .callout}
 
 
 MUTATE? ENE NÆRLÆSER UNDERVISNINGSMATERIALET.
