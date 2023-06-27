@@ -183,21 +183,36 @@ Det, i kombination med funktioner fra tidyverse, kan
 hjælpe til at gøre manipulation af dataframes mere 
 overskuelig.
 
+Bemærk at hvis du selv kører nedenstående eksempler på kode, vil få en
+del flere rækker end vi viser her.
+
 Udvælgelse af bestemte kolonner:
-```{r}
+```{r eval = F}
 library(tidyverse)
 kaffe %>% 
   select(Assessor, Bitter, Sour)
 ```
+```{r echo = F}
+library(tidyverse)
+kaffe %>% 
+  select(Assessor, Bitter, Sour) %>% 
+  head()
+```
 
 Her sender vi datasættet kaffe til funktionen `select`, og angiver at vi godt
-vil vælge kolonnerne "Assessor", "Bitter" og "Sour"
+vil vælge kolonnerne "Assessor", "Bitter" og "Sour".
 
 Udvælgelse af bestemte rækker:
-```{r}
+```{r eval = F}
 kaffe %>% 
   select(Assessor, Bitter, Sour) %>% 
   filter(Assessor == 1)
+```
+```{r echo = F}
+kaffe %>% 
+  select(Assessor, Bitter, Sour) %>% 
+  filter(Assessor == 1) %>% 
+  head()
 ```
 
 Efter vi har sendt datasættet "kaffe" til select funktionen, og udvalgt
@@ -211,11 +226,18 @@ Endelig kan vi have brug for at foretage beregninger på data i kolonnerne, og
 lave en ny kolonne, baseret på de eksisterende kolonner:
 
 
-```{r}
+```{r eval  =F }
 kaffe %>% 
   select(Assessor, Bitter, Sour) %>% 
   filter(Assessor == 1) %>% 
   mutate(ny_kolonne = Bitter*Sour)
+```
+```{r echo = F}
+kaffe %>% 
+  select(Assessor, Bitter, Sour) %>% 
+  filter(Assessor == 1) %>% 
+  mutate(ny_kolonne = Bitter*Sour) %>% 
+  head()
 ```
 Hvorfor vi nogensinde skulle have lyst til at gange de to sæt tal sammen ved vi
 ikke. Det vigtige er at vi kan lave en ny kolonne, baseret på en eller flere af
