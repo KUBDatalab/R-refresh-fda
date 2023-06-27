@@ -214,6 +214,15 @@ Hvorfor vi nogensinde skulle have lyst til at gange de to sæt tal sammen ved vi
 ikke. Det vigtige er at vi kan lave en ny kolonne, baseret på en eller flere af
 de eksisterende kolonner.
 
+> ## Forskellen på "=" og "=="
+> 
+> Her ser vi to forskellige anvendelser af lighedstegn. I filter bruger
+> vi "==" fordi vi laver en logisk test: Er Assessor lig med 1?
+> 
+> I mutate bruger vi "=" fordi vi tildeler en ny værdi. ny_kolonne skal 
+> sættes til at være lig med resultatet af at gange Bitter med Sour
+>
+{: .callout}
 
 
 MUTATE? ENE NÆRLÆSER UNDERVISNINGSMATERIALET.
