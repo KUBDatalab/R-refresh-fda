@@ -133,13 +133,22 @@ hhv. standardafvigelsen.
 Hvis vi godt vil dele datasættet op i flere grupper, eksempelvis både efter
 smagsdommer og "Sample", kan vi tilføje det i "by=list" delen af funktionen:
 
-```{r}
+```{r eval = F}
 aggregate(kaffe, by=list(kaffe$Assessor, kaffe$Sample), FUN = "mean") 
+```
+```{r echo = F, warning = F}
+aggregate(kaffe, by=list(kaffe$Assessor, kaffe$Sample), FUN = "mean") %>% 
+  head()
 ```
 Vi får nu både en "Group.1" der er dommernes nummer, og "Group.2" der er "Sample", 
 altså temperaturen. Vi får 48 rækker i alt, fordi vi har 8 dommer og seks
 forskellige "Sample" værdier. Og dermed gennemsnitlige værdier for hver af de
-kombinationer.
+kombinationer. Her har vi dog begrænset antallet af rækker der vises til seks
+af hensyn til overskueligheden.
+
+Læg mærke til at hvis du selv kører denne kode, får du en række "warnings".
+Det skyldes at der er tekst i datasættet, og aggregate vil forsøge at beregne
+gennemsnittet, også af tekst. Det kan man ikke, og det giver os advarsler.
 
 ## Den anden måde.
 
