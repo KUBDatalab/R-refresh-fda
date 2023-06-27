@@ -39,10 +39,11 @@ vurderinger af smagen af kaffe. Og en ting man kunne have lyst til at
 finde ud af om de forskellige smagsdommere vurderer bitterheden af 
 kaffen forskelligt.
 
-Lad os indlæse data:
+Lad os indlæse data, og få vist de første værdier. `head()`-funktionen giver
+os de første seks rækker i datasættet:
 ```{r}
 kaffe <- read_excel("../data/Results Panel.xlsx")
-kaffe
+head(kaffe)
 ```
 
 Man kan få et hurtigt overblik ved hjælp af funktionen `summary`:
