@@ -34,31 +34,27 @@ vurderinger af smagen af kaffe. Og en ting man kunne have lyst til at
 finde ud af om de forskellige smagsdommere vurderer bitterheden af 
 kaffen forskelligt.
 
-Lad os indlæse data:
+Lad os indlæse data, og få vist de første værdier. `head()`-funktionen giver
+os de første seks rækker i datasættet:
 
 ~~~
 kaffe <- read_excel("../data/Results Panel.xlsx")
-kaffe
+head(kaffe)
 ~~~
 {: .language-r}
 
 
 
 ~~~
-# A tibble: 192 × 11
-   Sample Assessor Replicate Intensity  Sour Bitter Sweet Tobacco Roasted Nutty
-   <chr>     <dbl>     <dbl>     <dbl> <dbl>  <dbl> <dbl>   <dbl>   <dbl> <dbl>
- 1 31C           1         1      9.3   6.9    6.75  4.5     10.5    7.95  3.9 
- 2 31C           1         2      8.7   8.1    7.95  4.35     9.6    8.85  4.8 
- 3 31C           1         3      9.75  8.7   10.2   3.9     10.2   10.2   4.8 
- 4 31C           1         4     11.7  11.0   11.4   3.15    11.6   10.0   3.45
- 5 31C           2         1      8.7   5.7   11.4   6.15    10.6    8.85  1.95
- 6 31C           2         2      8.7   9.3   10.4   4.95    11.7   11.0   5.4 
- 7 31C           2         3      7.95  9     11.2   1.2     11.1    8.85  4.8 
- 8 31C           2         4     10.6  10.0   12.8   1.05    12.3   10.5   1.2 
- 9 31C           3         1      8.25  8.85  11.2   4.8     12.8    2.7   2.4 
-10 31C           3         2      9.15  8.25  13.4   4.5     13.5    4.8   5.7 
-# ℹ 182 more rows
+# A tibble: 6 × 11
+  Sample Assessor Replicate Intensity  Sour Bitter Sweet Tobacco Roasted Nutty
+  <chr>     <dbl>     <dbl>     <dbl> <dbl>  <dbl> <dbl>   <dbl>   <dbl> <dbl>
+1 31C           1         1      9.3    6.9   6.75  4.5     10.5    7.95  3.9 
+2 31C           1         2      8.7    8.1   7.95  4.35     9.6    8.85  4.8 
+3 31C           1         3      9.75   8.7  10.2   3.9     10.2   10.2   4.8 
+4 31C           1         4     11.7   11.0  11.4   3.15    11.6   10.0   3.45
+5 31C           2         1      8.7    5.7  11.4   6.15    10.6    8.85  1.95
+6 31C           2         2      8.7    9.3  10.4   4.95    11.7   11.0   5.4 
 # ℹ 1 more variable: Chocolate <dbl>
 ~~~
 {: .output}
@@ -332,14 +328,6 @@ kaffe %>%
             )
 ~~~
 {: .language-r}
-
-
-
-~~~
-`summarise()` has grouped output by 'Assessor'. You can override using the
-`.groups` argument.
-~~~
-{: .output}
 
 
 
