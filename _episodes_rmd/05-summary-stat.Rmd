@@ -60,24 +60,25 @@ er karakteriseret ved at være ved forskellige temperaturer.
 Men det betyder at vi ikke kan lave matematik på temperaturerne, og det har vi 
 undertiden lyst til.
 
-INSERT hvordan gør vi så det?
-Under DATAMANIPULATION så vi hvordan vi kunne lave en ny kolonne, baseret på 
-eksisterende kolonner. Det kan vi udnytte her. Vi vil godt have "beregnet" en 
-ny kolonne der skal hedde "Temperatur", baseret på værdierne i "Sample" kolonnen.
-Sample kolonnen indeholder eksempelvis "31C", og vi vil godt have pillet C'et af,
-så vi har 31 tilbage. Og derefter have konverteret 31 til et tal. Det kan vi gøre
-på denne måde:
-```{r}
-kaffe %>% 
-  mutate(Temperatur = str_remove(Sample, "C")) %>% 
-  mutate(Temperatur = as.numeric(Temperatur))
-```
-Her laver vi en ny kolonne "Temperatur" der indeholder resultatet af at køre 
-`str_remove` funktionen på "Sample". Det vi "remover" er "C". Nu står der "31" i 
-Temperatur kolonnen i stedet for "31C". Men "31" er stadig tekst. Og vi kører derfor
-funktionen "as.numeric" på indholdet af Temperatur kolonnen. Den funktion forvander
-teksten "31" til tallet 31.
-
+> ## Hvordan gør vi så det? 
+> 
+> Under DATAMANIPULATION så vi hvordan vi kunne lave en ny kolonne, baseret på 
+> eksisterende kolonner. Det kan vi udnytte her. Vi vil godt have "beregnet" en 
+> ny kolonne der skal hedde "Temperatur", baseret på værdierne i "Sample" kolonnen.
+> Sample kolonnen indeholder eksempelvis "31C", og vi vil godt have pillet C'et af,
+> så vi har 31 tilbage. Og derefter have konverteret 31 til et tal. Det kan vi gøre
+> på denne måde:
+> 
+> kaffe %>% 
+>   mutate(Temperatur = str_remove(Sample, "C")) %>% 
+>   mutate(Temperatur = as.numeric(Temperatur))
+> 
+>Her laver vi en ny kolonne "Temperatur" der indeholder resultatet af at køre 
+>`str_remove` funktionen på "Sample". Det vi "remover" er "C". Nu står der "31" i 
+> Temperatur kolonnen i stedet for "31C". Men "31" er stadig tekst. Og vi kører derfor
+> funktionen "as.numeric" på indholdet af Temperatur kolonnen. Den funktion forvander
+> teksten "31" til tallet 31.
+{: .callout}
 
 
 Nu kunne vi så godt tænke os at finde ud af om de otte smagsdommere
