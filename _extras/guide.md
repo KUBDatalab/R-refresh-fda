@@ -20,4 +20,28 @@ library(MASS)
 mtcars %>% select(cyl)
 ```
 
+## Kvartiler
+
+Har vi en variabel der indeholder tal, kan vi sortere den variabel, så 
+de mindste tal står først, og de største til sidst. 
+
+Deler vi dernæst alle disse tal op i fire lige store portioner, har vi såkaldte
+kvartiler. Den første kvartil, der indeholder 25% af observationer, kaldes også 
+25% kvartilen. Vi interesserer os ofte for den "interkvartile afstand",
+på engelsk Inter Quartile Range, der er afstanden fra den mindste værdi i 
+anden kvartil, til den største værdi i tredie kvartil. Det er det interval
+hvor halvdelen af af observationerne ligger, vel at mærke den halvdel der ligger
+omkring medianen.
+
+Der tales ofte om deciler. Det er hvad vi får når vi deler de sorterede
+observationer op i 10 portioner. 
+
+## Medianen
+
+Medianen er et hyppigt brug alternativ til gennemsnit. Vi finder den ved at 
+sortere alle observationer af en bestemt variabel efter størrelse. Den miderste
+værdi er medianen. Det er den værdi for hvilken det gælder, at halvdelen af
+vores observationer er større. Og den anden halvdel er mindre. Det er ofte 
+et bedre bud på den typiske værdi af variablen end gennemsnittet, der kan
+skævvrides en del af enkelte meget store eller meget små værdier.
 {% include links.md %}
