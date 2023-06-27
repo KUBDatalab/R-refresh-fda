@@ -180,6 +180,7 @@ aggregate(kaffe, by=list(kaffe$Assessor), FUN = "mean")
 ~~~
 {: .language-r}
 
+
 ~~~
   Group.1 Sample Assessor Replicate Intensity     Sour   Bitter   Sweet
 1       1     NA        1       2.5   9.94375  9.02500  9.63125 3.97500

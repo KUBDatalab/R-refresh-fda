@@ -104,10 +104,11 @@ der sker.
 
 Funktion vi bruger hedder `aggregate`. Den er indbygget direkte i R.
 
-```{r aggregate-eksempel, eval =F }
+```{r aggregate-eksempel, eval =F}
 aggregate(kaffe, by=list(kaffe$Assessor), FUN = "mean")
 ```
-```{r aggregate-eksempel-med-output, warning=F, eval =T, echo =F }
+
+```{r aggregate-eksempel-med-output,message=F, warning=F, eval =T, echo =F }
 aggregate(kaffe, by=list(kaffe$Assessor), FUN = "mean")
 ```
 
