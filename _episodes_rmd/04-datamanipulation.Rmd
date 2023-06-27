@@ -19,6 +19,7 @@ knitr_fig_path("04-")
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
 ```
 
 
@@ -129,11 +130,17 @@ logiske vektorer i denne kontekst.
 Endelig er der en specifik funktion `subset()` der
 kan benyttes
 
-```{r}
-subset(airquality, Temp > 80, select = c(Ozone, Temp))
-subset(airquality, Day == 1, select = -Temp)
-subset(airquality, select = Ozone:Wind)
+```{r echo = F}
+subset(kaffe, Assessor == 2, select = c(Sample, Bitter, Intensity)) %>% 
+  head()
 ```
+```{r eval = F}
+subset(kaffe, Assessor == 2, select = c(Sample, Bitter, Intensity))
+```
+Subset funktionen giver os mulighed for at angive specifikke kriterier for
+hvilke rækker vi vil have med, og udvælge bestemte kolonner. Første argument til funktionen er den tabel vi vil have subsettet, andet er de kriterier der udvælger
+bestemte rækker. Og i `select` argumentet kan vi angive hvilke rækker. Bemærk 
+at rækkenavnene skal angives som en vektor, ved hjælp af `c()` funktionen.
 
 ### Renaming kolonner
 
