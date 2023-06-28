@@ -352,17 +352,16 @@ skal opdateres.
 
 Vi har under alle omstændigheder behov for at have pakken devtools installeret.
 Det betyder at vi kan kalde følgende funktion, der tillader os at vælge 
-hvilke der skal opdateres.
+hvilke der skal opdateres:
 
 
 ~~~
-devtools::update_packages()
+library(devtools)
+update_packages()
 ~~~
 {: .language-r}
 
-
-
-
-
+Vær forberedt på at det godt kan tage en del tid hvis der er mange pakker
+der skal installeres.
 
 {% include links.md %}
