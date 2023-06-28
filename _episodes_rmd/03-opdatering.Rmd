@@ -96,11 +96,11 @@ install_github("vqv/ggbiplot")
 Pakken devtools indeholder en funktion; `install_github()`. Den skal
 have navnet på det "repository" på GitHub der indeholder pakken.
 
-> ## Undervisningsmaterialet giver en fejl!
+> ## OBS ved undervisningsmaterialet!
 > I undervisningsmaterialet angives en anden måde at 
 > installere pakken på:
 >
->install_github("ggbiplot", "vqv")
+> install_github("ggbiplot", "vqv")
 >
 > Det udløser en kedelig fejlbesked:
 >
@@ -110,8 +110,10 @@ have navnet på det "repository" på GitHub der indeholder pakken.
 > 
 > Hvorfor? Fordi install_github funktionen er blevet opdateret, og 
 > nu skal have adressen specificeret på en anden måde.
+> Så brug install_github("vqv/ggbiplot") i stedet.
 {: .callout}
 
+### Og så kan det fejle på andre måder!
 For de fleste brugere af github er det en gratis tjeneste. Det 
 fører til begrænsninger. En af dem er hvor mange der kan 
 downloade pakker indenfor et bestemt tidsrum. Og den begrænsning
@@ -127,7 +129,7 @@ I jeres projekt laver I mappen `scripts`. I den mappe opretter
 I en R-script fil med navnet `ggbiplot.R`. Den åbner I, og kopierer
 nedenstående R-kode ind i den:
 
-KAN dette gøres på en smartere måde, så det ikke fylder så meget på skærmen
+
 ```{r ggbiplot-kode, eval = F}
 ggbiplot <- function(pcobj, choices = 1:2, scale = 1, pc.biplot = TRUE, 
                       obs.scale = 1 - scale, var.scale = scale, 
@@ -330,8 +332,8 @@ Det er ikke meget avancerede ting I kommer til at lave, så problemet vil næppe
 være stort. Men det vil være meget træls at opdatere R dagen før eksamen og finde
 ud af at noget er holdt op med at virke.
 
-Så.
-Opdater RStudio og opdater R.
+
+### Opdater RStudio og opdater R.
 
 R opdaterer vi ganske enkelt ved at installere seneste version.
 
@@ -350,18 +352,6 @@ devtools::update_packages()
 ```
 
 
-## noter:
-
-* Pakker hører til i starten.
-* Rækkefølgen er installer pakker, og dernæst indlæs pakker.
-* masking og conflicts af funktioner. Så tænk også over rækkefølgen af
-* library! og dermed pakkenavn::funktion
-* installer devtools!
-* Brug devtools til at opdatere (praktisk øvelse)
-* github vs. cran vs. lokale funktioner/source
-* installer ggbiplot
-  det er en funktion 
-    og kan derfor "indlæses" med source funktionen. (og den ligger fint i en scripts mappe!)
 
 
 
