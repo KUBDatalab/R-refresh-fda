@@ -105,7 +105,7 @@ undertiden lyst til.
 
 > ## Hvordan gør vi så det? 
 > 
-> Under DATAMANIPULATION så vi hvordan vi kunne lave en ny kolonne, baseret på 
+> Under "datamanipulation" så vi hvordan vi kunne lave en ny kolonne, baseret på 
 > eksisterende kolonner. Det kan vi udnytte her. Vi vil godt have "beregnet" en 
 > ny kolonne der skal hedde "Temperatur", baseret på værdierne i "Sample" kolonnen.
 > Sample kolonnen indeholder eksempelvis "31C", og vi vil godt have pillet C'et af,
@@ -113,7 +113,9 @@ undertiden lyst til.
 > på denne måde:
 > 
 > kaffe %>% 
+>
 >   mutate(Temperatur = str_remove(Sample, "C")) %>% 
+>
 >   mutate(Temperatur = as.numeric(Temperatur))
 > 
 >Her laver vi en ny kolonne "Temperatur" der indeholder resultatet af at køre 

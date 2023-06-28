@@ -31,7 +31,7 @@ godt kunne tænke os. Det kan også være vi gerne vil kigge på bestemte dele a
 datasættet. 
 
 Det kalder vi for datamanipulation. Den sidste del, hvor vi piller bestemte dele
-af data ud af det større hele, kalder vi mere specifikt for *subsetting*
+af data ud af det større hele, kalder vi mere specifikt for *subsetting*.
 
 Det kan gøres på flere forskellige måder. Vi vil gerne præsentere forskellige
 måder. Hvis den ene virker svær, kan vi være heldige at en af de andre måder er 
@@ -75,7 +75,8 @@ funktionerne `read.csv`, `read.csv2`, `read_csv` eller `read_csv2`
 > kolonnerne. read.csv2 indlæser kommaseparerede filer der bruger semikolon i stedet.
 >
 > read_csv og read_csv2 er funktioner der kommer fra `readr` pakken, der er en
-> del af `tidyverse`. De er hurtigere og mere moderne, i den forstand at alt det >der har irriteret brugere af R ved read.csv funktionerne gennem årene er blevet
+> del af `tidyverse`. De er hurtigere og mere moderne, i den forstand at alt det 
+>der har irriteret brugere af R ved read.csv funktionerne gennem årene er blevet
 > forbedret i read_csv.
 {: .callout}
 
@@ -252,9 +253,6 @@ de eksisterende kolonner.
 > sættes til at være lig med resultatet af at gange Bitter med Sour
 >
 {: .callout}
-
-
-MUTATE? ENE NÆRLÆSER UNDERVISNINGSMATERIALET.
 
 Bemærk at funktionerne ikke egentlig ændrer data.
 Vi ser et output, men det data vi starter med at 

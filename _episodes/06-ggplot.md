@@ -196,8 +196,7 @@ Boxplottet viser os fordelingen af vurdering af parameteren "Sour" ved forskelli
 temperaturer. 
 
 Et særligt plot I kommer til at bruge meget er et `biplot`. Det kan R også lave
-direkte, men det er lettere med funktionen `ggbiplot` som vi introducerede under
-HVILKET AFSNIT VAR DET NU DET VAR?!
+direkte, men det er lettere med funktionen `ggbiplot` som vi installerede i episoden "Pakker og opdatering".
 
 Udgangspunktet er en 
 
