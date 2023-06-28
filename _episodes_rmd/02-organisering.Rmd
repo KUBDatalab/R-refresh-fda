@@ -50,7 +50,7 @@ I Rstudio er det muligt at oprette projekter. Når man opretter et projekt i RSt
 Arbejd med mere end et projekt. I det øjeblik to opgaver ikke har noget med hinanden at gøre og derfor kan løses uafhængigt af hinanden, bør man overveje at etablere to projekter.
 
 ## Mappestruktur
-Lav en overskuelig mappestuktur indefor din projektmappe. Strukturen skal håndtere forskellige typer af data, fx scripts, rå data, manipulerede data, plots, adskildt. Her under er et eksempel på en fuldt udbygget mappestruktur. 
+Lav en overskuelig mappestuktur indenfor din projektmappe. Strukturen skal håndtere forskellige typer af data, fx scripts, rå data, manipulerede data, plots, adskilt. Her under er et eksempel på en fuldt udbygget mappestruktur. 
 
 ![Mappestruktur](../fig/rstudio_project_files.jpeg)
 
