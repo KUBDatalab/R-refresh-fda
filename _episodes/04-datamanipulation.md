@@ -136,14 +136,56 @@ skriver efter kommaet hvilke kolonner vi vil have. Skriver vi slet ikke noget,
 får vi alt, her alle rækkerne (bortset fra at vi begrænser det til de 6 første 
 rækker, fordi det fylder for meget at skrive det hele ud).
 
+### Bruge logiske tests til at subsette
+
+I stedet for at angive rækkenumrer når vi subsetter på denne måde, kan vi 
+bruge logiske tests: 
 
 
-logiske vektorer i denne kontekst.
+~~~
+# A tibble: 6 × 3
+  Assessor Intensity Bitter
+     <dbl>     <dbl>  <dbl>
+1        1      9.3    6.75
+2        1      8.7    7.95
+3        1      9.75  10.2 
+4        1     11.7   11.4 
+5        1     10.0    8.7 
+6        1     10.6    8.1 
+~~~
+{: .output}
+
+~~~
+kaffe[kaffe$Assessor == 1, c(2,4,6)]
+~~~
+{: .language-r}
+
+Her skriver vi ikke en liste af rækkenumrer foran kommaet. I stedet står der
+`kaffe$Assessor == 1`. `kaffe$Assessor` trækker alle værdier i kolonnen "Assessor" 
+ud, og sammenligner værdierne; er de lig med 1?
+
+Sådan en sammenligning kan føre til to resultater. Enten er det sandt at Assessor-værdien
+er lig med 1. Eller også er det falsk. Når vi laver sammenligningen med hele 
+kolonnen, får vi en `vektor` med TRUE og FALSE værdier (her viser vi blot de første
+seks resultater):
+
+
+~~~
+[1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE
+~~~
+{: .output}
+
+~~~
+kaffe$Assessor == 1
+~~~
+{: .language-r}
+
+Sætter vi dét resultat ind i de kantede paranteser, får vi de rækker ud hvor 
+den matchende værdi er TRUE. De hvor værdien er FALSE, filtreres fra.
 
 ## Subsetting
 
-Endelig er der en specifik funktion `subset()` der
-kan benyttes
+Endelig er der en specifik funktion `subset()` der kan benyttes
 
 
 ~~~
