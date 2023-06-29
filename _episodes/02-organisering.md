@@ -92,7 +92,7 @@ mean(rnorm(100))
 
 
 ~~~
-[1] -0.1440012
+[1] 0.07859114
 ~~~
 {: .output}
 
@@ -145,7 +145,11 @@ Målet er at have et script der, når det er færdigt, kan køres linie for lini
 start til slut, og give dig de resultater, grafer osv du har brug for.
 
 ## Inddel din kode i sektioner
-For at gøre ens projekt mere overskueligt kan man med fordel lave flere scripts filer. Derudover kan det indenfor et script være nyttigt at organisere sin kode i sektioner:
+For at gøre ens projekt mere overskueligt kan man med fordel lave flere scripts filer.
+
+Derudover kan det indenfor et script være nyttigt at organisere sin kode i sektioner. En sektions laves ved at sætte fire tankestreger efter en kommentar, # SEKTIONSNAVN ----, eller man kan bruge genvejen ctrl + shift + R
+
+Her er et forslag til nogle anvendelig sektioner:
 
 ~~~
 # indlæs biblioteker ----
@@ -160,7 +164,7 @@ For at gøre ens projekt mere overskueligt kan man med fordel lave flere scripts
 ~~~
 {: .language-r}
 
-Her er et forslag til nogle sektioner som kan være anvendelige. Det smarte er også at disse kodesektioner kan "foldes sammen" så de ikke forstyrrer blikket når man programmerer.
+Det smarte er også at disse kodesektioner kan "foldes sammen" så de ikke forstyrrer blikket når man programmerer. I denne animation kan man se hvordan man kan "åbne" og "lukke" sektioner.
 
 ![Sektioner kan foldes sammen, og bidrage til overblikket](../fig/sections_foldning.gif)
 
