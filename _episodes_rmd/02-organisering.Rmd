@@ -1,5 +1,5 @@
 ---
- title: "Organiser dit arbejde"
+title: "Organiser dit arbejde"
 teaching: 10
 exercises: 5
 questions:
