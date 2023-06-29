@@ -26,19 +26,23 @@ I kommer til at arbejde med flere forskellige datasæt, men det et af de første
 I støder på handler om kaffe. Lad os indlæse datasættet og kigge på det. Allerførst
 skal vi have indlæst de biblioteker vi kommer til at arbejde med:
 
-```{r echo = F}
+```{r echo = F, message=F}
 library(devtools)
 devtools::install_github("vqv/ggbiplot")
 ```
 
-```{r}
+```{r message = F, warning=F}
 library(tidyverse)
 library(readxl)
 library(ggbiplot)
 ```
-
-```{r}
+Og så skal vi have indlæst data. Dem downloadede vi tidligere og gemte i "data"
+mappen:
+```{r echo = F}
 kaffe <- read_excel("../data/Results Panel.xlsx")
+```
+```{r eval = F}
+kaffe <- read_excel("data/Results Panel.xlsx")
 ```
 
 Under "summary statistics" så vi ultrakort hvordan man kunne plotte to variable

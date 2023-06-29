@@ -24,96 +24,20 @@ I støder på handler om kaffe. Lad os indlæse datasættet og kigge på det. Al
 skal vi have indlæst de biblioteker vi kommer til at arbejde med:
 
 
-~~~
-Loading required package: usethis
-~~~
-{: .output}
-
-
-
-~~~
-Using github PAT from envvar GITHUB_PAT
-~~~
-{: .output}
-
-
-
-~~~
-Skipping install of 'ggbiplot' from a github remote, the SHA1 (7325e880) has not changed since last install.
-  Use `force = TRUE` to force installation
-~~~
-{: .output}
 
 
 ~~~
 library(tidyverse)
-~~~
-{: .language-r}
-
-
-
-~~~
-── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.2     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.2     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.1     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-~~~
-{: .output}
-
-
-
-~~~
 library(readxl)
 library(ggbiplot)
 ~~~
 {: .language-r}
-
-
-
-~~~
-Loading required package: plyr
-------------------------------------------------------------------------------
-You have loaded plyr after dplyr - this is likely to cause problems.
-If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
-library(plyr); library(dplyr)
-------------------------------------------------------------------------------
-
-Attaching package: 'plyr'
-
-The following objects are masked from 'package:dplyr':
-
-    arrange, count, desc, failwith, id, mutate, rename, summarise,
-    summarize
-
-The following object is masked from 'package:purrr':
-
-    compact
-
-Loading required package: scales
-
-Attaching package: 'scales'
-
-The following object is masked from 'package:purrr':
-
-    discard
-
-The following object is masked from 'package:readr':
-
-    col_factor
-
-Loading required package: grid
-~~~
-{: .output}
+Og så skal vi have indlæst data. Dem downloadede vi tidligere og gemte i "data"
+mappen:
 
 
 ~~~
-kaffe <- read_excel("../data/Results Panel.xlsx")
+kaffe <- read_excel("data/Results Panel.xlsx")
 ~~~
 {: .language-r}
 
@@ -128,8 +52,8 @@ kaffe %>%
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-06-unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-5</p>
+<img src="../fig/rmd-06-unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-6</p>
 </div>
 
 Men vi talte ikke meget om hvad den kode egentlig betød.
@@ -189,8 +113,8 @@ kaffe %>%
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-06-unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-8</p>
+<img src="../fig/rmd-06-unnamed-chunk-9-1.png" alt="plot of chunk unnamed-chunk-9" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-9</p>
 </div>
 Boxplottet viser os fordelingen af vurdering af parameteren "Sour" ved forskellige 
 temperaturer. 
@@ -209,8 +133,8 @@ biplot <- ggbiplot(kaffe.pca, obs.scale = 1, var.scale = 1, groups = kaffe$Sampl
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-06-unnamed-chunk-9-1.png" alt="plot of chunk unnamed-chunk-9" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-9</p>
+<img src="../fig/rmd-06-unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
 </div>
 
 
