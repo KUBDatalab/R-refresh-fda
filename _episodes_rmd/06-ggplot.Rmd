@@ -47,7 +47,7 @@ kaffe <- read_excel("data/Results Panel.xlsx")
 
 Under "summary statistics" så vi ultrakort hvordan man kunne plotte to variable
 mod hinanden:
-```{r}
+```{r Plot af Sour mod Bitter}
 kaffe %>% 
   ggplot(aes(x = Bitter, y = Sour)) +
   geom_point()
