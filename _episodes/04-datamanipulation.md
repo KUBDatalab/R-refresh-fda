@@ -215,23 +215,143 @@ hvilke rækker vi vil have med, og udvælge bestemte kolonner. Første argument 
 bestemte rækker. Og i `select` argumentet kan vi angive hvilke rækker. Bemærk 
 at rækkenavnene skal angives som en vektor, ved hjælp af `c()` funktionen.
 
-### Renaming kolonner
+## Renaming kolonner
 
-Undertiden har vi behov for at omdøbe kolonner.
+Navne på kolonner i importeret data overholder ikke altid god praksis. 
+* Der kan være specialtegn som R fortolker: Skal kolonnenavnet `start-slut` forstås som "start-slut" eller som start minus slut? 
+* Der kan også være mellemrum der gør det besværligt at referere til kolonnenavnet. `kaffe$assessor nummer` vil tolkes som først `kaffe$assessor` efterfulgt af variablen `nummer`
+* Variabel-navne må ikke begynde med tal. Det kan også optræde i data vi importerer.
 
-Navnene på kolonner i en dataframe, kan vi trække ud
-ved brug af funktionen `names`
+Vi her derfor behov for dels at kunne håndtere "illegale" kolonnenavne direkte, dels
+for at kunne ændre deres navne.
 
-Og så assigne nye navne.
+Det kan gøres på flere måder:
 
-"Best practice" omkring kolonnenavne er at undgå 
-mellemrum, kolonnenavne der starter med tal og i det 
-hele taget at undgå specialtegn.
+### colnames()
 
-Når man indlæser data oplever man ofte at kolonnenavnene
-ikke overholder disse regler. 
+Vi kan få en komplet liste over alle kolonnenavnene ved hjælp af funktionen 
+`colnames()`. Og gennem den kan vi også ændre kolonnenavnene:
 
-backticks er løsningen.
+~~~
+colnames(test) 
+~~~
+{: .language-r}
+
+
+
+~~~
+Error in eval(expr, envir, enclos): object 'test' not found
+~~~
+{: .error}
+
+
+
+~~~
+colnames(test) <- c("Sample",  "Dommer", "Replicate", "Intensity", "Sour", "Bitter", "Sweet",
+                   "Tobacco", "Roasted", "Nutty", "Chocolate")
+~~~
+{: .language-r}
+
+
+
+~~~
+Error in eval(ei, envir): object 'test' not found
+~~~
+{: .error}
+
+
+
+~~~
+colnames(test)
+~~~
+{: .language-r}
+
+
+
+~~~
+Error in eval(expr, envir, enclos): object 'test' not found
+~~~
+{: .error}
+Her har vi først ændret "Assessor" til "Dommer". Det er en lidt omstændelig metode, 
+der kræver at vi skriver alle kolonnenavnene, også dem vi ikke vil ændre. 
+
+Er det kun et enkelt kolonnenavn vi vil ændre kan vi gøre det lidt mere specifikt,
+men på næsten samme måde:
+
+
+~~~
+colnames(test)[2] <- "Assessor"
+~~~
+{: .language-r}
+
+
+
+~~~
+Error in eval(ei, envir): object 'test' not found
+~~~
+{: .error}
+Her lader vi `colnames()` trække alle kolonneoverskrifterne ud, bruger `[2]` til at 
+vælge kolonne overskrift 2 - og gemmer så teksten "Assessor" i den. Kolonnenavnene
+er nu tilbage til udgangspunktet. 
+
+### rename
+Vi har indlæst pakken `tidyverse` en del af den er `dplyr` funktionerne. En af dem
+er `rename()` der omdøber kolonnenavne på denne måde:`
+
+~~~
+rename(test, "Dommer" = "Assessor")
+~~~
+{: .language-r}
+
+
+
+~~~
+Error in eval(expr, envir, enclos): object 'test' not found
+~~~
+{: .error}
+
+`rename()` kan også bruges sammen med pipen, `%>%`:
+
+~~~
+kaffe %>% 
+  rename("Dommer" = "Assessor")
+~~~
+{: .language-r}
+
+
+
+~~~
+# A tibble: 192 × 11
+   Sample Dommer Replicate Intensity  Sour Bitter Sweet Tobacco Roasted Nutty
+   <chr>   <dbl>     <dbl>     <dbl> <dbl>  <dbl> <dbl>   <dbl>   <dbl> <dbl>
+ 1 31C         1         1      9.3   6.9    6.75  4.5     10.5    7.95  3.9 
+ 2 31C         1         2      8.7   8.1    7.95  4.35     9.6    8.85  4.8 
+ 3 31C         1         3      9.75  8.7   10.2   3.9     10.2   10.2   4.8 
+ 4 31C         1         4     11.7  11.0   11.4   3.15    11.6   10.0   3.45
+ 5 31C         2         1      8.7   5.7   11.4   6.15    10.6    8.85  1.95
+ 6 31C         2         2      8.7   9.3   10.4   4.95    11.7   11.0   5.4 
+ 7 31C         2         3      7.95  9     11.2   1.2     11.1    8.85  4.8 
+ 8 31C         2         4     10.6  10.0   12.8   1.05    12.3   10.5   1.2 
+ 9 31C         3         1      8.25  8.85  11.2   4.8     12.8    2.7   2.4 
+10 31C         3         2      9.15  8.25  13.4   4.5     13.5    4.8   5.7 
+# ℹ 182 more rows
+# ℹ 1 more variable: Chocolate <dbl>
+~~~
+{: .output}
+
+### Brug bøvlede kolonnenavne direkte
+
+Alternativt kan man vælge slet ikke at ændre de "illegale" kolonnenavne, men i stedet
+bruge dem direkte. Det kræver at man pakker kolonnenavnene ind på en særlig måde:
+
+~~~
+eksempel$`1 klart ulovligt kolonne-navn`
+~~~
+{: .language-r}
+Her er kolonnenavnet, der har adskellige problemer, pakket ind i "`", såkaldte
+backticks. Vi anbefaler at du ændrer kolonnenavnene til noget der er "legalt"; 
+det er bøvlet at skulle pakke ting ind i mærkelige accenttegn.
+
   
 ### Tidy
 I skal vide hvordan ovenstående fungerer. For det 
