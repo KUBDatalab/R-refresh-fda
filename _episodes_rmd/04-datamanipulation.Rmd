@@ -174,23 +174,68 @@ hvilke rækker vi vil have med, og udvælge bestemte kolonner. Første argument 
 bestemte rækker. Og i `select` argumentet kan vi angive hvilke rækker. Bemærk 
 at rækkenavnene skal angives som en vektor, ved hjælp af `c()` funktionen.
 
-### Renaming kolonner
+## Renaming kolonner
 
-Undertiden har vi behov for at omdøbe kolonner.
+Navne på kolonner i importeret data overholder ikke altid god praksis. 
+* Der kan være specialtegn som R fortolker: Skal kolonnenavnet `start-slut` forstås som "start-slut" eller som start minus slut? 
+* Der kan også være mellemrum der gør det besværligt at referere til kolonnenavnet. `kaffe$assessor nummer` vil tolkes som først `kaffe$assessor` efterfulgt af variablen `nummer`
+* Variabel-navne må ikke begynde med tal. Det kan også optræde i data vi importerer.
 
-Navnene på kolonner i en dataframe, kan vi trække ud
-ved brug af funktionen `names`
+Vi her derfor behov for dels at kunne håndtere "illegale" kolonnenavne direkte, dels
+for at kunne ændre deres navne.
 
-Og så assigne nye navne.
+Det kan gøres på flere måder:
 
-"Best practice" omkring kolonnenavne er at undgå 
-mellemrum, kolonnenavne der starter med tal og i det 
-hele taget at undgå specialtegn.
+### colnames()
 
-Når man indlæser data oplever man ofte at kolonnenavnene
-ikke overholder disse regler. 
+Vi kan få en komplet liste over alle kolonnenavnene ved hjælp af funktionen 
+`colnames()`. Og gennem den kan vi også ændre kolonnenavnene:
+```{r}
 
-backticks er løsningen.
+colnames(test) 
+
+colnames(test) <- c("Sample",  "Dommer", "Replicate", "Intensity", "Sour", "Bitter", "Sweet",
+                   "Tobacco", "Roasted", "Nutty", "Chocolate")
+
+colnames(test)
+```
+Her har vi først ændret "Assessor" til "Dommer". Det er en lidt omstændelig metode, 
+der kræver at vi skriver alle kolonnenavnene, også dem vi ikke vil ændre. 
+
+Er det kun et enkelt kolonnenavn vi vil ændre kan vi gøre det lidt mere specifikt,
+men på næsten samme måde:
+
+```{r}
+colnames(test)[2] <- "Assessor"
+```
+Her lader vi `colnames()` trække alle kolonneoverskrifterne ud, bruger `[2]` til at 
+vælge kolonne overskrift 2 - og gemmer så teksten "Assessor" i den. Kolonnenavnene
+er nu tilbage til udgangspunktet. 
+
+### rename
+Vi har indlæst pakken `tidyverse` en del af den er `dplyr` funktionerne. En af dem
+er `rename()` der omdøber kolonnenavne på denne måde:`
+```{r}
+rename(test, "Dommer" = "Assessor")
+```
+
+`rename()` kan også bruges sammen med pipen, `%>%`:
+```{r}
+kaffe %>% 
+  rename("Dommer" = "Assessor")
+```
+
+### Brug bøvlede kolonnenavne direkte
+
+Alternativt kan man vælge slet ikke at ændre de "illegale" kolonnenavne, men i stedet
+bruge dem direkte. Det kræver at man pakker kolonnenavnene ind på en særlig måde:
+```{r eval  =F}
+eksempel$`1 klart ulovligt kolonne-navn`
+```
+Her er kolonnenavnet, der har adskellige problemer, pakket ind i "`", såkaldte
+backticks. Vi anbefaler at du ændrer kolonnenavnene til noget der er "legalt"; 
+det er bøvlet at skulle pakke ting ind i mærkelige accenttegn.
+
   
 ### Tidy
 I skal vide hvordan ovenstående fungerer. For det 
