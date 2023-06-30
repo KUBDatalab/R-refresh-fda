@@ -1,3 +1,19 @@
+## Rails 7.0.6 (June 29, 2023) ##
+
+*   Fix `EncryptedConfiguration` returning incorrect values for some `Hash`
+    methods
+
+    *Hartley McGuire*
+
+*   Fix arguments being destructed `Enumerable#many?` with block.
+
+    *Andrew Novoselac*
+
+*   Fix humanize for strings ending with id.
+
+    *fatkodima*
+
+
 ## Rails 7.0.5.1 (June 26, 2023) ##
 
 *   No changes.

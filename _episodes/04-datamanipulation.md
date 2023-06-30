@@ -5,15 +5,16 @@ title: "Manipulation af data"
 teaching: 10
 exercises: 5
 questions:
-- "Hvordan kan man indlæse data"
-- "Hvordan får man fat i en delmængde af mit datasæt"
-- "Hvordan kan man omdøbe kolonner"
-- "Hvordan kan man gemme manipulerede datasæt"
+- "Hvordan kan man indlæse data?"
+- "Hvordan får man fat i en delmængde af mit datasæt?"
+- "Hvordan kan man omdøbe kolonner?"
+- "Hvordan kan man gemme manipulerede datasæt?"
 objectives:
 - "Lær at indlæse og gemme data"
 - "Lær at manipulere med data"
 keypoints:
-- "Man kan indlæse data, manipulere dem og så gemme dem"
+- "Man kan indlæse og manipulere data"
+- "Man kan gemme manipulerede data"
 
 source: Rmd
 ---

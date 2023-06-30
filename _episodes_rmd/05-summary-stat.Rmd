@@ -3,11 +3,15 @@ title: "Summary statistics"
 teaching: 10
 exercises: 5
 questions:
-- "FIX ME"
+- "Hvordan kan man udregne summary statistics?"
+- "Hvordan laver man en lineær regression?"
 objectives:
-- "FIX ME"
+- "Lær at udregne summary statistics med aggregate()"
+- "Lær at udregne summary statistics med tidyverse"
+- "Lær at lave en lineær regression"
 keypoints:
-- "FIX ME"
+- "Man kan udregne summary statistics på flere måder"
+- "Man kan lave en lineær regression"
 
 source: Rmd
 math: yes
@@ -153,7 +157,7 @@ Læg mærke til at hvis du selv kører denne kode, får du en række "warnings".
 Det skyldes at der er tekst i datasættet, og aggregate vil forsøge at beregne
 gennemsnittet, også af tekst. Det kan man ikke, og det giver os advarsler.
 
-## Den anden måde.
+## Den anden måde
 
 Vi er glade for at præsentere forskellige måder at nå samme resultat. De der 
 finder aggregate metoden vanskelig, finder forhåbentlig denne let.

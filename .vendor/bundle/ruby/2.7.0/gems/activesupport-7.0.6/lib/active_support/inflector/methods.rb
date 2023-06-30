@@ -136,7 +136,7 @@ module ActiveSupport
 
       result.tr!("_", " ")
       result.lstrip!
-      unless keep_id_suffix
+      if !keep_id_suffix && lower_case_and_underscored_word.end_with?("_id")
         result.delete_suffix!(" id")
       end
 
@@ -171,8 +171,6 @@ module ActiveSupport
     # The trailing '_id','Id'.. can be kept and capitalized by setting the
     # optional parameter +keep_id_suffix+ to true.
     # By default, this parameter is false.
-    #
-    # +titleize+ is also aliased as +titlecase+.
     #
     #   titleize('man from the boondocks')                       # => "Man From The Boondocks"
     #   titleize('x-men: the last stand')                        # => "X Men: The Last Stand"
