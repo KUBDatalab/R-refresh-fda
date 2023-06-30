@@ -52,8 +52,8 @@ kaffe %>%
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-06-unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-6</p>
+<img src="../fig/rmd-06-Plot af Sour mod Bitter-1.png" alt="plot of chunk Plot af Sour mod Bitter" width="612" />
+<p class="caption">plot of chunk Plot af Sour mod Bitter</p>
 </div>
 
 Men vi talte ikke meget om hvad den kode egentlig betød.
@@ -102,7 +102,7 @@ som vi så tidligere.
 
 Andre `geom_` funktioner der kan være nyttige er:
 
-### boxplot
+### Boxplots
 
 
 ~~~
@@ -113,29 +113,42 @@ kaffe %>%
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-06-unnamed-chunk-9-1.png" alt="plot of chunk unnamed-chunk-9" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-9</p>
+<img src="../fig/rmd-06-unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-8</p>
 </div>
 Boxplottet viser os fordelingen af vurdering af parameteren "Sour" ved forskellige 
 temperaturer. 
 
+### Biplots 
+
 Et særligt plot I kommer til at bruge meget er et `biplot`. Det kan R også lave
 direkte, men det er lettere med funktionen `ggbiplot` som vi installerede i episoden "Pakker og opdatering".
 
-Udgangspunktet er en 
+Udgangspunktet er resultatet af en "principal component analyse". Det kommer vi ikke ind
+på her - det forklarer Morten meget bedre end os. Men den kode der skal laves 
+ser således ud:
 
 
 ~~~
 kaffe.pca <- prcomp(kaffe[,4:11], scale. = TRUE)
-biplot <- ggbiplot(kaffe.pca, obs.scale = 1, var.scale = 1, groups = kaffe$Sample, ellipse = TRUE, circle = TRUE)
- biplot
+ggbiplot(kaffe.pca, groups = kaffe$Sample, ellipse = TRUE)
 ~~~
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-06-unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10" width="612" />
-<p class="caption">plot of chunk unnamed-chunk-10</p>
+<img src="../fig/rmd-06-Biplot-1.png" alt="plot of chunk Biplot" width="612" />
+<p class="caption">plot of chunk Biplot</p>
 </div>
+
+Den første linie laver selve PCA-modellen. Den plotter vi så efterfølgende med
+`ggbiplot()` funktionen.
+
+Den skal først have modellen der skal plottes, det er `kaffe.pca`. Hvis vi vil 
+havelagt punkterne efter hvilken gruppe de hører til, skal vi angive det med `groups` 
+argumentet. Her farvelægger vi efter værdierne i kolonnen "Sample" i datasættet.
+`ellipse` angiver at der skal tegnes en ellipse omkring punkterne i hver gruppe.
+Som default tegnes ellipsen så den omfatter ca. 95% af observationerne.
+
 
 
 {% include links.md %}
