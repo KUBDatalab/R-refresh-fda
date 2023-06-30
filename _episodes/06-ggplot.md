@@ -7,9 +7,9 @@ exercises: 5
 questions:
 - "Hvad er ggplot?"
 objectives:
-- "FIX ME"
+- "Introduktion til den grundlæggende struktur i ggplot"
 keypoints:
-- "FIX ME"
+- "ggplot kan plotte stort set alle former for 2D plots"
 
 source: Rmd
 math: yes
@@ -46,7 +46,7 @@ mod hinanden:
 
 ~~~
 kaffe %>% 
-  ggplot(aes(x = Bitter, y = Sour)) +
+  ggplot(mapping = aes(x = Bitter, y = Sour)) +
   geom_point()
 ~~~
 {: .language-r}
@@ -73,18 +73,26 @@ at vi vil have værdierne i "Bitter" kolonnen på x-aksen, og værdierne i "Sour
 kolonnnen på y-aksen. Vi kan "mappe" data til andre ting i plottet, men starter
 med disse to. 
 
-ggplot bruger en abstraktion om lag. Vi lægger ekstra lag oven på vores plots 
-med `+`. Koden:
+Koden:
 
 ~~~
 kaffe %>% 
-  ggplot(aes(x = Bitter, y = Sour))
+  ggplot(mapping = aes(x = Bitter, y = Sour))
 ~~~
 {: .language-r}
 
 producerer et meget kedeligt plot, for vi har ikke tilføjet laget der fortæller 
 hvordan vi vil have plottet data. Det gør vi med funtionen `geom_point`, der
 specificerer at vi vil have et scatter-plot, hvor vi plotter punkter, eller "points".
+
+Vi kan tænke på den måde `ggplot2` laver plots, som at vi lægger lag på lag. 
+Der startes med et lag hvor det beskrives hvilke data der er i plottet, og hvilke
+af dem der skal være på x og y akserne. Når vi vil specificere hvordan data så 
+faktisk _skal_ plottes, tilføjer vi et ekstra lag oven på plottet, med `+`. 
+
+Det lag vi tilføjer, som specificerer hvordan data konkret skal plottes, 
+kaldes en `geom_` - kort for geometri, fordi det i en eller anden forstand er 
+geometriske objekter vi plotter.
 
 Forskellige typer af plots har hver deres `geom_` funktion, hvor det der står efter
 understregningen, fortæller hvilken slags plot vi vil have lavet. Det samlede 
