@@ -129,6 +129,13 @@ I jeres projekt laver I mappen `scripts`. I den mappe opretter
 I en R-script fil med navnet `ggbiplot.R`. Den åbner I, og kopierer
 nedenstående R-kode ind i den:
 
+Virker denne?
+```{r eval = F}
+download.file("https://raw.githubusercontent.com/KUBDatalab/R-refresh-fda/main/code/.gitkeep", "scripts/ggbiplot.R")
+```
+
+
+[download](https://raw.githubusercontent.com/KUBDatalab/R-refresh-fda/main/code/ggbiplot.R)
 
 ```{r ggbiplot-kode, eval = F}
 ggbiplot <- function(pcobj, choices = 1:2, scale = 1, pc.biplot = TRUE, 
