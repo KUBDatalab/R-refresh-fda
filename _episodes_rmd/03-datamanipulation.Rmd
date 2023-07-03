@@ -192,12 +192,12 @@ Vi kan få en komplet liste over alle kolonnenavnene ved hjælp af funktionen
 `colnames()`. Og gennem den kan vi også ændre kolonnenavnene:
 ```{r}
 
-colnames(test) 
+colnames(kaffe) 
 
-colnames(test) <- c("Sample",  "Dommer", "Replicate", "Intensity", "Sour", "Bitter", "Sweet",
+colnames(kaffe) <- c("Sample",  "Dommer", "Replicate", "Intensity", "Sour", "Bitter", "Sweet",
                    "Tobacco", "Roasted", "Nutty", "Chocolate")
 
-colnames(test)
+colnames(kaffe)
 ```
 Her har vi først ændret "Assessor" til "Dommer". Det er en lidt omstændelig metode, 
 der kræver at vi skriver alle kolonnenavnene, også dem vi ikke vil ændre. 
@@ -206,7 +206,7 @@ Er det kun et enkelt kolonnenavn vi vil ændre kan vi gøre det lidt mere specif
 men på næsten samme måde:
 
 ```{r}
-colnames(test)[2] <- "Assessor"
+colnames(kaffe)[2] <- "Assessor"
 ```
 Her lader vi `colnames()` trække alle kolonneoverskrifterne ud, bruger `[2]` til at 
 vælge kolonne overskrift 2 - og gemmer så teksten "Assessor" i den. Kolonnenavnene
