@@ -58,11 +58,14 @@ Her er filen en Excel fil. Så vi skal have fat på biblioteket `readxl`, der ha
 en funktion der kan læse Excel-filer:
 
 
-```{r}
+```{r indlæs-data, echo = F}
 library(readxl)
 kaffe <- read_excel("../data/Results Panel.xlsx")
 ```
-
+```{r indlæs-data-demo, eval = F}
+library(readxl)
+kaffe <- read_excel("data/Results Panel.xlsx")
+```
 Hvis det var en csv fil vi arbejdede med vil vi som regel bruge en af 
 funktionerne `read.csv`, `read.csv2`, `read_csv` eller `read_csv2`
 
@@ -98,10 +101,10 @@ løsninger.
 
 Ønsker vi at trække en enkelt kolonne ud af en dataframe,
 kan vi bruge $-notationen:
-```{r eval = F}
+```{r dollar-subset-demo, eval = F}
 kaffe$Sour
 ```
-```{r echo = F}
+```{r dollar-subset-visning, echo = F}
 head(kaffe$Sour)
 ```
 Det giver os værdierne i kolonnen *Sour* i datasættet *kaffe*
@@ -109,11 +112,11 @@ Det giver os værdierne i kolonnen *Sour* i datasættet *kaffe*
 Vil vi trække mere end en kolonne ud af datasættet kan vi bruge en notation 
 med kantede paranteser:
 
-```{r eval=F}
+```{r kantet-subset-demo, eval=F}
 kaffe[,c(2,4,6)]
 ```
 
-```{r echo =F }
+```{r kantet-subset-visning, echo =F }
 head(kaffe[,c(2,4,6)])
 ```
 Her beder vi om at få kolonne nr. 2, 4 og 6.
@@ -132,10 +135,10 @@ rækker, fordi det fylder for meget at skrive det hele ud).
 I stedet for at angive rækkenumrer når vi subsetter på denne måde, kan vi 
 bruge logiske tests: 
 
-```{r echo = F }
+```{r logisk-vektor-visning, echo = F }
 head(kaffe[kaffe$Assessor == 1,c(2,4,6)])
 ```
-```{r eval = F }
+```{r logisk-vektor-demo, eval = F }
 kaffe[kaffe$Assessor == 1, c(2,4,6)]
 ```
 
@@ -148,10 +151,10 @@ er lig med 1. Eller også er det falsk. Når vi laver sammenligningen med hele
 kolonnen, får vi en `vektor` med TRUE og FALSE værdier (her viser vi blot de første
 seks resultater):
 
-```{r echo = F}
+```{r logisk-test-subset-visning, echo = F}
 head(kaffe$Assessor == 1)
 ```
-```{r eval = F}
+```{r logisk-test-subset-demo, eval = F}
 kaffe$Assessor == 1
 ```
 
@@ -162,11 +165,11 @@ den matchende værdi er TRUE. De hvor værdien er FALSE, filtreres fra.
 
 Endelig er der en specifik funktion `subset()` der kan benyttes
 
-```{r echo = F}
+```{r subset-funktion-visning, echo = F}
 subset(kaffe, Assessor == 2, select = c(Sample, Bitter, Intensity)) %>% 
   head()
 ```
-```{r eval = F}
+```{r subset-funktion-demo, eval = F}
 subset(kaffe, Assessor == 2, select = c(Sample, Bitter, Intensity))
 ```
 Subset funktionen giver os mulighed for at angive specifikke kriterier for
@@ -190,7 +193,7 @@ Det kan gøres på flere måder:
 
 Vi kan få en komplet liste over alle kolonnenavnene ved hjælp af funktionen 
 `colnames()`. Og gennem den kan vi også ændre kolonnenavnene:
-```{r}
+```{r colnames-change}
 
 colnames(kaffe) 
 
@@ -205,7 +208,7 @@ der kræver at vi skriver alle kolonnenavnene, også dem vi ikke vil ændre.
 Er det kun et enkelt kolonnenavn vi vil ændre kan vi gøre det lidt mere specifikt,
 men på næsten samme måde:
 
-```{r}
+```{r colnames-change-kantet}
 colnames(kaffe)[2] <- "Assessor"
 ```
 Her lader vi `colnames()` trække alle kolonneoverskrifterne ud, bruger `[2]` til at 
@@ -215,12 +218,12 @@ er nu tilbage til udgangspunktet.
 ### rename
 Vi har indlæst pakken `tidyverse` en del af den er `dplyr` funktionerne. En af dem
 er `rename()` der omdøber kolonnenavne på denne måde:`
-```{r}
-rename(test, "Dommer" = "Assessor")
+```{r rename-demo}
+rename(kaffe, "Dommer" = "Assessor")
 ```
 
 `rename()` kan også bruges sammen med pipen, `%>%`:
-```{r}
+```{r rename-demo-tidy}
 kaffe %>% 
   rename("Dommer" = "Assessor")
 ```
@@ -229,7 +232,7 @@ kaffe %>%
 
 Alternativt kan man vælge slet ikke at ændre de "illegale" kolonnenavne, men i stedet
 bruge dem direkte. Det kræver at man pakker kolonnenavnene ind på en særlig måde:
-```{r eval  =F}
+```{r illegalt-kolonne-navn, eval  =F}
 eksempel$`1 klart ulovligt kolonne-navn`
 ```
 Her er kolonnenavnet, der har adskellige problemer, pakket ind i "`", såkaldte
@@ -264,12 +267,12 @@ Bemærk at hvis du selv kører nedenstående eksempler på kode, vil få en
 del flere rækker end vi viser her.
 
 Udvælgelse af bestemte kolonner:
-```{r eval = F}
+```{r tidy-select-demo, eval = F}
 library(tidyverse)
 kaffe %>% 
   select(Assessor, Bitter, Sour)
 ```
-```{r echo = F}
+```{r tidy-select-visning, echo = F}
 library(tidyverse)
 kaffe %>% 
   select(Assessor, Bitter, Sour) %>% 
@@ -280,12 +283,12 @@ Her sender vi datasættet kaffe til funktionen `select`, og angiver at vi godt
 vil vælge kolonnerne "Assessor", "Bitter" og "Sour".
 
 Udvælgelse af bestemte rækker:
-```{r eval = F}
+```{r select-filter-demo, eval = F}
 kaffe %>% 
   select(Assessor, Bitter, Sour) %>% 
   filter(Assessor == 1)
 ```
-```{r echo = F}
+```{r select-filter-visning, echo = F}
 kaffe %>% 
   select(Assessor, Bitter, Sour) %>% 
   filter(Assessor == 1) %>% 
@@ -303,13 +306,13 @@ Endelig kan vi have brug for at foretage beregninger på data i kolonnerne, og
 lave en ny kolonne, baseret på de eksisterende kolonner:
 
 
-```{r eval  =F }
+```{r select-filter-mutate-demo, eval  =F }
 kaffe %>% 
   select(Assessor, Bitter, Sour) %>% 
   filter(Assessor == 1) %>% 
   mutate(ny_kolonne = Bitter*Sour)
 ```
-```{r echo = F}
+```{r select-filter-mutate-visning, echo = F}
 kaffe %>% 
   select(Assessor, Bitter, Sour) %>% 
   filter(Assessor == 1) %>% 
@@ -336,7 +339,7 @@ sende ind i pipen bliver ikke ændret. Derfor, gem
 resultatet i et nyt objekt hvis du har brug for det. 
 
 Det kunne se sådan ud:
-```{r eval = F}
+```{r mutate-demo, eval = F}
 nyt_kaffe_data <- kaffe %>% 
   select(Assessor, Bitter, Sour) %>% 
   filter(Assessor == 1) %>% 
@@ -354,7 +357,7 @@ gemme, og der er csv-filer vejen frem.
 CSV-filer kunne indlæses på flere forskellige måder. Vi kan også gemme dem på
 flere forskellige måder: `write.csv`, `write.csv2`, `write_csv` eller `write_csv2`:
 
-```{r eval = F}
+```{r gem-data-csv, eval = F}
 write.csv2(nyt_kaffe_data, "KORREKTMAPPE/nyt_kaffe_data.csv")
 ```
 
@@ -366,13 +369,13 @@ lave en statistisk model, kan ikke gemmes som
 csv-filer. Men frygt ej, R har måder at gemme den 
 slags på:
 
-```{r eval = F}
+```{r gem-data-rda, eval = F}
 saveRDS(sær_data, file = "KORREKTMAPPE/sær_data.rda")
 ```
 
 Disse gemte objekter kan så indlæses igen:
 
-```{r eval = F}
+```{r hent-data-rda, eval = F}
 readRDS(file = "KORREKTMAPPE/sær_data.rda")
 ```
 

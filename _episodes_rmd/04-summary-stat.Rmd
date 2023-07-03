@@ -117,7 +117,7 @@ aggregate(kaffe, by=list(kaffe$Assessor), FUN = "mean")
 ```
 
 ```{r aggregate-eksempel-med-output,message=F, warning=F, eval =T, echo =F }
-aggregate(kaffe, by=list(kaffe$Assessor), FUN = "mean")
+aggregate(kaffe, by=list(kaffe$Assessor), FUN = "mean") %>% 
 ```
 
 Hvad sker der her? Aggregatefunktionen tager input, data, i dette 
@@ -145,6 +145,7 @@ aggregate(kaffe, by=list(kaffe$Assessor, kaffe$Sample), FUN = "mean")
 ```
 ```{r echo = F, warning = F}
 aggregate(kaffe, by=list(kaffe$Assessor, kaffe$Sample), FUN = "mean") %>% 
+  as_tibble() %>% 
   head()
 ```
 Vi får nu både en "Group.1" der er dommernes nummer, og "Group.2" der er "Sample", 
