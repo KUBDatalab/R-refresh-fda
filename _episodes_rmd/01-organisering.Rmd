@@ -65,7 +65,7 @@ Men læg mærke til at du hver gang du bruger den skal interagere med RStudio og
 
 Indlæs i stedet filen med kommandoer i et script:
 
-```{r eval = F}
+```{r data-indlæsning-eksempel eval = F}
 library(readxl)
 Results_Consumer_Test <- read_excel("R_projekter/R-refresh-fda/data/Results Consumer Test.xlsx")
 ```
@@ -81,7 +81,7 @@ Kommentarer i R skal markeres på en særlig måde. Ellers vil R forsøge at
 fortolke kommentarerne som kode. Og det går sjældent godt. Vi markerer
 at noget er en kommentar ved at sætte # foran teksten:
 
-```{r}
+```{r kommentar-eksempel}
 # Her viser vi hvordan man laver en kommentar
 # Det er en kommentar til en beregning af gennemsnittet af 100 tilfældige
 # normalfordelte tal med middelværdi lig 0, og standardafvigelse lig 1: 
@@ -106,7 +106,7 @@ Kald til libraries placeres med fordel som det allerførste i scriptet. Dette gi
 install.packages() kan være rart at have med i scriptet. Men det er ikke noget I har brug for at køre hver eneste gang scriptet skal køres. Så udkommenter de linier kode.
 
 En god praksis kan være:
-```{r eval = F}
+```{r strukturerings-eksempel, eval = F}
 # i dette script analyserer jeg hvilke sensoriske parametre der har betydning 
 # for vurderingen af smagen af oste.
 
@@ -135,7 +135,7 @@ For at gøre ens projekt mere overskueligt kan man med fordel lave flere scripts
 Derudover kan det indenfor et script være nyttigt at organisere sin kode i sektioner. En sektions laves ved at sætte fire tankestreger efter en kommentar, # SEKTIONSNAVN ----, eller man kan bruge genvejen ctrl + shift + R
 
 Her er et forslag til nogle anvendelig sektioner:
-```{r}
+```{r sektions-eksempel}
 # indlæs biblioteker ----
 
 # indlæs data ----
@@ -151,10 +151,5 @@ Her er et forslag til nogle anvendelig sektioner:
 Det smarte er også at disse kodesektioner kan "foldes sammen" så de ikke forstyrrer blikket når man programmerer. I denne animation kan man se hvordan man kan "åbne" og "lukke" sektioner.
 
 ![Sektioner kan foldes sammen, og bidrage til overblikket](../fig/sections_foldning.gif)
-
-
-
-
-
 
 {% include links.md %}
