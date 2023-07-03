@@ -132,6 +132,15 @@ I jeres projekt laver I mappen `scripts`. I den mappe opretter
 I en R-script fil med navnet `ggbiplot.R`. Den åbner I, og kopierer
 nedenstående R-kode ind i den:
 
+Virker denne?
+
+~~~
+download.file("https://raw.githubusercontent.com/KUBDatalab/R-refresh-fda/main/code/.gitkeep", "scripts/ggbiplot.R")
+~~~
+{: .language-r}
+
+
+[download](https://raw.githubusercontent.com/KUBDatalab/R-refresh-fda/main/code/ggbiplot.R)
 
 
 ~~~

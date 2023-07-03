@@ -288,6 +288,10 @@ data til funktionen `group_by`. Den "grupperer" datasættet efter værdierne i "
 Dette grupperede datasæt sendes videre til `summarise_all` funktionen, der beregner
 middelværdien - den specificerer vi med "mean", for *alle* kolonnerne.
 
+Det er også forklaringen på den "warning" vi ser. I "Sample" kolonnen har vi 
+tekst. `summarise_all` beregner gennemsnittet af denne tekst. Det kan man ikke,
+og vi får derfor en advarsel om NA-værdier.
+
 Der er flere varianter af den. Hvis vi vil fokusere på vurderingen af "Intensity",
 kan vi beregne flere statistiske værdier for den på en gang:
 
