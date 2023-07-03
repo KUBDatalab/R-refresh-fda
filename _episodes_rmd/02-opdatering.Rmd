@@ -39,7 +39,7 @@ Når vi skal bruge en pakke til vores programmering, skal vi gøre to ting.
 
 Pakker fra `CRAN` installeres på computeren på denne måde:
 
-```{r eval = F}
+```{r devtools-install, eval = F}
 install.packages("devtools")
 ```
 
@@ -128,7 +128,7 @@ funktion. Og den kan vi få adgang til på andre måder.
 I jeres projekt laver I mappen `scripts`. Og så kører I denne linie kode, der 
 downloader et R-script der indeholder ggbiplot funktion. 
 
-```{r eval = F}
+```{r ggbiplot.r-download-eksempel, eval = F}
 download.file("https://raw.githubusercontent.com/KUBDatalab/R-refresh-fda/main/code/ggbiplot.R", "scripts/ggbiplot.R")
 ```
 
@@ -169,7 +169,7 @@ Vi har under alle omstændigheder behov for at have pakken devtools installeret.
 Det betyder at vi kan kalde følgende funktion, der tillader os at vælge 
 hvilke der skal opdateres:
 
-```{r eval = F}
+```{r updater-pakker, eval = F}
 library(devtools)
 update_packages()
 ```
