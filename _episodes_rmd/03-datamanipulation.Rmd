@@ -219,7 +219,7 @@ er nu tilbage til udgangspunktet.
 Vi har indlæst pakken `tidyverse` en del af den er `dplyr` funktionerne. En af dem
 er `rename()` der omdøber kolonnenavne på denne måde:`
 ```{r rename-demo}
-rename(test, "Dommer" = "Assessor")
+rename(kaffe, "Dommer" = "Assessor")
 ```
 
 `rename()` kan også bruges sammen med pipen, `%>%`:
