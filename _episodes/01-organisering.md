@@ -92,7 +92,7 @@ mean(rnorm(100))
 
 
 ~~~
-[1] -0.09329979
+[1] 0.02070585
 ~~~
 {: .output}
 
@@ -167,10 +167,5 @@ Her er et forslag til nogle anvendelig sektioner:
 Det smarte er også at disse kodesektioner kan "foldes sammen" så de ikke forstyrrer blikket når man programmerer. I denne animation kan man se hvordan man kan "åbne" og "lukke" sektioner.
 
 ![Sektioner kan foldes sammen, og bidrage til overblikket](../fig/sections_foldning.gif)
-
-
-
-
-
 
 {% include links.md %}
