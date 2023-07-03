@@ -72,8 +72,15 @@ Det betyder blot at Rs indbyggede pakke `stats` har en funktion der hedder `filt
 Hvis vi har brug for en specifik udgave af en funktion, der kommer fra en bestemt pakke, kan vi kalde den,
 eksempelvis: `stats::filter()`
 
-Som tidligere omtalt, vil vi godt have et samlet script, som kan køre fra start til slut. Og derfor er det god praksis at placere alle `library()` funktionerne i starten af scriptet. Ovenover disse kan man med fordel placere `install.packages()`
-funktionerne (Husk dog at udkommentere disse, da vi ikke ønsker at køre dem hver gang scriptet bliver kørt)
+> ## Ét script!
+> 
+> Som tidligere omtalt, vil vi godt have et samlet script, som kan køre fra start 
+> til slut. Og derfor er det god praksis at placere alle `library()` funktionerne 
+> i starten af scriptet. Ovenover disse kan man med fordel placere `install.packages()`
+> funktionerne (Husk dog at udkommentere disse, da vi ikke ønsker at køre dem 
+> hver gang scriptet bliver kørt)
+> 
+{.callout}
 
 Enkelte pakker er ikke tilgængelige på `CRAN`. Det hyppigste sted vi installerer pakker fra, der ikke findes på CRAN, er Github.
 

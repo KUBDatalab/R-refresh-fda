@@ -162,26 +162,11 @@ aggregate(kaffe, by=list(kaffe$Assessor), FUN = "mean")
 
 
 ~~~
-  Group.1 Sample Assessor Replicate Intensity     Sour   Bitter   Sweet
-1       1     NA        1       2.5   9.94375  9.02500  9.63125 3.97500
-2       2     NA        2       2.5   9.04375  9.05000 11.58125 1.96250
-3       3     NA        3       2.5  10.33125  8.94375 12.08750 4.90625
-4       4     NA        4       2.5   7.97500  6.70625  8.43750 2.82500
-5       5     NA        5       2.5   8.95625  5.46875  9.25000 3.88125
-6       6     NA        6       2.5  11.25625 10.08125 10.71875 4.36250
-7       7     NA        7       2.5   8.56875  6.15625  6.28750 2.46875
-8       8     NA        8       2.5   8.63125  8.91875  9.32500 4.04375
-   Tobacco  Roasted   Nutty Chocolate
-1 10.28750 10.20625 4.15000   5.98125
-2 11.72500 10.96250 3.41250  10.85625
-3 10.36250  8.90625 5.29375  10.23750
-4  8.20000  6.58750 3.77500   6.87500
-5 10.09375 10.43125 4.49375   6.33750
-6  9.72500  7.04375 4.71250   7.72500
-7  7.48750  9.05625 3.40625   4.91250
-8  9.13750  9.61250 3.98750   6.48125
+Error: <text>:2:0: unexpected end of input
+1: aggregate(kaffe, by=list(kaffe$Assessor), FUN = "mean") %>% 
+   ^
 ~~~
-{: .output}
+{: .error}
 
 Hvad sker der her? Aggregatefunktionen tager input, data, i dette 
 tilfælde dataframen `kaffe`, og splitter den op i et antal grupper.
@@ -210,20 +195,16 @@ aggregate(kaffe, by=list(kaffe$Assessor, kaffe$Sample), FUN = "mean")
 {: .language-r}
 
 ~~~
-  Group.1 Group.2 Sample Assessor Replicate Intensity    Sour  Bitter  Sweet
-1       1     31C     NA        1       2.5    9.8625  8.6625  9.0750 3.9750
-2       2     31C     NA        2       2.5    9.0000  8.5125 11.4375 3.3375
-3       3     31C     NA        3       2.5    9.2250  9.7500 12.7500 3.6750
-4       4     31C     NA        4       2.5    5.7750  6.1500  7.5000 1.9875
-5       5     31C     NA        5       2.5    7.0875  6.3375  9.7125 3.3750
-6       6     31C     NA        6       2.5    9.6375 10.8000  9.4125 4.1625
-  Tobacco Roasted  Nutty Chocolate
-1 10.4625  9.2625 4.2375    6.9000
-2 11.4375  9.7875 3.3375   10.4625
-3 13.5750  6.6375 3.6000    9.1500
-4  7.9500  3.8250 2.2500    7.1625
-5 10.8750  9.7875 6.1875    7.1250
-6 10.7625  6.2625 3.4875    8.1750
+# A tibble: 6 × 13
+  Group.1 Group.2 Sample Assessor Replicate Intensity  Sour Bitter Sweet Tobacco
+    <dbl> <chr>    <dbl>    <dbl>     <dbl>     <dbl> <dbl>  <dbl> <dbl>   <dbl>
+1       1 31C         NA        1       2.5      9.86  8.66   9.07  3.97   10.5 
+2       2 31C         NA        2       2.5      9     8.51  11.4   3.34   11.4 
+3       3 31C         NA        3       2.5      9.22  9.75  12.8   3.68   13.6 
+4       4 31C         NA        4       2.5      5.78  6.15   7.5   1.99    7.95
+5       5 31C         NA        5       2.5      7.09  6.34   9.71  3.38   10.9 
+6       6 31C         NA        6       2.5      9.64 10.8    9.41  4.16   10.8 
+# ℹ 3 more variables: Roasted <dbl>, Nutty <dbl>, Chocolate <dbl>
 ~~~
 {: .output}
 Vi får nu både en "Group.1" der er dommernes nummer, og "Group.2" der er "Sample", 
