@@ -65,7 +65,7 @@ Men læg mærke til at du hver gang du bruger den skal interagere med RStudio og
 
 Indlæs i stedet filen med kommandoer i et script:
 
-```{r data-indlæsning-eksempel eval = F}
+```{r data-indlæsning-eksempel, eval = F}
 library(readxl)
 Results_Consumer_Test <- read_excel("R_projekter/R-refresh-fda/data/Results Consumer Test.xlsx")
 ```
