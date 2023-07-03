@@ -318,5 +318,6 @@ metode funktionen skal bruge til at være en lineær model
 > den med `stat_smooth(method = lm)`. Det giver samme resultat, men
 > stat_smooth() funktionen giver flere muligheder for at styre
 > det præcise fit. Læs mere i dokumentationen til `stat_smooth()`
+{: .callout}
 
 {% include links.md %}
