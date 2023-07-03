@@ -476,4 +476,59 @@ som den del af variationen af `Sour`, der ikke forklares af den lineære model. 
 "bitter" til 13.2 forudså modellen at samme smagsdommer skulle vurdere "Sour" til 9.57428. Kigger vi i data, kan vi finde en 
 smagsdommer der faktisk vurderer "Bitter" til 13.2. Men samme smagsdommers vurdering af "Sour" er faktisk 11.6. 11.6 - 9.57428 er forskellen på de faktiske data, og det vores lineære model forudsiger. Eller "residualen", den del af variationen i "Sour" som modellen *ikke* forklarer.
 
+## plot af den lineære model
+
+Det er vældig fint at kunne lave en lineær regression. Men det ville også være
+dejligt at kunne plotte den. En lineær regression giver os output der kan bruges
+til at tegne en ret linie. Det kan vi selvfølgelig gøre i hånden, når vi ved at
+skæringen er 3.85995, og hældningen er 0.43289.
+
+Men det er lettere at få ggplot til at gøre det for os. Det eksisterer der 
+metoder til:
+
+
+~~~
+kaffe %>% 
+  ggplot(aes(Bitter, Sour)) +
+  geom_point() +
+  geom_smooth(method = lm)
+~~~
+{: .language-r}
+
+
+
+~~~
+`geom_smooth()` using formula = 'y ~ x'
+~~~
+{: .output}
+
+<div class="figure" style="text-align: center">
+<img src="../fig/rmd-05-unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13" width="612" />
+<p class="caption">plot of chunk unnamed-chunk-13</p>
+</div>
+`geom_smooth()` funktionen kan lægge en "smooth" linie ind, der beskriver punkterne.
+Den laver en regression, ganske som vi så ovenfor, og plotter resultatet af den. 
+Inklusive et 95% konfidensinterval på fittet. 
+
+Som default bruger den en metode der kaldes "loess". Det giver en blød kurve
+der passer rigtig godt til punkterne. Som regel vil vi hellere have en kurve der 
+passer bedre til den statistiske model. Og det får vi her ved at specificere den
+metode funktionen skal bruge til at være en lineær model
+`geom_smooth(method = "lm")`
+
+> ## Alternativer
+> 
+> Den "loess" funktion der som default bruges fitter punkterne til et
+> andengrad polynomie, lokalt. Det vil sige at funktionen først fitter 
+> en bestemt andel af punkterne til et polynomie. Så fitter den en anden,
+> overlappende, del af punkterne til et andet polynomie. Og så fremdeles til
+> der er fittet polynomier til alle punkterne. Det giver en meget blød
+> kurve, der passer rigtig godt til punkterne. Men som ikke nødvendigvis giver
+> megen statistisk mening.
+>
+> Et alternativ til `geom_smoot(method = lm)` ville være at erstatte 
+> den med `stat_smooth(method = lm)`. Det giver samme resultat, men
+> stat_smooth() funktionen giver flere muligheder for at styre
+> det præcise fit. Læs mere i dokumentationen til `stat_smooth()`
+
 {% include links.md %}
