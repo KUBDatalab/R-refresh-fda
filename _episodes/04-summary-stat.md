@@ -357,7 +357,7 @@ kaffe %>%
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-9-1.png" alt="plot of chunk unnamed-chunk-9" width="612" />
+<img src="../fig/rmd-04-unnamed-chunk-9-1.png" alt="plot of chunk unnamed-chunk-9" width="612" />
 <p class="caption">plot of chunk unnamed-chunk-9</p>
 </div>
 
@@ -488,7 +488,7 @@ kaffe %>%
 {: .output}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-05-unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13" width="612" />
+<img src="../fig/rmd-04-unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13" width="612" />
 <p class="caption">plot of chunk unnamed-chunk-13</p>
 </div>
 `geom_smooth()` funktionen kan lægge en "smooth" linie ind, der beskriver punkterne.

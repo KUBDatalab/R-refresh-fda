@@ -52,7 +52,7 @@ kaffe %>%
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-06-Plot af Sour mod Bitter-1.png" alt="plot of chunk Plot af Sour mod Bitter" width="612" />
+<img src="../fig/rmd-05-Plot af Sour mod Bitter-1.png" alt="plot of chunk Plot af Sour mod Bitter" width="612" />
 <p class="caption">plot of chunk Plot af Sour mod Bitter</p>
 </div>
 
@@ -121,7 +121,7 @@ kaffe %>%
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-06-unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8" width="612" />
+<img src="../fig/rmd-05-unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8" width="612" />
 <p class="caption">plot of chunk unnamed-chunk-8</p>
 </div>
 Boxplottet viser os fordelingen af vurdering af parameteren "Sour" ved forskellige 
@@ -144,7 +144,7 @@ ggbiplot(kaffe.pca, groups = kaffe$Sample, ellipse = TRUE)
 {: .language-r}
 
 <div class="figure" style="text-align: center">
-<img src="../fig/rmd-06-Biplot-1.png" alt="plot of chunk Biplot" width="612" />
+<img src="../fig/rmd-05-Biplot-1.png" alt="plot of chunk Biplot" width="612" />
 <p class="caption">plot of chunk Biplot</p>
 </div>
 
