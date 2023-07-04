@@ -1,31 +1,33 @@
-# FIXME Lesson title
+# Genopfriskning af R for folk der skal have Fødevaredataanalyse
 
-This repository generates the corresponding lesson website from [The Carpentries](https://carpentries.org/) repertoire of lessons. 
+Dette repository genererer undervisningssiden til KUB Datalabs refresher. 
 
-## Contributing
+Infrastrukturen er kopieret fra [The Carpentries](https://carpentries.org/). 
 
-We welcome all contributions to improve the lesson! Maintainers will do their best to help you if you have any
-questions, concerns, or experience any difficulties along the way.
+## Bidrag
 
-We'd like to ask you to familiarize yourself with our [Contribution Guide](CONTRIBUTING.md) and have a look at
-the [more detailed guidelines][lesson-example] on proper formatting, ways to render the lesson locally, and even
-how to write new episodes.
+Kom gerne med bidrag til forbedringer af materialet! Maintainers vil gøre deres
+bedste for at hjælpe hvis du har udfordringer undervejs. 
 
-Please see the current list of [issues][FIXME] for ideas for contributing to this
-repository. For making your contribution, we use the GitHub flow, which is
-nicely explained in the chapter [Contributing to a Project](http://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project) in Pro Git
-by Scott Chacon.
-Look for the tag ![good_first_issue](https://img.shields.io/badge/-good%20first%20issue-gold.svg). This indicates that the maintainers will welcome a pull request fixing this issue.  
+Vi har en guide - på engelsk og ikke nødvendigvis endnu rettet til til netop dette
+materiale. Men principperne er ca. de samme: [Contribution Guide](CONTRIBUTING.md) 
 
+Vi har en liste over ting der bør gøres noget ved - i github jargonen  [issues][https://github.com/KUBDatalab/R-refresh-fda/issues]. Hvis du har lyst 
+til at bidrage, men ikke en god ide til hvad du kan bidrage med, så tag et kig der.
+Der her en guide til hvordan du gør: [Contributing to a Project](http://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project) in Pro Git
+skrevet af Scott Chacon.
+Kig efter taggen ![good_first_issue](https://img.shields.io/badge/-good%20first%20issue-gold.svg). Hvis ellers vi har husket at tagge issues med den, er det et godt sted at 
+starte.
 
 ## Maintainer(s)
 
-Current maintainers of this lesson are 
+Pt vedligeholdes denne lektion af 
 
-* FIXME
-* FIXME
-* FIXME
+* [FIXME]()
+* [Chrisitan Knudsen](https://github.com/chrbknudsen)
 
+Og herunder er der links til ting som - hvad skal man sige - kræver at 
+vi får lavet rettelser andre steder. Og det er vi ikke helt nået til.
 
 ## Authors
 
