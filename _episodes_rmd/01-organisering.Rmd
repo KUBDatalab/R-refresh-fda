@@ -90,7 +90,7 @@ Kommentarer i R skal markeres på en særlig måde. Ellers vil R forsøge at
 fortolke kommentarerne som kode. Og det går sjældent godt. Vi markerer
 at noget er en kommentar ved at sætte # foran teksten:
 
-```{r kommentar-eksempel}
+```{r kommentar-eksempel, eval = F}
 # Her viser vi hvordan man laver en kommentar
 # Det er en kommentar til en beregning af gennemsnittet af 100 tilfældige
 # normalfordelte tal med middelværdi lig 0, og standardafvigelse lig 1: 
