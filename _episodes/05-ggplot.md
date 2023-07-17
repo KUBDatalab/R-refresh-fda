@@ -24,6 +24,18 @@ I støder på handler om kaffe. Lad os indlæse datasættet og kigge på det. Al
 skal vi have indlæst de biblioteker vi kommer til at arbejde med:
 
 
+~~~
+plyr (NA -> 1.8.8) [CRAN]
+── R CMD build ─────────────────────────────────────────────────────────────────
+* checking for file ‘/tmp/RtmppzlSep/remotes4311241d1bc6/vqv-ggbiplot-7325e88/DESCRIPTION’ ... OK
+* preparing ‘ggbiplot’:
+* checking DESCRIPTION meta-information ... OK
+* checking for LF line-endings in source and make files and shell scripts
+* checking for empty or unneeded directories
+* looking to see if a ‘data/datalist’ file should be added
+* building ‘ggbiplot_0.55.tar.gz’
+~~~
+{: .output}
 
 
 ~~~

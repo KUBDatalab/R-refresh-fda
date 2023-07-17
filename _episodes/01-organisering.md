@@ -69,7 +69,16 @@ Results_Consumer_Test <- read_excel("R_projekter/R-refresh-fda/data/Results Cons
 ~~~
 {: .language-r}
 
-Hvis du sørger for at gemme data i en data-mappe i din RStudio projektmappe, og indlæser herfra, sikrer du at data altid følger med projektet.
+Hvis du sørger for at gemme data i en data-mappe i din RStudio projektmappe, og 
+indlæser herfra, sikrer du at data altid følger med projektet. 
+
+> ## Du får koden til indlæsning foræret!
+>
+> Bemærk at når du første gang klikker dig frem til indlæsning af data, får
+> du koden der skal bruges til det foræret. RStudio indlæser nemlig ikke bare
+> data, men bruger dine klik til at generere kode der indlæser filen. Den kommer
+> til at stå i "Console" og er lige til at kopiere ind i dit script!
+{: .callout}
 
 ## Husk at kommentere
 Kommentarer er din ven. De hjælper dig med at gennemskue hvad du har lavet når du kigger på din kode igen (måske omkring eksamenstid), eller 1 år senere fordi du skal lave noget lignende. De giver dig mulighed for hurtigt at gennemskue hvorfor du har gjort hvad.
@@ -86,19 +95,6 @@ at noget er en kommentar ved at sætte # foran teksten:
 # Det er en kommentar til en beregning af gennemsnittet af 100 tilfældige
 # normalfordelte tal med middelværdi lig 0, og standardafvigelse lig 1: 
 mean(rnorm(100))
-~~~
-{: .language-r}
-
-
-
-~~~
-[1] -0.03867359
-~~~
-{: .output}
-
-
-
-~~~
 # Bemærk at det er tilfældige tal, så dit resultat er med stor sandsynlighed
 # forskelligt fra dette. Man kan bruge funktionen set.seed() til at kontrollere
 # sandsynlighedsgeneratoren. Læs mere i dokumentationen til den
